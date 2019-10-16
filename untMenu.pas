@@ -12,14 +12,13 @@ type
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     ZConnection1: TZConnection;
-    BitBtn3: TBitBtn;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure BitBtn2Click(Sender: TObject);
     procedure GravaIni(Arquivo, Secao, Propriedade, Valor : String);
     Function LeIni(Arquivo, Secao, Propriedade : String) : String;
-    procedure BitBtn3Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -57,23 +56,26 @@ begin
     Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
 end;
 
-procedure TfrmMenu.BitBtn3Click(Sender: TObject);
-begin
-  if frmConsultaQuebra = Nil then
-  Begin
-    Application.CreateForm(TfrmConsultaQuebra, frmConsultaQuebra);
-    frmConsultaQuebra.Show;
-  End
-  Else
-    Application.MessageBox('Consulta de Quebra já aberta!', 'Aviso', MB_OK+MB_ICONEXCLAMATION);
-
-end;
-
 procedure TfrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   ZConnection1.Connected := False;
   GravaIni('CONFIG.INI', 'frmMenu', 'TOP' , IntToStr(frmMenu.Top ));
   GravaIni('CONFIG.INI', 'frmMenu', 'LEFT', IntToStr(frmMenu.Left));
+end;
+
+procedure TfrmMenu.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (ssCtrl in Shift) and (ssShift in Shift) and (ssAlt in Shift) and (Key=Ord('Q')) then
+    begin
+      if frmConsultaQuebra = Nil then
+      Begin
+        Application.CreateForm(TfrmConsultaQuebra, frmConsultaQuebra);
+        frmConsultaQuebra.Show;
+      End
+      Else
+        Application.MessageBox('Consulta de Quebra já aberta!', 'Aviso', MB_OK+MB_ICONEXCLAMATION);
+    end
 end;
 
 procedure TfrmMenu.FormShow(Sender: TObject);
@@ -107,10 +109,6 @@ begin
     BitBtn2.Visible := True
   else
     BitBtn2.Visible := False;
-  if QUE = 'S' then
-    BitBtn3.Visible := True
-  else
-    BitBtn3.Visible := False;
   end;
 
 procedure TfrmMenu.GravaIni(Arquivo, Secao, Propriedade, Valor: String);

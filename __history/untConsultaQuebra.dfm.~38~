@@ -49,6 +49,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDrawColumnCell = DBGrid1DrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -135,7 +136,6 @@ object frmConsultaQuebra: TfrmConsultaQuebra
         Visible = True
       end
       item
-        Alignment = taCenter
         Expanded = False
         FieldName = 'class_rastr'
         Title.Alignment = taCenter
@@ -1234,6 +1234,31 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       'LG'
       'NE')
   end
+  object CheckBox1: TCheckBox
+    Left = 472
+    Top = 8
+    Width = 137
+    Height = 17
+    Alignment = taLeftJustify
+    Caption = 'Real'#231'ar Desclassifica'#231#245'es'
+    TabOrder = 7
+    OnClick = CheckBox1Click
+  end
+  object ComboBox5: TComboBox
+    Left = 544
+    Top = 31
+    Width = 65
+    Height = 21
+    Enabled = False
+    ItemIndex = 0
+    TabOrder = 8
+    Text = 'TODAS'
+    OnChange = ComboBox5Change
+    Items.Strings = (
+      'TODAS'
+      'MATURACAO'
+      'PH')
+  end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
@@ -1250,7 +1275,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       '       pes.peso_quebra,'
       '       pes.data_quebra,'
       '       pes.class_rastr,'
-      '       his.class_rastr,'
+      '       isnull(his.class_rastr, pes.class_rastr) as desclass,'
       '       his.cod_tipo_desclas,'
       '       pes.ph_quebra,'
       
@@ -1271,7 +1296,6 @@ object frmConsultaQuebra: TfrmConsultaQuebra
         '   and @hab = case when @hab <> '#39'TODOS'#39' then pes.class_rastr els' +
         'e '#39'TODOS'#39' end'
       '   and pes.data_abate = @data'
-      '   and pes.peso_quebra is not null'
       '   and pes.status <> '#39'T'#39
       ' order by pes.data_quebra desc')
     Params = <
@@ -1356,6 +1380,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       FieldName = 'data_quebra'
     end
     object ZQuery1class_rastr: TWideStringField
+      Alignment = taCenter
       FieldName = 'class_rastr'
       Size = 5
     end
@@ -1368,11 +1393,13 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       FieldName = 'perc_quebra'
       ReadOnly = True
     end
-    object ZQuery1class_rastr_1: TWideStringField
-      FieldName = 'class_rastr_1'
+    object ZQuery1desclass: TWideStringField
+      Alignment = taCenter
+      FieldName = 'desclass'
       Size = 5
     end
     object ZQuery1cod_tipo_desclas: TWideStringField
+      Alignment = taCenter
       FieldName = 'cod_tipo_desclas'
       Size = 2
     end

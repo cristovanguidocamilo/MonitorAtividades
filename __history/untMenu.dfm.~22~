@@ -1,6 +1,7 @@
 object frmMenu: TfrmMenu
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Menu de Monitoramento'
   ClientHeight = 115
@@ -12,8 +13,9 @@ object frmMenu: TfrmMenu
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poScreenCenter
+  Position = poDefault
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -51,13 +53,12 @@ object frmMenu: TfrmMenu
     ControlsCodePage = cCP_UTF16
     Catalog = ''
     Connected = True
-    HostName = 'SRVBMAIS'
+    HostName = '10.1.1.4'
     Port = 1433
     Database = 'Apis'
     User = 'sa'
     Password = '0903406'
     Protocol = 'mssql'
-    Left = 16
-    Top = 8
+    Left = 8
   end
 end

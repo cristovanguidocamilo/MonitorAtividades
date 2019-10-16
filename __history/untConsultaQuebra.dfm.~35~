@@ -49,6 +49,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDrawColumnCell = DBGrid1DrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -112,6 +113,18 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       end
       item
         Expanded = False
+        FieldName = 'perc_quebra'
+        Title.Alignment = taCenter
+        Title.Caption = '% Quebra'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'data_quebra'
         Title.Alignment = taCenter
         Title.Caption = 'Data Quebra'
@@ -140,18 +153,6 @@ object frmConsultaQuebra: TfrmConsultaQuebra
         FieldName = 'ph_quebra'
         Title.Alignment = taCenter
         Title.Caption = 'pH'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'perc_quebra'
-        Title.Alignment = taCenter
-        Title.Caption = '% Quebra'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -1217,7 +1218,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       'SEM')
   end
   object ComboBox4: TComboBox
-    Left = 418
+    Left = 483
     Top = 66
     Width = 37
     Height = 21
@@ -1233,6 +1234,30 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       'UA'
       'LG'
       'NE')
+  end
+  object CheckBox1: TCheckBox
+    Left = 472
+    Top = 8
+    Width = 137
+    Height = 17
+    Alignment = taLeftJustify
+    Caption = 'Real'#231'ar Desclassifica'#231#245'es'
+    TabOrder = 7
+    OnClick = CheckBox1Click
+  end
+  object ComboBox5: TComboBox
+    Left = 544
+    Top = 31
+    Width = 65
+    Height = 21
+    Enabled = False
+    TabOrder = 8
+    Text = 'TODAS'
+    OnChange = ComboBox5Change
+    Items.Strings = (
+      'TODAS'
+      'MATURACAO'
+      'PH')
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1250,7 +1275,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       '       pes.peso_quebra,'
       '       pes.data_quebra,'
       '       pes.class_rastr,'
-      '       his.class_rastr,'
+      '       isnull(his.class_rastr, pes.class_rastr) as desclass,'
       '       his.cod_tipo_desclas,'
       '       pes.ph_quebra,'
       
@@ -1367,6 +1392,14 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       Alignment = taCenter
       FieldName = 'perc_quebra'
       ReadOnly = True
+    end
+    object ZQuery1desclass: TWideStringField
+      FieldName = 'desclass'
+      Size = 5
+    end
+    object ZQuery1cod_tipo_desclas: TWideStringField
+      FieldName = 'cod_tipo_desclas'
+      Size = 2
     end
   end
   object DataSource1: TDataSource

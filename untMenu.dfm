@@ -12,9 +12,11 @@ object frmMenu: TfrmMenu
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poDefault
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -47,15 +49,6 @@ object frmMenu: TfrmMenu
     ParentFont = False
     TabOrder = 1
     OnClick = BitBtn2Click
-  end
-  object BitBtn3: TBitBtn
-    Left = 327
-    Top = 88
-    Width = 75
-    Height = 25
-    Caption = 'Quebra'
-    TabOrder = 2
-    OnClick = BitBtn3Click
   end
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF16

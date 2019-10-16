@@ -1,6 +1,7 @@
 object frmMenu: TfrmMenu
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Menu de Monitoramento'
   ClientHeight = 115
@@ -47,17 +48,25 @@ object frmMenu: TfrmMenu
     TabOrder = 1
     OnClick = BitBtn2Click
   end
+  object BitBtn3: TBitBtn
+    Left = 327
+    Top = 88
+    Width = 75
+    Height = 25
+    Caption = 'Quebra'
+    TabOrder = 2
+    OnClick = BitBtn3Click
+  end
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF16
     Catalog = ''
     Connected = True
-    HostName = 'SRVBMAIS'
+    HostName = '10.1.1.4'
     Port = 1433
     Database = 'Apis'
     User = 'sa'
     Password = '0903406'
     Protocol = 'mssql'
-    Left = 16
-    Top = 8
+    Left = 8
   end
 end

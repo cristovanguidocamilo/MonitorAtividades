@@ -43,6 +43,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
     Width = 601
     Height = 507
     DataSource = DataSource1
+    ReadOnly = True
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -136,7 +137,6 @@ object frmConsultaQuebra: TfrmConsultaQuebra
         Visible = True
       end
       item
-        Alignment = taCenter
         Expanded = False
         FieldName = 'class_rastr'
         Title.Alignment = taCenter
@@ -1251,6 +1251,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
     Width = 65
     Height = 21
     Enabled = False
+    ItemIndex = 0
     TabOrder = 8
     Text = 'TODAS'
     OnChange = ComboBox5Change
@@ -1261,6 +1262,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
+    ReadOnly = True
     SQL.Strings = (
       'declare @data date = cast(:data as date)'
       'declare @camara char(2) = :camara'
@@ -1296,7 +1298,6 @@ object frmConsultaQuebra: TfrmConsultaQuebra
         '   and @hab = case when @hab <> '#39'TODOS'#39' then pes.class_rastr els' +
         'e '#39'TODOS'#39' end'
       '   and pes.data_abate = @data'
-      '   and pes.peso_quebra is not null'
       '   and pes.status <> '#39'T'#39
       ' order by pes.data_quebra desc')
     Params = <
@@ -1381,6 +1382,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       FieldName = 'data_quebra'
     end
     object ZQuery1class_rastr: TWideStringField
+      Alignment = taCenter
       FieldName = 'class_rastr'
       Size = 5
     end
@@ -1394,10 +1396,12 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       ReadOnly = True
     end
     object ZQuery1desclass: TWideStringField
+      Alignment = taCenter
       FieldName = 'desclass'
       Size = 5
     end
     object ZQuery1cod_tipo_desclas: TWideStringField
+      Alignment = taCenter
       FieldName = 'cod_tipo_desclas'
       Size = 2
     end
