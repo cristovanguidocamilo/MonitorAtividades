@@ -1,0 +1,16 @@
+program MonitorAtividades;
+
+uses
+  Vcl.Forms,
+  untMonitorAtividades in 'untMonitorAtividades.pas' {frmMonitorAbate},
+  untMenu in 'untMenu.pas' {frmMenu};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.Title := 'Monitoramento de Abate';
+  Application.CreateForm(TfrmMenu, frmMenu);
+  Application.Run;
+end.

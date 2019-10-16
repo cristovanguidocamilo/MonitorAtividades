@@ -1,0 +1,290 @@
+object frmLogAbate: TfrmLogAbate
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = 'Log da Balan'#231'a do Abate'
+  ClientHeight = 607
+  ClientWidth = 1051
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DateTimePicker1: TDateTimePicker
+    Left = 8
+    Top = 8
+    Width = 97
+    Height = 21
+    Date = 43313.315754120370000000
+    Time = 43313.315754120370000000
+    TabOrder = 0
+    OnChange = DateTimePicker1Change
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 35
+    Width = 1035
+    Height = 564
+    DataSource = DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ReadOnly = True
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'data'
+        Title.Caption = 'Data/Hora'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'obs1'
+        Title.Caption = 'Observa'#231#227'o'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 719
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'hostname'
+        Title.Caption = 'HostName'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 75
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cod_usuario'
+        Title.Caption = 'Cod Usu'#225'rio'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end>
+  end
+  object ZQuery1: TZQuery
+    Connection = frmMenu.ZConnection1
+    ReadOnly = True
+    SQL.Strings = (
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'ABATE'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'ABATE'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux2 like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'INDEFINIDA'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'INDEFINIDA'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux2 like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'ABATE'#39
+      'and cod_opcao = '#39'TRANSFERE'#39
+      ' and cod_aux like '#39'%%'#39
+      ''
+      ' and 1 = 2'
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'ABATE'#39
+      'and cod_opcao = '#39'TRANSFERE'#39
+      ' and cod_aux2 like '#39'%%'#39
+      ''
+      ' and 1 = 2'
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'PESAGEM'#39
+      'and cod_opcao = '#39'COMPLEMENTO RENDIMENTOS'#39
+      ' and cod_aux like '#39'%%'#39
+      ''
+      ' and 1 = 2'
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'PESAGEM'#39
+      'and cod_opcao = '#39'COMPLEMENTO RENDIMENTOS'#39
+      ' and cod_aux2 like '#39'%%'#39
+      ''
+      ' and 1 = 2'
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_seg_log with (nolock)'
+      'where cod_modulo = '#39'PORTAL'#39
+      'and cod_opcao = '#39'VENDASWEB'#39
+      ' and cod_aux like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_log_abate with (nolock)'
+      'where cod_modulo = '#39'ABATE'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_log_abate with (nolock)'
+      'where cod_modulo = '#39'ABATE'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux2 like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_log_abate with (nolock)'
+      'where cod_modulo = '#39'ABATE'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and obs like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_log_abate with (nolock)'
+      'where cod_modulo = '#39'INDEFINIDA'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_log_abate with (nolock)'
+      'where cod_modulo = '#39'INDEFINIDA'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and cod_aux2 like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'union'
+      
+        'select data, obs1 = convert(varchar(250),obs), hostname, cod_usu' +
+        'ario, obs = convert(varchar(max),obs)'
+      'from t_log_abate with (nolock)'
+      'where cod_modulo = '#39'INDEFINIDA'#39
+      ' and cod_opcao = '#39'frmpesagem'#39
+      ' and obs like '#39'%%'#39
+      ''
+      ' and cast(data as date) = :data_abate'
+      'order by data desc')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'data_abate'
+        ParamType = ptUnknown
+      end>
+    Left = 184
+    Top = 96
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'data_abate'
+        ParamType = ptUnknown
+      end>
+    object ZQuery1data: TDateTimeField
+      FieldName = 'data'
+      Required = True
+    end
+    object ZQuery1obs1: TWideStringField
+      FieldName = 'obs1'
+      ReadOnly = True
+      Size = 250
+    end
+    object ZQuery1hostname: TWideStringField
+      FieldName = 'hostname'
+      Size = 30
+    end
+    object ZQuery1cod_usuario: TWideStringField
+      FieldName = 'cod_usuario'
+      Size = 15
+    end
+    object ZQuery1obs: TWideMemoField
+      FieldName = 'obs'
+      BlobType = ftWideMemo
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = ZQuery1
+    Left = 248
+    Top = 96
+  end
+end

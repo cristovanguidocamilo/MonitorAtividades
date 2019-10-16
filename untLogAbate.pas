@@ -1,0 +1,73 @@
+unit untLogAbate;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmLogAbate = class(TForm)
+    DateTimePicker1: TDateTimePicker;
+    ZQuery1: TZQuery;
+    DataSource1: TDataSource;
+    DBGrid1: TDBGrid;
+    ZQuery1data: TDateTimeField;
+    ZQuery1obs1: TWideStringField;
+    ZQuery1hostname: TWideStringField;
+    ZQuery1cod_usuario: TWideStringField;
+    ZQuery1obs: TWideMemoField;
+    procedure FormShow(Sender: TObject);
+    procedure DateTimePicker1Change(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogAbate: TfrmLogAbate;
+
+implementation
+
+{$R *.dfm}
+
+uses untMenu;
+
+procedure TfrmLogAbate.DateTimePicker1Change(Sender: TObject);
+begin
+  ZQuery1.Active := False;
+  ZQuery1.ParamByName('data_abate').AsString := FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date);
+  ZQuery1.Active := True;
+end;
+
+procedure TfrmLogAbate.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  frmMenu.GravaIni('CONFIG.INI', 'frmLogAbate', 'TOP' , IntToStr(frmLogAbate.Top ));
+  frmMenu.GravaIni('CONFIG.INI', 'frmLogAbate', 'LEFT', IntToStr(frmLogAbate.Left));
+  ZQuery1.Active := False;
+  frmLogAbate.Destroy;
+  frmLogAbate := Nil;
+end;
+
+procedure TfrmLogAbate.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_ESCAPE then
+    Close;
+end;
+
+procedure TfrmLogAbate.FormShow(Sender: TObject);
+begin
+  frmLogAbate.Top  := StrToInt(frmMenu.LeIni('CONFIG.INI', 'frmLogAbate', 'TOP' ));
+  frmLogAbate.Top  := StrToInt(frmMenu.LeIni('CONFIG.INI', 'frmLogAbate', 'TOP' ));
+  ZQuery1.Active := False;
+  DateTimePicker1.Date := Date;
+  ZQuery1.ParamByName('data_abate').AsString := FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date);
+  ZQuery1.Active := True;
+end;
+
+end.
