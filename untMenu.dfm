@@ -53,13 +53,14 @@ object frmMenu: TfrmMenu
     Top = 88
     Width = 75
     Height = 25
-    Caption = 'BitBtn3'
+    Caption = 'Quebra'
     TabOrder = 2
     OnClick = BitBtn3Click
   end
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF16
     Catalog = ''
+    Connected = True
     HostName = '10.1.1.4'
     Port = 1433
     Database = 'Apis'

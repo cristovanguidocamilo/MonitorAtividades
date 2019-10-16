@@ -29,6 +29,10 @@ type
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
     ComboBox4: TComboBox;
+    CheckBox1: TCheckBox;
+    ComboBox5: TComboBox;
+    ZQuery1desclass: TWideStringField;
+    ZQuery1cod_tipo_desclas: TWideStringField;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -38,6 +42,10 @@ type
     procedure ComboBox3Change(Sender: TObject);
     procedure ComboBox4Change(Sender: TObject);
     procedure DateTimePicker1Change(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure CheckBox1Click(Sender: TObject);
+    procedure ComboBox5Change(Sender: TObject);
   private
     { Private declarations }
     procedure atualizaGrid;
@@ -70,6 +78,15 @@ begin
   atualizaGrid;
 end;
 
+procedure TfrmConsultaQuebra.CheckBox1Click(Sender: TObject);
+begin
+  if CheckBox1.Checked then
+    ComboBox5.Enabled := True
+  else
+    ComboBox5.Enabled := False;
+  atualizaGrid;
+end;
+
 procedure TfrmConsultaQuebra.ComboBox1Change(Sender: TObject);
 begin
   atualizaGrid;
@@ -90,9 +107,33 @@ begin
   atualizaGrid;
 end;
 
+procedure TfrmConsultaQuebra.ComboBox5Change(Sender: TObject);
+begin
+  atualizaGrid;
+end;
+
 procedure TfrmConsultaQuebra.DateTimePicker1Change(Sender: TObject);
 begin
   atualizaGrid;
+end;
+
+procedure TfrmConsultaQuebra.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  if CheckBox1.Checked then
+  Begin
+    if ComboBox5.Items[ComboBox5.ItemIndex] = 'TODAS' then
+      if ZQuery1.FieldByName('class_rastr').AsString <> ZQuery1.FieldByName('desclass').AsString then
+        DBGrid1.Canvas.Brush.Color := $00A6A6FF;
+    if ComboBox5.Items[ComboBox5.ItemIndex] = 'MATURACAO' then
+      if ((ZQuery1.FieldByName('class_rastr').AsString <> ZQuery1.FieldByName('desclass').AsString) and (ZQuery1.FieldByName('cod_tipo_desclas').AsString = 'MT')) then
+        DBGrid1.Canvas.Brush.Color := $00A6A6FF;
+    if ComboBox5.Items[ComboBox5.ItemIndex] = 'PH' then
+      if ((ZQuery1.FieldByName('class_rastr').AsString <> ZQuery1.FieldByName('desclass').AsString) and (ZQuery1.FieldByName('cod_tipo_desclas').AsString = 'PH')) then
+        DBGrid1.Canvas.Brush.Color := $00A6A6FF;
+    DBGrid1.Canvas.FillRect(Rect);
+    DBGrid1.DefaultDrawDataCell(Rect, Column.Field, State);
+  End;
 end;
 
 procedure TfrmConsultaQuebra.FormClose(Sender: TObject;

@@ -49,6 +49,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDrawColumnCell = DBGrid1DrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -112,6 +113,18 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       end
       item
         Expanded = False
+        FieldName = 'perc_quebra'
+        Title.Alignment = taCenter
+        Title.Caption = '% Quebra'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'data_quebra'
         Title.Alignment = taCenter
         Title.Caption = 'Data Quebra'
@@ -140,18 +153,6 @@ object frmConsultaQuebra: TfrmConsultaQuebra
         FieldName = 'ph_quebra'
         Title.Alignment = taCenter
         Title.Caption = 'pH'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'perc_quebra'
-        Title.Alignment = taCenter
-        Title.Caption = '% Quebra'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -1217,7 +1218,7 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       'SEM')
   end
   object ComboBox4: TComboBox
-    Left = 418
+    Left = 483
     Top = 66
     Width = 37
     Height = 21
@@ -1234,6 +1235,30 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       'LG'
       'NE')
   end
+  object CheckBox1: TCheckBox
+    Left = 472
+    Top = 8
+    Width = 137
+    Height = 17
+    Alignment = taLeftJustify
+    Caption = 'Real'#231'ar Desclassifica'#231#245'es'
+    TabOrder = 7
+    OnClick = CheckBox1Click
+  end
+  object ComboBox5: TComboBox
+    Left = 544
+    Top = 31
+    Width = 65
+    Height = 21
+    Enabled = False
+    TabOrder = 8
+    Text = 'TODAS'
+    OnChange = ComboBox5Change
+    Items.Strings = (
+      'TODAS'
+      'MATURACAO'
+      'PH')
+  end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
@@ -1243,33 +1268,37 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       'declare @ph char(5) = :ph'
       'declare @hab char(5) = :hab'
       ''
-      'select cod_camara,'
-      '       seq_abate,'
-      '       banda,'
-      '       peso,'
-      '       peso_quebra,'
-      '       data_quebra,'
-      '       class_rastr,'
-      '       ph_quebra,'
+      'select pes.cod_camara,'
+      '       pes.seq_abate,'
+      '       pes.banda,'
+      '       pes.peso,'
+      '       pes.peso_quebra,'
+      '       pes.data_quebra,'
+      '       pes.class_rastr,'
+      '       isnull(his.class_rastr, pes.class_rastr) as desclass,'
+      '       his.cod_tipo_desclas,'
+      '       pes.ph_quebra,'
       
-        '       convert(decimal(18,2),100-((peso_quebra*100)/peso)) as pe' +
-        'rc_quebra'
-      '  from t_pescarcaca'
+        '       convert(decimal(18,2),100-((pes.peso_quebra*100)/pes.peso' +
+        ')) as perc_quebra'
+      '  from t_pescarcaca pes'
+      '  left join t_historico_rastr his on his.cod_tras = pes.cod_tras'
       
-        ' where @camara = case when @camara <> '#39'00'#39' then cod_camara else ' +
-        #39'00'#39' end'
+        ' where @camara = case when @camara <> '#39'00'#39' then pes.cod_camara e' +
+        'lse '#39'00'#39' end'
       
-        '   and @seq = case when @seq <> '#39'0000'#39' then seq_abate else '#39'0000' +
-        #39' end'
+        '   and @seq = case when @seq <> '#39'0000'#39' then pes.seq_abate else '#39 +
+        '0000'#39' end'
       
         '   and @ph = case when @ph = '#39'TODOS'#39' then '#39'TODOS'#39' else case when' +
-        ' ph_quebra is null then '#39'SEM'#39' else '#39'COM'#39' end end'
+        ' pes.ph_quebra is null then '#39'SEM'#39' else '#39'COM'#39' end end'
       
-        '   and @hab = case when @hab <> '#39'TODOS'#39' then class_rastr else '#39'T' +
-        'ODOS'#39' end'
-      '   and data_abate = @data'
-      '   and status <> '#39'T'#39
-      ' order by data_quebra desc')
+        '   and @hab = case when @hab <> '#39'TODOS'#39' then pes.class_rastr els' +
+        'e '#39'TODOS'#39' end'
+      '   and pes.data_abate = @data'
+      '   and pes.peso_quebra is not null'
+      '   and pes.status <> '#39'T'#39
+      ' order by pes.data_quebra desc')
     Params = <
       item
         DataType = ftUnknown
@@ -1363,6 +1392,14 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       Alignment = taCenter
       FieldName = 'perc_quebra'
       ReadOnly = True
+    end
+    object ZQuery1desclass: TWideStringField
+      FieldName = 'desclass'
+      Size = 5
+    end
+    object ZQuery1cod_tipo_desclas: TWideStringField
+      FieldName = 'cod_tipo_desclas'
+      Size = 2
     end
   end
   object DataSource1: TDataSource

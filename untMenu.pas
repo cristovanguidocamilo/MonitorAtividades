@@ -78,15 +78,15 @@ end;
 
 procedure TfrmMenu.FormShow(Sender: TObject);
 Var
-  ABT, DES:String;
+  ABT, DES, QUE:String;
 begin
   Try
     ZConnection1.Connected := False;
-    ZConnection1.HostName := LeIni('CONFIG.INI', 'CONEXAO','HostName');
-    ZConnection1.Database := LeIni('CONFIG.INI', 'CONEXAO','Database');
-    ZConnection1.Password := LeIni('CONFIG.INI', 'CONEXAO','Password');
-    ZConnection1.Protocol := LeIni('CONFIG.INI', 'CONEXAO','Protocol');
-    ZConnection1.User     := LeIni('CONFIG.INI', 'CONEXAO','User'    );
+    ZConnection1.HostName  := LeIni('CONFIG.INI', 'CONEXAO','HostName');
+    ZConnection1.Database  := LeIni('CONFIG.INI', 'CONEXAO','Database');
+    ZConnection1.Password  := LeIni('CONFIG.INI', 'CONEXAO','Password');
+    ZConnection1.Protocol  := LeIni('CONFIG.INI', 'CONEXAO','Protocol');
+    ZConnection1.User      := LeIni('CONFIG.INI', 'CONEXAO','User'    );
     ZConnection1.Connected := True;
   Except
     Begin
@@ -98,6 +98,7 @@ begin
   frmMenu.Left := StrToInt(LeIni('CONFIG.INI', 'frmMenu', 'LEFT'));
   ABT := LeIni('CONFIG.INI', 'frmMenu', 'ABT');
   DES := LeIni('CONFIG.INI', 'frmMenu', 'DES');
+  QUE := LeIni('CONFIG.INI', 'frmMenu', 'QUE');
   if ABT = 'S' then
     BitBtn1.Visible := True
   else
@@ -106,6 +107,10 @@ begin
     BitBtn2.Visible := True
   else
     BitBtn2.Visible := False;
+  if QUE = 'S' then
+    BitBtn3.Visible := True
+  else
+    BitBtn3.Visible := False;
   end;
 
 procedure TfrmMenu.GravaIni(Arquivo, Secao, Propriedade, Valor: String);
