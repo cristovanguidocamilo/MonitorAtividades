@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
   Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, ZAbstractConnection,
-  ZConnection, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DateUtils, IniFiles,
+  ZConnection, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DateUtils, IniFiles, Clipbrd,
   Vcl.DBCtrls;
 
 type
@@ -106,6 +106,7 @@ type
     ZQuery11class_rastr: TWideStringField;
     ZQuery11class_rastr2: TWideStringField;
     ZQuery11quant: TIntegerField;
+    ZQuery1cod_tras: TWideStringField;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -119,6 +120,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure SpeedButton1Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
   private
     { Private declarations }
     procedure Alerta;
@@ -212,6 +214,11 @@ begin
     DBGrid4.Visible := True;
     ZQuery6.Refresh;
   end;
+end;
+
+procedure TfrmMonitorAbate.DBGrid1DblClick(Sender: TObject);
+begin
+  Clipboard.AsText := ZQuery1.FieldByName('cod_tras').AsString;
 end;
 
 procedure TfrmMonitorAbate.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;

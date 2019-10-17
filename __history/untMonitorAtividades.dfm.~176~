@@ -179,14 +179,6 @@ object frmMonitorAbate: TfrmMonitorAbate
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object SpeedButton2: TSpeedButton
-    Left = 586
-    Top = 580
-    Width = 23
-    Height = 22
-    Hint = 'Quantidades por Lote'
-    Caption = 'LT'
-  end
   object BitBtn1: TBitBtn
     Left = 832
     Top = 8
@@ -451,7 +443,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Width = 100
       end
       item
-        Text = 'ATUALIZA'#199#195'O 2019.09.20-1'
+        Text = 'ATUALIZA'#199#195'O 2019.10.05-1'
         Width = 100
       end>
   end
@@ -822,6 +814,80 @@ object frmMonitorAbate: TfrmMonitorAbate
         Visible = True
       end>
   end
+  object CheckBox2: TCheckBox
+    Left = 531
+    Top = 585
+    Width = 78
+    Height = 17
+    Alignment = taLeftJustify
+    Caption = 'Mostrar Lote'
+    TabOrder = 11
+    OnClick = CheckBox2Click
+  end
+  object DBGrid8: TDBGrid
+    Left = 423
+    Top = 608
+    Width = 186
+    Height = 188
+    DataSource = DataSource10
+    TabOrder = 12
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Visible = False
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'num_lote'
+        Title.Alignment = taCenter
+        Title.Caption = 'Lote'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'class_rastr'
+        Title.Alignment = taCenter
+        Title.Caption = 'Tipo'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'class_rastr2'
+        Title.Alignment = taCenter
+        Title.Caption = 'Sub'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'quant'
+        Title.Alignment = taCenter
+        Title.Caption = 'Quant'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 46
+        Visible = True
+      end>
+  end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
@@ -832,7 +898,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       #9'     class_rastr,'
       #9'     class_rastr2,'
       '       num_lote,'
-      '       data_pes'
+      '       data_pes,'
+      '       cod_tras'
       '  from t_pescarcaca with(nolock)'
       ' where data_abate = @data'
       '   and status not in ('#39'O'#39','#39'G'#39','#39'T'#39')'
@@ -870,6 +937,9 @@ object frmMonitorAbate: TfrmMonitorAbate
     object ZQuery1data_pes: TDateTimeField
       Alignment = taCenter
       FieldName = 'data_pes'
+    end
+    object ZQuery1cod_tras: TWideStringField
+      FieldName = 'cod_tras'
     end
   end
   object DataSource1: TDataSource
@@ -1349,5 +1419,48 @@ object frmMonitorAbate: TfrmMonitorAbate
     DataSet = ZQuery10
     Left = 856
     Top = 712
+  end
+  object ZQuery11: TZQuery
+    Connection = frmMenu.ZConnection1
+    SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
+      'select num_lote,'
+      '       class_rastr,'
+      '       isnull(class_rastr2, '#39#39') as class_rastr2,'
+      '       count(1)/2 as quant'
+      '  from t_pescarcaca'
+      ' where data_abate = @data'
+      ' group by num_lote, class_rastr, isnull(class_rastr2, '#39#39')')
+    Params = <>
+    Left = 440
+    Top = 736
+    object ZQuery11num_lote: TWideStringField
+      Alignment = taCenter
+      FieldName = 'num_lote'
+      Required = True
+      Size = 2
+    end
+    object ZQuery11class_rastr: TWideStringField
+      Alignment = taCenter
+      FieldName = 'class_rastr'
+      Size = 5
+    end
+    object ZQuery11class_rastr2: TWideStringField
+      Alignment = taCenter
+      FieldName = 'class_rastr2'
+      ReadOnly = True
+      Size = 5
+    end
+    object ZQuery11quant: TIntegerField
+      Alignment = taCenter
+      FieldName = 'quant'
+      ReadOnly = True
+    end
+  end
+  object DataSource10: TDataSource
+    DataSet = ZQuery11
+    Left = 472
+    Top = 736
   end
 end

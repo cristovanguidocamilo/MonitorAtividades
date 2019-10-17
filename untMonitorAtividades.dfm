@@ -212,6 +212,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnDrawColumnCell = DBGrid1DrawColumnCell
+    OnDblClick = DBGrid1DblClick
     Columns = <
       item
         Expanded = False
@@ -898,7 +899,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       #9'     class_rastr,'
       #9'     class_rastr2,'
       '       num_lote,'
-      '       data_pes'
+      '       data_pes,'
+      '       cod_tras'
       '  from t_pescarcaca with(nolock)'
       ' where data_abate = @data'
       '   and status not in ('#39'O'#39','#39'G'#39','#39'T'#39')'
@@ -936,6 +938,9 @@ object frmMonitorAbate: TfrmMonitorAbate
     object ZQuery1data_pes: TDateTimeField
       Alignment = taCenter
       FieldName = 'data_pes'
+    end
+    object ZQuery1cod_tras: TWideStringField
+      FieldName = 'cod_tras'
     end
   end
   object DataSource1: TDataSource
