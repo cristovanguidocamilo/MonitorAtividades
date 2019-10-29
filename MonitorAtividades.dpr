@@ -6,7 +6,8 @@ uses
   untMenu in 'untMenu.pas' {frmMenu},
   untMonitorDesossa in 'untMonitorDesossa.pas' {frmMonitorDesossa},
   untLogAbate in 'untLogAbate.pas' {frmLogAbate},
-  untConsultaQuebra in 'untConsultaQuebra.pas' {frmConsultaQuebra};
+  untConsultaQuebra in 'untConsultaQuebra.pas' {frmConsultaQuebra},
+  untConsultaPH in 'untConsultaPH.pas' {frmConsultaPH};
 
 {$R *.res}
 

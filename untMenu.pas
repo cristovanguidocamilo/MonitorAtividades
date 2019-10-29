@@ -5,20 +5,30 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
-  ZAbstractConnection, ZConnection, IniFiles;
+  ZAbstractConnection, ZConnection, IniFiles, Vcl.Menus, Vcl.Imaging.jpeg,
+  Vcl.ExtCtrls;
+
+Const
+  InputBoxMessage = WM_USER + 200;
 
 type
   TfrmMenu = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
     ZConnection1: TZConnection;
-    procedure BitBtn1Click(Sender: TObject);
+    MainMenu1: TMainMenu;
+    Monitorar1: TMenuItem;
+    Sair1: TMenuItem;
+    Image1: TImage;
+    Desossa2: TMenuItem;
+    PH2: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure BitBtn2Click(Sender: TObject);
     procedure GravaIni(Arquivo, Secao, Propriedade, Valor : String);
     Function LeIni(Arquivo, Secao, Propriedade : String) : String;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Sair1Click(Sender: TObject);
+    procedure Monitorar1Click(Sender: TObject);
+    procedure Desossa2Click(Sender: TObject);
+    procedure PH2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,20 +42,9 @@ implementation
 
 {$R *.dfm}
 
-uses untMonitorAtividades, untMonitorDesossa, untConsultaQuebra;
+uses untMonitorAtividades, untMonitorDesossa, untConsultaQuebra, untConsultaPH;
 
-procedure TfrmMenu.BitBtn1Click(Sender: TObject);
-begin
-  if frmMonitorAbate = Nil then
-  Begin
-    Application.CreateForm(TfrmMonitorAbate, frmMonitorAbate);
-    frmMonitorAbate.Show;
-  End
-  Else
-    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
-end;
-
-procedure TfrmMenu.BitBtn2Click(Sender: TObject);
+procedure TfrmMenu.Desossa2Click(Sender: TObject);
 begin
   if frmMonitorDesossa = Nil then
   Begin
@@ -54,6 +53,7 @@ begin
   End
   Else
     Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+
 end;
 
 procedure TfrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -65,9 +65,19 @@ end;
 
 procedure TfrmMenu.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
+var
+  InputString: string;
 begin
   if (ssCtrl in Shift) and (ssShift in Shift) and (ssAlt in Shift) and (Key=Ord('Q')) then
     begin
+      PostMessage(Handle, InputBoxMessage, 0, 0);
+      InputString := InputBox('Número', 'Digite um Número', '');
+      if InputString <> '147852369.' then
+      begin
+        ShowMessage('Número Digitado: '+InputString);
+        Exit
+      end
+      else
       if frmConsultaQuebra = Nil then
       Begin
         Application.CreateForm(TfrmConsultaQuebra, frmConsultaQuebra);
@@ -80,7 +90,7 @@ end;
 
 procedure TfrmMenu.FormShow(Sender: TObject);
 Var
-  ABT, DES, QUE:String;
+  ABT, DES, PH:String;
 begin
   Try
     ZConnection1.Connected := False;
@@ -100,15 +110,25 @@ begin
   frmMenu.Left := StrToInt(LeIni('CONFIG.INI', 'frmMenu', 'LEFT'));
   ABT := LeIni('CONFIG.INI', 'frmMenu', 'ABT');
   DES := LeIni('CONFIG.INI', 'frmMenu', 'DES');
-  QUE := LeIni('CONFIG.INI', 'frmMenu', 'QUE');
+  PH := LeIni('CONFIG.INI', 'frmMenu', 'PH');
   if ABT = 'S' then
-    BitBtn1.Visible := True
+    //BitBtn1.Visible := True
+    MainMenu1.Items[0].Visible := True
   else
-    BitBtn1.Visible := False;
+    //BitBtn1.Visible := False;
+    MainMenu1.Items[0].Visible := False;
   if DES = 'S' then
-    BitBtn2.Visible := True
+    //BitBtn2.Visible := True
+    MainMenu1.Items[1].Visible := True
   else
-    BitBtn2.Visible := False;
+    //BitBtn2.Visible := False;
+    MainMenu1.Items[1].Visible := False;
+  if PH = 'S' then
+    //BitBtn3.Visible := True
+    MainMenu1.Items[2].Visible := True
+  else
+    //BitBtn3.Visible := False;
+    MainMenu1.Items[2].Visible := False;
   end;
 
 procedure TfrmMenu.GravaIni(Arquivo, Secao, Propriedade, Valor: String);
@@ -127,6 +147,33 @@ begin
   ArquivoINI := TIniFile.Create(ExtractFilePath(Application.ExeName)+'\'+Arquivo);
   Result := ArquivoINI.ReadString(Secao, Propriedade, 'Erro ao Ler Arquivo INI');
   ArquivoINI.Free;
+end;
+
+procedure TfrmMenu.Monitorar1Click(Sender: TObject);
+begin
+  if frmMonitorAbate = Nil then
+  Begin
+    Application.CreateForm(TfrmMonitorAbate, frmMonitorAbate);
+    frmMonitorAbate.Show;
+  End
+  Else
+    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+end;
+
+procedure TfrmMenu.PH2Click(Sender: TObject);
+begin
+  if frmConsultaPH = Nil then
+  Begin
+    Application.CreateForm(TfrmConsultaPH, frmConsultaPH);
+    frmConsultaPH.Show;
+  End
+  Else
+    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+end;
+
+procedure TfrmMenu.Sair1Click(Sender: TObject);
+begin
+  Close;
 end;
 
 end.

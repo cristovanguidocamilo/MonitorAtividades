@@ -1,0 +1,161 @@
+unit untMenu;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
+  ZAbstractConnection, ZConnection, IniFiles, Vcl.Menus;
+
+type
+  TfrmMenu = class(TForm)
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    ZConnection1: TZConnection;
+    BitBtn3: TBitBtn;
+    MainMenu1: TMainMenu;
+    Monitorar1: TMenuItem;
+    Abate1: TMenuItem;
+    Desossa1: TMenuItem;
+    PH1: TMenuItem;
+    Sair1: TMenuItem;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure GravaIni(Arquivo, Secao, Propriedade, Valor : String);
+    Function LeIni(Arquivo, Secao, Propriedade : String) : String;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure BitBtn3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMenu: TfrmMenu;
+
+implementation
+
+{$R *.dfm}
+
+uses untMonitorAtividades, untMonitorDesossa, untConsultaQuebra, untConsultaPH;
+
+procedure TfrmMenu.BitBtn1Click(Sender: TObject);
+begin
+  if frmMonitorAbate = Nil then
+  Begin
+    Application.CreateForm(TfrmMonitorAbate, frmMonitorAbate);
+    frmMonitorAbate.Show;
+  End
+  Else
+    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+end;
+
+procedure TfrmMenu.BitBtn2Click(Sender: TObject);
+begin
+  if frmMonitorDesossa = Nil then
+  Begin
+    Application.CreateForm(TfrmMonitorDesossa, frmMonitorDesossa);
+    frmMonitorDesossa.Show;
+  End
+  Else
+    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+end;
+
+procedure TfrmMenu.BitBtn3Click(Sender: TObject);
+begin
+  if frmConsultaPH = Nil then
+  Begin
+    Application.CreateForm(TfrmConsultaPH, frmConsultaPH);
+    frmConsultaPH.Show;
+  End
+  Else
+    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+end;
+
+procedure TfrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  ZConnection1.Connected := False;
+  GravaIni('CONFIG.INI', 'frmMenu', 'TOP' , IntToStr(frmMenu.Top ));
+  GravaIni('CONFIG.INI', 'frmMenu', 'LEFT', IntToStr(frmMenu.Left));
+end;
+
+procedure TfrmMenu.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if (ssCtrl in Shift) and (ssShift in Shift) and (ssAlt in Shift) and (Key=Ord('Q')) then
+    begin
+      if frmConsultaQuebra = Nil then
+      Begin
+        Application.CreateForm(TfrmConsultaQuebra, frmConsultaQuebra);
+        frmConsultaQuebra.Show;
+      End
+      Else
+        Application.MessageBox('Consulta de Quebra já aberta!', 'Aviso', MB_OK+MB_ICONEXCLAMATION);
+    end
+end;
+
+procedure TfrmMenu.FormShow(Sender: TObject);
+Var
+  ABT, DES, PH:String;
+begin
+  Try
+    ZConnection1.Connected := False;
+    ZConnection1.HostName  := LeIni('CONFIG.INI', 'CONEXAO','HostName');
+    ZConnection1.Database  := LeIni('CONFIG.INI', 'CONEXAO','Database');
+    ZConnection1.Password  := LeIni('CONFIG.INI', 'CONEXAO','Password');
+    ZConnection1.Protocol  := LeIni('CONFIG.INI', 'CONEXAO','Protocol');
+    ZConnection1.User      := LeIni('CONFIG.INI', 'CONEXAO','User'    );
+    ZConnection1.Connected := True;
+  Except
+    Begin
+    Application.MessageBox('Erro de Login no Banco de Dados! Verifique Parâmetros de Conexão','Erro',mb_Ok+MB_ICONERROR);
+    Application.Terminate;
+    End;
+  End;
+  frmMenu.Top  := StrToInt(LeIni('CONFIG.INI', 'frmMenu', 'TOP' ));
+  frmMenu.Left := StrToInt(LeIni('CONFIG.INI', 'frmMenu', 'LEFT'));
+  ABT := LeIni('CONFIG.INI', 'frmMenu', 'ABT');
+  DES := LeIni('CONFIG.INI', 'frmMenu', 'DES');
+  PH := LeIni('CONFIG.INI', 'frmMenu', 'PH');
+  if ABT = 'S' then
+    //BitBtn1.Visible := True
+    MainMenu1.Items[0].Items[0].Visible := True
+  else
+    //BitBtn1.Visible := False;
+    MainMenu1.Items[0].Items[0].Visible := False;
+  if DES = 'S' then
+    //BitBtn2.Visible := True
+    MainMenu1.Items[0].Items[1].Visible := True
+  else
+    //BitBtn2.Visible := False;
+    MainMenu1.Items[0].Items[1].Visible := False;
+  if PH = 'S' then
+    //BitBtn3.Visible := True
+    MainMenu1.Items[0].Items[2].Visible := True
+  else
+    //BitBtn3.Visible := False;
+    MainMenu1.Items[0].Items[2].Visible := False;
+  end;
+
+procedure TfrmMenu.GravaIni(Arquivo, Secao, Propriedade, Valor: String);
+Var
+  ArquivoINI : TIniFile;
+begin
+  ArquivoINI := TIniFile.Create(ExtractFilePath(Application.ExeName)+'\'+Arquivo);
+  ArquivoINI.WriteString(Secao, Propriedade, Valor);
+  ArquivoINI.Free;
+end;
+
+function TfrmMenu.LeIni(Arquivo, Secao, Propriedade: String): String;
+Var
+  ArquivoINI : TIniFile;
+begin
+  ArquivoINI := TIniFile.Create(ExtractFilePath(Application.ExeName)+'\'+Arquivo);
+  Result := ArquivoINI.ReadString(Secao, Propriedade, 'Erro ao Ler Arquivo INI');
+  ArquivoINI.Free;
+end;
+
+end.
