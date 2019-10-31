@@ -5,7 +5,7 @@ object frmConsultaPH: TfrmConsultaPH
   BorderStyle = bsSingle
   Caption = 'Consulta PH'
   ClientHeight = 612
-  ClientWidth = 622
+  ClientWidth = 473
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object frmConsultaPH: TfrmConsultaPH
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poScreenCenter
+  Position = poDefault
   OnClose = FormClose
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -40,7 +40,7 @@ object frmConsultaPH: TfrmConsultaPH
   object DBGrid1: TDBGrid
     Left = 8
     Top = 37
-    Width = 601
+    Width = 457
     Height = 339
     DataSource = DataSource1
     ReadOnly = True
@@ -80,18 +80,6 @@ object frmConsultaPH: TfrmConsultaPH
         FieldName = 'banda'
         Title.Alignment = taCenter
         Title.Caption = 'Banda'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'data_quebra'
-        Title.Alignment = taCenter
-        Title.Caption = 'Data/Hora'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -153,13 +141,13 @@ object frmConsultaPH: TfrmConsultaPH
     Top = 6
     Width = 75
     Height = 25
-    Caption = 'Consultar'
+    Caption = 'Atualizar'
     TabOrder = 2
     OnClick = BitBtn1Click
   end
   object CheckBox1: TCheckBox
-    Left = 464
-    Top = 8
+    Left = 320
+    Top = 14
     Width = 145
     Height = 17
     Alignment = taLeftJustify
@@ -170,7 +158,7 @@ object frmConsultaPH: TfrmConsultaPH
   object DBGrid2: TDBGrid
     Left = 8
     Top = 382
-    Width = 329
+    Width = 433
     Height = 222
     DataSource = DataSource2
     TabOrder = 4
@@ -328,10 +316,17 @@ object frmConsultaPH: TfrmConsultaPH
       'declare @data date = cast(:data as date)'
       'declare @desclass char(2) = :desclass'
       ''
+      
+        'select t.*, cast((cast(t.quant as decimal(15,2)) * 100) / cast(t' +
+        '.total_cam as decimal(15,2)) as decimal(15,2)) as perc_cam from ' +
+        '('
       'select pes.data_abate,'
       '       pes.cod_camara,'
       '       isnull(his.class_rastr, pes.class_rastr) as class_rastr,'
-      #9'     count(1)/2 as quant'
+      #9'     count(1)/2 as quant,'
+      
+        #9'     (select count(1)/2 from t_pescarcaca tot where  tot.data_a' +
+        'bate = @data and tot.cod_camara = pes.cod_camara) as total_cam'
       '  from t_pescarcaca pes'
       '  left join t_historico_rastr his on his.cod_tras = pes.cod_tras'
       ' where pes.data_abate = @data'
@@ -342,7 +337,7 @@ object frmConsultaPH: TfrmConsultaPH
       '   and pes.ph_quebra is not null'
       
         ' group by pes.data_abate, pes.cod_camara, isnull(his.class_rastr' +
-        ', pes.class_rastr)'
+        ', pes.class_rastr) ) t'
       ' order by 1, 2, 3')
     Params = <
       item
@@ -386,6 +381,16 @@ object frmConsultaPH: TfrmConsultaPH
     object ZQuery2quant: TIntegerField
       Alignment = taCenter
       FieldName = 'quant'
+      ReadOnly = True
+    end
+    object ZQuery2perc_cam: TFloatField
+      Alignment = taCenter
+      FieldName = 'perc_cam'
+      ReadOnly = True
+    end
+    object ZQuery2total_cam: TIntegerField
+      Alignment = taCenter
+      FieldName = 'total_cam'
       ReadOnly = True
     end
   end

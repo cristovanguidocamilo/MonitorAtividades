@@ -5,7 +5,7 @@ object frmConsultaPH: TfrmConsultaPH
   BorderStyle = bsSingle
   Caption = 'Consulta PH'
   ClientHeight = 612
-  ClientWidth = 589
+  ClientWidth = 473
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -40,7 +40,7 @@ object frmConsultaPH: TfrmConsultaPH
   object DBGrid1: TDBGrid
     Left = 8
     Top = 37
-    Width = 569
+    Width = 457
     Height = 339
     DataSource = DataSource1
     ReadOnly = True
@@ -80,18 +80,6 @@ object frmConsultaPH: TfrmConsultaPH
         FieldName = 'banda'
         Title.Alignment = taCenter
         Title.Caption = 'Banda'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'data_quebra'
-        Title.Alignment = taCenter
-        Title.Caption = 'Data/Hora'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -158,7 +146,7 @@ object frmConsultaPH: TfrmConsultaPH
     OnClick = BitBtn1Click
   end
   object CheckBox1: TCheckBox
-    Left = 432
+    Left = 320
     Top = 14
     Width = 145
     Height = 17
@@ -170,7 +158,7 @@ object frmConsultaPH: TfrmConsultaPH
   object DBGrid2: TDBGrid
     Left = 8
     Top = 382
-    Width = 329
+    Width = 369
     Height = 222
     DataSource = DataSource2
     TabOrder = 4
@@ -179,6 +167,7 @@ object frmConsultaPH: TfrmConsultaPH
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDrawColumnCell = DBGrid2DrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -190,6 +179,7 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 104
         Visible = True
       end
       item
@@ -226,8 +216,32 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 43
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'perc_cam'
+        Title.Alignment = taCenter
+        Title.Caption = '% C'#226'mara'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
         Visible = True
       end>
+  end
+  object Panel1: TPanel
+    Left = 383
+    Top = 584
+    Width = 82
+    Height = 20
+    BevelOuter = bvNone
+    Caption = 'Leitura 100%'
+    Color = 12189628
+    ParentBackground = False
+    TabOrder = 5
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
@@ -328,10 +342,21 @@ object frmConsultaPH: TfrmConsultaPH
       'declare @data date = cast(:data as date)'
       'declare @desclass char(2) = :desclass'
       ''
+      
+        'select t.*, cast((cast(t.quant as decimal(15,2)) * 100) / cast(t' +
+        '.total_cam as decimal(15,2)) as decimal(15,2)) as perc_cam from ' +
+        '('
       'select pes.data_abate,'
       '       pes.cod_camara,'
       '       isnull(his.class_rastr, pes.class_rastr) as class_rastr,'
-      #9'     count(1)/2 as quant'
+      #9'     count(1)/2 as quant,'
+      
+        #9'     (select count(1)/2 from t_pescarcaca tot where  tot.data_a' +
+        'bate = @data and tot.cod_camara = pes.cod_camara) as total_cam,'
+      
+        '  '#9'   (select count(1)/2 from t_pescarcaca tot where  tot.data_a' +
+        'bate = @data and tot.cod_camara = pes.cod_camara and tot.ph_queb' +
+        'ra is not null) as total_lido'
       '  from t_pescarcaca pes'
       '  left join t_historico_rastr his on his.cod_tras = pes.cod_tras'
       ' where pes.data_abate = @data'
@@ -342,7 +367,7 @@ object frmConsultaPH: TfrmConsultaPH
       '   and pes.ph_quebra is not null'
       
         ' group by pes.data_abate, pes.cod_camara, isnull(his.class_rastr' +
-        ', pes.class_rastr)'
+        ', pes.class_rastr) ) t'
       ' order by 1, 2, 3')
     Params = <
       item
@@ -386,6 +411,20 @@ object frmConsultaPH: TfrmConsultaPH
     object ZQuery2quant: TIntegerField
       Alignment = taCenter
       FieldName = 'quant'
+      ReadOnly = True
+    end
+    object ZQuery2perc_cam: TFloatField
+      Alignment = taCenter
+      FieldName = 'perc_cam'
+      ReadOnly = True
+    end
+    object ZQuery2total_cam: TIntegerField
+      Alignment = taCenter
+      FieldName = 'total_cam'
+      ReadOnly = True
+    end
+    object ZQuery2total_lido: TIntegerField
+      FieldName = 'total_lido'
       ReadOnly = True
     end
   end

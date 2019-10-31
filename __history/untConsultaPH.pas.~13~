@@ -41,10 +41,8 @@ type
     procedure ComboBox3Change(Sender: TObject);
     procedure ComboBox4Change(Sender: TObject);
     procedure DateTimePicker1Change(Sender: TObject);
-    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure CheckBox1Click(Sender: TObject);
     procedure ComboBox5Change(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
   private
     { Private declarations }
     procedure atualizaGrid;
@@ -64,12 +62,21 @@ uses untMenu;
 procedure TfrmConsultaPH.atualizaGrid;
 begin
   ZQuery1.Active := False;
+  ZQuery2.Active := False;
   ZQuery1.ParamByName('data').AsDate := DateTimePicker1.Date;
-  ZQuery1.ParamByName('camara').AsString := ComboBox1.Items[ComboBox1.ItemIndex];
-  ZQuery1.ParamByName('seq').AsString := ComboBox2.Items[ComboBox2.ItemIndex];
-  ZQuery1.ParamByName('ph').AsString := ComboBox3.Items[ComboBox3.ItemIndex];
-  ZQuery1.ParamByName('hab').AsString := ComboBox4.Items[ComboBox4.ItemIndex];
+  ZQuery2.ParamByName('data').AsDate := DateTimePicker1.Date;
+  if CheckBox1.Checked then
+  begin
+    ZQuery1.ParamByName('desclass').AsString := 'PH';
+    ZQuery2.ParamByName('desclass').AsString := 'PH';
+  end
+  else
+  begin
+    ZQuery1.ParamByName('desclass').AsString := '';
+    ZQuery2.ParamByName('desclass').AsString := '';
+  end;
   ZQuery1.Active := True;
+  ZQuery2.Active := True;
 end;
 
 procedure TfrmConsultaPH.BitBtn1Click(Sender: TObject);
@@ -79,10 +86,6 @@ end;
 
 procedure TfrmConsultaPH.CheckBox1Click(Sender: TObject);
 begin
-  if CheckBox1.Checked then
-    ComboBox5.Enabled := True
-  else
-    ComboBox5.Enabled := False;
   atualizaGrid;
 end;
 
@@ -116,28 +119,13 @@ begin
   atualizaGrid;
 end;
 
-procedure TfrmConsultaPH.DBGrid1DrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-begin
-  if CheckBox1.Checked then
-  Begin
-    if ComboBox5.Items[ComboBox5.ItemIndex] = 'TODAS' then
-      if ZQuery1.FieldByName('class_rastr').AsString <> ZQuery1.FieldByName('desclass').AsString then
-        DBGrid1.Canvas.Brush.Color := $00A6A6FF;
-    if ComboBox5.Items[ComboBox5.ItemIndex] = 'MATURACAO' then
-      if ((ZQuery1.FieldByName('class_rastr').AsString <> ZQuery1.FieldByName('desclass').AsString) and (ZQuery1.FieldByName('cod_tipo_desclas').AsString = 'MT')) then
-        DBGrid1.Canvas.Brush.Color := $00A6A6FF;
-    if ComboBox5.Items[ComboBox5.ItemIndex] = 'PH' then
-      if ((ZQuery1.FieldByName('class_rastr').AsString <> ZQuery1.FieldByName('desclass').AsString) and (ZQuery1.FieldByName('cod_tipo_desclas').AsString = 'PH')) then
-        DBGrid1.Canvas.Brush.Color := $00A6A6FF;
-    DBGrid1.Canvas.FillRect(Rect);
-    DBGrid1.DefaultDrawDataCell(Rect, Column.Field, State);
-  End;
-end;
-
 procedure TfrmConsultaPH.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  frmMenu.GravaIni('CONFIG.INI', 'frmConsultaPH', 'TOP' , IntToStr(frmConsultaPH.Top ));
+  frmMenu.GravaIni('CONFIG.INI', 'frmConsultaPH', 'LEFT', IntToStr(frmConsultaPH.Left));
+  ZQuery1.Active := False;
+  ZQuery2.Active := False;
   frmConsultaPH.Destroy;
   frmConsultaPH := Nil;
 end;
@@ -152,6 +140,8 @@ end;
 procedure TfrmConsultaPH.FormShow(Sender: TObject);
 begin
   DateTimePicker1.Date := Date;
+  frmConsultaPH.Top  := StrToInt(frmMenu.LeIni('CONFIG.INI', 'frmConsultaPH', 'TOP' ));
+  frmConsultaPH.Left := StrToInt(frmMenu.LeIni('CONFIG.INI', 'frmConsultaPH', 'LEFT'));
 end;
 
 end.
