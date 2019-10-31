@@ -1,9 +1,10 @@
 object frmMonitorDesossa: TfrmMonitorDesossa
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Monitoramento da Desossa'
-  ClientHeight = 648
+  ClientHeight = 608
   ClientWidth = 410
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -89,6 +90,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
+    OnDrawColumnCell = DBGrid1DrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -135,6 +137,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
+    OnDrawColumnCell = DBGrid2DrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -181,6 +184,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
+    OnDrawColumnCell = DBGrid3DrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -212,7 +216,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Top = 8
     Width = 41
     Height = 22
-    MaxValue = 30
+    MaxValue = 365
     MinValue = 0
     TabOrder = 3
     Value = 0
@@ -220,7 +224,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 629
+    Top = 589
     Width = 410
     Height = 19
     Panels = <
@@ -229,19 +233,18 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Text = 'TOTAL DE PE'#199'AS DA DESOSSA: '
         Width = 50
       end>
-    ExplicitLeft = 296
-    ExplicitTop = 592
-    ExplicitWidth = 0
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
       'select num_lote,'
       '       min(data_ent) as diant_ini,'
       #9'     max(data_ent) as diant_fim,'
       '       count(1) as quant'
       '  from t_entdesossa with(nolock)'
-      ' where cast(data_ent as date) = cast(getdate() - :dia as date)'
+      ' where cast(data_ent as date) = @data - :dia'
       '   and cod_prod in ('#39'011001'#39','#39'011017'#39')'
       ' group by num_lote'
       ' order by 2')
@@ -287,12 +290,14 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   object ZQuery2: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
       'select num_lote,'
       '       min(data_ent) as diant_ini,'
       #9'     max(data_ent) as diant_fim,'
       '       count(1) as quant'
       '  from t_entdesossa with(nolock)'
-      ' where cast(data_ent as date) = cast(getdate() - :dia as date)'
+      ' where cast(data_ent as date) = @data - :dia'
       '   and cod_prod in ('#39'011000'#39','#39'011016'#39')'
       ' group by num_lote'
       ' order by 2')
@@ -338,12 +343,14 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   object ZQuery3: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
       'select num_lote,'
       '       min(data_ent) as diant_ini,'
       #9'     max(data_ent) as diant_fim,'
       '       count(1) as quant'
       '  from t_entdesossa with(nolock)'
-      ' where cast(data_ent as date) = cast(getdate() - :dia as date)'
+      ' where cast(data_ent as date) = @data - :dia'
       '   and cod_prod in ('#39'011004'#39','#39'011010'#39')'
       ' group by num_lote'
       ' order by 2')
@@ -395,17 +402,19 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   object ZQuery4: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
       'select count(1) as quant'
       '  from t_entdesossa with(nolock)'
-      ' where cast(data_ent as date) = cast(getdate() - :dia as date)')
+      ' where cast(data_ent as date) = @data - :dia')
     Params = <
       item
         DataType = ftUnknown
         Name = 'dia'
         ParamType = ptUnknown
       end>
-    Left = 136
-    Top = 584
+    Left = 312
+    Top = 560
     ParamData = <
       item
         DataType = ftUnknown

@@ -4,8 +4,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Monitoramento da Desossa'
-  ClientHeight = 608
-  ClientWidth = 410
+  ClientHeight = 611
+  ClientWidth = 409
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 8
+    Top = 215
     Width = 170
     Height = 19
     Caption = 'Entrada do Dianteiro'
@@ -33,7 +33,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object Label2: TLabel
     Left = 8
-    Top = 215
+    Top = 8
     Width = 162
     Height = 19
     Caption = 'Entrada do Traseiro'
@@ -70,9 +70,54 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object DBText1: TDBText
+    Left = 336
+    Top = 209
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'total'
+    DataSource = DataSource2
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DBText2: TDBText
+    Left = 336
+    Top = 415
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'total'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DBText3: TDBText
+    Left = 336
+    Top = 575
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'total'
+    DataSource = DataSource3
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object DBGrid1: TDBGrid
     Left = 8
-    Top = 33
+    Top = 240
     Width = 393
     Height = 176
     DataSource = DataSource1
@@ -119,7 +164,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object DBGrid2: TDBGrid
     Left = 8
-    Top = 240
+    Top = 33
     Width = 393
     Height = 176
     DataSource = DataSource2
@@ -224,8 +269,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 589
-    Width = 410
+    Top = 592
+    Width = 409
     Height = 19
     Panels = <
       item
@@ -233,6 +278,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Text = 'TOTAL DE PE'#199'AS DA DESOSSA: '
         Width = 50
       end>
+    ExplicitTop = 589
+    ExplicitWidth = 410
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
@@ -242,7 +289,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       'select num_lote,'
       '       min(data_ent) as diant_ini,'
       #9'     max(data_ent) as diant_fim,'
-      '       count(1) as quant'
+      '       count(1) as quant,'
+      
+        '       (select count(1) from t_entdesossa with(nolock) where cas' +
+        't(data_ent as date) = @data - :dia and cod_prod in ('#39'011001'#39','#39'01' +
+        '1017'#39')) as total'
       '  from t_entdesossa with(nolock)'
       ' where cast(data_ent as date) = @data - :dia'
       '   and cod_prod in ('#39'011001'#39','#39'011017'#39')'
@@ -255,7 +306,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         ParamType = ptUnknown
       end>
     Left = 112
-    Top = 80
+    Top = 287
     ParamData = <
       item
         DataType = ftUnknown
@@ -281,11 +332,15 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'quant'
       ReadOnly = True
     end
+    object ZQuery1total: TIntegerField
+      FieldName = 'total'
+      ReadOnly = True
+    end
   end
   object DataSource1: TDataSource
     DataSet = ZQuery1
     Left = 152
-    Top = 80
+    Top = 287
   end
   object ZQuery2: TZQuery
     Connection = frmMenu.ZConnection1
@@ -295,7 +350,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       'select num_lote,'
       '       min(data_ent) as diant_ini,'
       #9'     max(data_ent) as diant_fim,'
-      '       count(1) as quant'
+      '       count(1) as quant,'
+      
+        '       (select count(1) from t_entdesossa with(nolock) where cas' +
+        't(data_ent as date) = @data - :dia and cod_prod in ('#39'011000'#39','#39'01' +
+        '1016'#39')) as total'
       '  from t_entdesossa with(nolock)'
       ' where cast(data_ent as date) = @data - :dia'
       '   and cod_prod in ('#39'011000'#39','#39'011016'#39')'
@@ -308,7 +367,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         ParamType = ptUnknown
       end>
     Left = 112
-    Top = 287
+    Top = 80
     ParamData = <
       item
         DataType = ftUnknown
@@ -334,11 +393,15 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'quant'
       ReadOnly = True
     end
+    object ZQuery2total: TIntegerField
+      FieldName = 'total'
+      ReadOnly = True
+    end
   end
   object DataSource2: TDataSource
     DataSet = ZQuery2
     Left = 152
-    Top = 287
+    Top = 80
   end
   object ZQuery3: TZQuery
     Connection = frmMenu.ZConnection1
@@ -348,7 +411,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       'select num_lote,'
       '       min(data_ent) as diant_ini,'
       #9'     max(data_ent) as diant_fim,'
-      '       count(1) as quant'
+      '       count(1) as quant,'
+      
+        '       (select count(1) from t_entdesossa with(nolock) where cas' +
+        't(data_ent as date) = @data - :dia and cod_prod in ('#39'011004'#39','#39'01' +
+        '1010'#39')) as total'
       '  from t_entdesossa with(nolock)'
       ' where cast(data_ent as date) = @data - :dia'
       '   and cod_prod in ('#39'011004'#39','#39'011010'#39')'
@@ -387,6 +454,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'quant'
       ReadOnly = True
     end
+    object ZQuery3total: TIntegerField
+      FieldName = 'total'
+      ReadOnly = True
+    end
   end
   object DataSource3: TDataSource
     DataSet = ZQuery3
@@ -397,7 +468,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Interval = 10000
     OnTimer = Timer1Timer
     Left = 344
-    Top = 88
+    Top = 295
   end
   object ZQuery4: TZQuery
     Connection = frmMenu.ZConnection1

@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, ZAbstractRODataset,
   ZAbstractDataset, ZDataset, ZAbstractConnection, ZConnection, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, IniFiles, Vcl.Samples.Spin,
-  Vcl.ComCtrls, DateUtils, Vcl.DBCtrls;
+  Vcl.ComCtrls, DateUtils;
 
 type
   TfrmMonitorDesossa = class(TForm)
@@ -41,12 +41,6 @@ type
     StatusBar1: TStatusBar;
     ZQuery4: TZQuery;
     ZQuery4quant: TIntegerField;
-    ZQuery2total: TIntegerField;
-    DBText1: TDBText;
-    DBText2: TDBText;
-    DBText3: TDBText;
-    ZQuery1total: TIntegerField;
-    ZQuery3total: TIntegerField;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
