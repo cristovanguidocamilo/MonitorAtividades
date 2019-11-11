@@ -444,7 +444,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Width = 100
       end
       item
-        Text = 'ATUALIZA'#199#195'O 2019.10.05-1'
+        Text = 'ATUALIZA'#199#195'O 2019.11.11-1'
         Width = 100
       end>
   end
@@ -793,7 +793,18 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'cod_camara'
         Title.Alignment = taCenter
-        Title.Caption = 'C'#226'mara'
+        Title.Caption = 'C'#226'm.'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'num_lote'
+        Title.Caption = 'Lote'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -1363,6 +1374,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       'declare @data datetime = cast(getdate() as date)'
       ''
       'select cod_camara,'
+      '       num_lote,'
       #9'     count(1)/2 as animais'
       '  from t_pescarcaca'
       ' where data_abate = @data'
@@ -1402,11 +1414,17 @@ object frmMonitorAbate: TfrmMonitorAbate
         #9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9'                                            ' +
         '                     where desc_motivo like '#39'%TUBERCULOSE%'#39'))))'
       ') and class_rastr <> '#39'DIF'#39
-      'group by cod_camara'
-      'order by cod_camara')
+      'group by cod_camara, num_lote'
+      'order by cod_camara, num_lote')
     Params = <>
     Left = 824
     Top = 712
+    object ZQuery10num_lote: TWideStringField
+      Alignment = taCenter
+      FieldName = 'num_lote'
+      Required = True
+      Size = 2
+    end
     object ZQuery10cod_camara: TWideStringField
       FieldName = 'cod_camara'
       Size = 3
@@ -1432,7 +1450,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       '       count(1)/2 as quant'
       '  from t_pescarcaca'
       ' where data_abate = @data'
-      ' group by num_lote, class_rastr, isnull(class_rastr2, '#39#39')')
+      ' group by num_lote, class_rastr, isnull(class_rastr2, '#39#39')'
+      ' order by num_lote desc')
     Params = <>
     Left = 440
     Top = 736

@@ -5,7 +5,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   BorderStyle = bsSingle
   Caption = 'Monitoramento do Abate  (F12 - Programar Quantidade Aviso)'
   ClientHeight = 821
-  ClientWidth = 1146
+  ClientWidth = 974
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -212,6 +212,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnDrawColumnCell = DBGrid1DrawColumnCell
+    OnDblClick = DBGrid1DblClick
     Columns = <
       item
         Expanded = False
@@ -425,7 +426,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object StatusBar1: TStatusBar
     Left = 0
     Top = 802
-    Width = 1146
+    Width = 974
     Height = 19
     Panels = <
       item
@@ -443,10 +444,9 @@ object frmMonitorAbate: TfrmMonitorAbate
         Width = 100
       end
       item
-        Text = 'ATUALIZA'#199#195'O 2019.09.20-1'
+        Text = 'ATUALIZA'#199#195'O 2019.11.11-1'
         Width = 100
       end>
-    ExplicitWidth = 974
   end
   object DBGrid3: TDBGrid
     Left = 615
@@ -789,11 +789,22 @@ object frmMonitorAbate: TfrmMonitorAbate
     TitleFont.Style = []
     Columns = <
       item
+        Expanded = False
+        FieldName = 'num_lote'
+        Title.Caption = 'Lote'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
         Alignment = taCenter
         Expanded = False
         FieldName = 'cod_camara'
         Title.Alignment = taCenter
-        Title.Caption = 'C'#226'mara'
+        Title.Caption = 'C'#226'm.'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -899,7 +910,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       #9'     class_rastr,'
       #9'     class_rastr2,'
       '       num_lote,'
-      '       data_pes'
+      '       data_pes,'
+      '       cod_tras'
       '  from t_pescarcaca with(nolock)'
       ' where data_abate = @data'
       '   and status not in ('#39'O'#39','#39'G'#39','#39'T'#39')'
@@ -937,6 +949,9 @@ object frmMonitorAbate: TfrmMonitorAbate
     object ZQuery1data_pes: TDateTimeField
       Alignment = taCenter
       FieldName = 'data_pes'
+    end
+    object ZQuery1cod_tras: TWideStringField
+      FieldName = 'cod_tras'
     end
   end
   object DataSource1: TDataSource
@@ -1358,7 +1373,8 @@ object frmMonitorAbate: TfrmMonitorAbate
     SQL.Strings = (
       'declare @data datetime = cast(getdate() as date)'
       ''
-      'select cod_camara,'
+      'select num_lote,'
+      '       cod_camara,'
       #9'     count(1)/2 as animais'
       '  from t_pescarcaca'
       ' where data_abate = @data'
@@ -1398,11 +1414,17 @@ object frmMonitorAbate: TfrmMonitorAbate
         #9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9'                                            ' +
         '                     where desc_motivo like '#39'%TUBERCULOSE%'#39'))))'
       ') and class_rastr <> '#39'DIF'#39
-      'group by cod_camara'
-      'order by cod_camara')
+      'group by num_lote, cod_camara'
+      'order by num_lote, cod_camara')
     Params = <>
     Left = 824
     Top = 712
+    object ZQuery10num_lote: TWideStringField
+      Alignment = taCenter
+      FieldName = 'num_lote'
+      Required = True
+      Size = 2
+    end
     object ZQuery10cod_camara: TWideStringField
       FieldName = 'cod_camara'
       Size = 3
@@ -1428,7 +1450,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       '       count(1)/2 as quant'
       '  from t_pescarcaca'
       ' where data_abate = @data'
-      ' group by num_lote, class_rastr, isnull(class_rastr2, '#39#39')')
+      ' group by num_lote, class_rastr, isnull(class_rastr2, '#39#39')'
+      ' order by num_lote desc')
     Params = <>
     Left = 440
     Top = 736

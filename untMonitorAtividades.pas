@@ -107,6 +107,7 @@ type
     ZQuery11class_rastr2: TWideStringField;
     ZQuery11quant: TIntegerField;
     ZQuery1cod_tras: TWideStringField;
+    ZQuery10num_lote: TWideStringField;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
