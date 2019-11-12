@@ -307,12 +307,12 @@ begin
   ZQuery1.Refresh;
   ZQuery2.Refresh;
   ZQuery3.Refresh;
+  ZQuery4.Refresh;
+  ZQuery5.Refresh;
   if CheckBox2.Checked then
     ZQuery11.Refresh
   else
-    ZQuery4.Refresh;
-  ZQuery5.Refresh;
-  ZQuery6.Refresh;
+    ZQuery6.Refresh;
   ZQuery7.Refresh;
   if CheckBox1.Checked = False then
     ZQuery8.Refresh;

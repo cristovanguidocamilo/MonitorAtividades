@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
   Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, ZAbstractConnection,
-  ZConnection, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DateUtils, IniFiles,
+  ZConnection, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DateUtils, IniFiles, Clipbrd,
   Vcl.DBCtrls;
 
 type
@@ -98,6 +98,16 @@ type
     DataSource9: TDataSource;
     ZQuery10cod_camara: TWideStringField;
     ZQuery10animais: TIntegerField;
+    CheckBox2: TCheckBox;
+    ZQuery11: TZQuery;
+    DataSource10: TDataSource;
+    DBGrid8: TDBGrid;
+    ZQuery11num_lote: TWideStringField;
+    ZQuery11class_rastr: TWideStringField;
+    ZQuery11class_rastr2: TWideStringField;
+    ZQuery11quant: TIntegerField;
+    ZQuery1cod_tras: TWideStringField;
+    ZQuery10num_lote: TWideStringField;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -110,6 +120,8 @@ type
     procedure DBGrid5DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure CheckBox2Click(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
   private
     { Private declarations }
     procedure Alerta;
@@ -167,6 +179,8 @@ begin
     ZQuery7.Active := True;
     ZQuery8.Active := True;
     ZQuery9.Active := True;
+    ZQuery10.Active := True;
+    ZQuery11.Active := True;
     Timer1.Enabled := True;
   end
   else
@@ -182,7 +196,30 @@ begin
     ZQuery7.Active := False;
     ZQuery8.Active := False;
     ZQuery9.Active := False;
+    ZQuery10.Active := False;
+    ZQuery11.Active := False;
   end;
+end;
+
+procedure TfrmMonitorAbate.CheckBox2Click(Sender: TObject);
+begin
+  if CheckBox2.Checked then
+  begin
+    DBGrid8.Visible := True;
+    DBGrid4.Visible := False;
+    ZQuery11.Refresh;
+  end
+  else
+  begin
+    DBGrid8.Visible := False;
+    DBGrid4.Visible := True;
+    ZQuery6.Refresh;
+  end;
+end;
+
+procedure TfrmMonitorAbate.DBGrid1DblClick(Sender: TObject);
+begin
+  Clipboard.AsText := ZQuery1.FieldByName('cod_tras').AsString;
 end;
 
 procedure TfrmMonitorAbate.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -270,13 +307,17 @@ begin
   ZQuery1.Refresh;
   ZQuery2.Refresh;
   ZQuery3.Refresh;
-  ZQuery4.Refresh;
+  if CheckBox2.Checked then
+    ZQuery11.Refresh
+  else
+    ZQuery4.Refresh;
   ZQuery5.Refresh;
   ZQuery6.Refresh;
   ZQuery7.Refresh;
   if CheckBox1.Checked = False then
     ZQuery8.Refresh;
   ZQuery9.Refresh;
+  ZQuery10.Refresh;
 
   if QuantidadeAviso <> '0' then
     if StrToInt(QuantidadeAviso) <= ZQuery5sequencial.AsInteger then
