@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
   Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, ZAbstractConnection,
-  ZConnection, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DateUtils, IniFiles,
+  ZConnection, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DateUtils, IniFiles, Clipbrd,
   Vcl.DBCtrls;
 
 type
@@ -17,8 +17,6 @@ type
     BitBtn1: TBitBtn;
     ZQuery1seq_abate: TIntegerField;
     ZQuery1banda: TWideStringField;
-    ZQuery1class_rastr: TWideStringField;
-    ZQuery1class_rastr2: TWideStringField;
     DBGrid1: TDBGrid;
     Label1: TLabel;
     ZQuery1data_pes: TDateTimeField;
@@ -30,10 +28,6 @@ type
     ZQuery2num_lote: TWideStringField;
     ZQuery2idade: TSmallintField;
     ZQuery2cod_matur: TWideStringField;
-    ZQuery2class_rastr: TWideStringField;
-    ZQuery2class_rastr_1: TWideStringField;
-    ZQuery2class_rastr2: TWideStringField;
-    ZQuery2class_rastr2_1: TWideStringField;
     ZQuery2cod_rastr: TWideStringField;
     Label2: TLabel;
     StatusBar1: TStatusBar;
@@ -106,6 +100,11 @@ type
     ZQuery11class_rastr: TWideStringField;
     ZQuery11class_rastr2: TWideStringField;
     ZQuery11quant: TIntegerField;
+    ZQuery1cod_tras: TWideStringField;
+    ZQuery10num_lote: TWideStringField;
+    ZQuery2rastr: TWideStringField;
+    ZQuery2class: TWideStringField;
+    ZQuery1rastr: TWideStringField;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -119,6 +118,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure SpeedButton1Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
   private
     { Private declarations }
     procedure Alerta;
@@ -170,16 +170,14 @@ begin
     ZQuery1.Active := True;
     ZQuery2.Active := True;
     ZQuery3.Active := True;
-    if CheckBox2.Checked then
-      ZQuery11.Active := True
-    else
-      ZQuery4.Active := True;
+    ZQuery4.Active := True;
     ZQuery5.Active := True;
     ZQuery6.Active := True;
     ZQuery7.Active := True;
     ZQuery8.Active := True;
     ZQuery9.Active := True;
     ZQuery10.Active := True;
+    ZQuery11.Active := True;
     Timer1.Enabled := True;
   end
   else
@@ -189,16 +187,14 @@ begin
     ZQuery1.Active := False;
     ZQuery2.Active := False;
     ZQuery3.Active := False;
-    if CheckBox2.Checked then
-      ZQuery11.Active := False
-    else
-      ZQuery4.Active := False;
+    ZQuery4.Active := False;
     ZQuery5.Active := False;
     ZQuery6.Active := False;
     ZQuery7.Active := False;
     ZQuery8.Active := False;
     ZQuery9.Active := False;
     ZQuery10.Active := False;
+    ZQuery11.Active := False;
   end;
 end;
 
@@ -208,12 +204,19 @@ begin
   begin
     DBGrid8.Visible := True;
     DBGrid4.Visible := False;
+    ZQuery11.Refresh;
   end
   else
   begin
     DBGrid8.Visible := False;
     DBGrid4.Visible := True;
+    ZQuery6.Refresh;
   end;
+end;
+
+procedure TfrmMonitorAbate.DBGrid1DblClick(Sender: TObject);
+begin
+  Clipboard.AsText := ZQuery1.FieldByName('cod_tras').AsString;
 end;
 
 procedure TfrmMonitorAbate.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -230,10 +233,10 @@ end;
 procedure TfrmMonitorAbate.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
-  if (ZQuery2class_rastr.Text <> ZQuery2class_rastr_1.Text) and (ZQuery2class_rastr_1.Text <> '') then
-    DBGrid2.Canvas.Brush.Color:= $00A6A6FF;
-  if (ZQuery2class_rastr2.Text <> ZQuery2class_rastr2_1.Text) and (ZQuery2class_rastr2_1.Text <> '') then
-    DBGrid2.Canvas.Brush.Color := $0079FDFA;
+  //if (ZQuery2rastr.Text <> ZQuery2class.Text) and (ZQuery2rastr.Text <> '') then
+    //DBGrid2.Canvas.Brush.Color:= $00A6A6FF;
+  //if (ZQuery2class_rastr2.Text <> ZQuery2class_rastr2_1.Text) and (ZQuery2class_rastr2_1.Text <> '') then
+    //DBGrid2.Canvas.Brush.Color := $0079FDFA;
   if ((ZQuery2cod_rastr.AsString <> '0000000000000000') and (ZQuery2cod_rastr.AsString <> ZQuery2cod_rastr_1.AsString)) then
     DBGrid2.Canvas.Brush.Color := $00FD93C0;
   if ((ZQuery2cod_rastr.AsString <> '0000000000000000') and (ZQuery2cod_rastr.AsString = ZQuery2cod_rastr_1.AsString)) then
@@ -301,12 +304,12 @@ begin
   ZQuery1.Refresh;
   ZQuery2.Refresh;
   ZQuery3.Refresh;
+  ZQuery4.Refresh;
+  ZQuery5.Refresh;
   if CheckBox2.Checked then
     ZQuery11.Refresh
   else
-    ZQuery4.Refresh;
-  ZQuery5.Refresh;
-  ZQuery6.Refresh;
+    ZQuery6.Refresh;
   ZQuery7.Refresh;
   if CheckBox1.Checked = False then
     ZQuery8.Refresh;

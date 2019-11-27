@@ -212,6 +212,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnDrawColumnCell = DBGrid1DrawColumnCell
+    OnDblClick = DBGrid1DblClick
     Columns = <
       item
         Expanded = False
@@ -238,28 +239,6 @@ object frmMonitorAbate: TfrmMonitorAbate
       end
       item
         Expanded = False
-        FieldName = 'class_rastr'
-        Title.Caption = 'Class Rastr'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'class_rastr2'
-        Title.Caption = 'Subtipo'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
         FieldName = 'num_lote'
         Title.Caption = 'Lote'
         Title.Font.Charset = DEFAULT_CHARSET
@@ -268,6 +247,19 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
         Width = 31
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'rastr'
+        Title.Alignment = taCenter
+        Title.Caption = 'Habilita'#231#227'o'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 120
         Visible = True
       end
       item
@@ -363,50 +355,28 @@ object frmMonitorAbate: TfrmMonitorAbate
       end
       item
         Expanded = False
-        FieldName = 'class_rastr'
+        FieldName = 'rastr'
         Title.Alignment = taCenter
-        Title.Caption = 'Class R'
+        Title.Caption = 'Hab. R'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 105
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'class_rastr_1'
+        FieldName = 'class'
         Title.Alignment = taCenter
-        Title.Caption = 'Class C'
+        Title.Caption = 'Hab. C'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'class_rastr2'
-        Title.Alignment = taCenter
-        Title.Caption = 'Subtipo R'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'class_rastr2_1'
-        Title.Alignment = taCenter
-        Title.Caption = 'Subtipo C'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
+        Width = 105
         Visible = True
       end
       item
@@ -443,7 +413,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Width = 100
       end
       item
-        Text = 'ATUALIZA'#199#195'O 2019.09.20-1'
+        Text = 'ATUALIZA'#199#195'O 2019.11.11-1'
         Width = 100
       end>
   end
@@ -696,29 +666,16 @@ object frmMonitorAbate: TfrmMonitorAbate
         Visible = True
       end
       item
-        Alignment = taCenter
         Expanded = False
-        FieldName = 'class_rastr'
+        FieldName = 'rastr'
         Title.Alignment = taCenter
-        Title.Caption = 'Class'
+        Title.Caption = 'Habilita'#231#227'o'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
-        FieldName = 'class_rastr2'
-        Title.Alignment = taCenter
-        Title.Caption = 'Sub'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
+        Width = 80
         Visible = True
       end>
   end
@@ -792,7 +749,18 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'cod_camara'
         Title.Alignment = taCenter
-        Title.Caption = 'C'#226'mara'
+        Title.Caption = 'C'#226'm.'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'num_lote'
+        Title.Caption = 'Lote'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -895,10 +863,13 @@ object frmMonitorAbate: TfrmMonitorAbate
       ''
       'select seq_abate,'
       '       banda, '
-      #9'     class_rastr,'
-      #9'     class_rastr2,'
+      
+        #9'     replace(concat(rtrim(class_rastr), '#39'-'#39', rtrim(class_rastr2' +
+        '), '#39'-'#39', rtrim(class_rastr3), '#39'-'#39', rtrim(class_rastr4), '#39'-'#39', rtri' +
+        'm(class_rastr5), '#39'-'#39', rtrim(class_rastr6)),'#39'--'#39','#39#39') as rastr,'
       '       num_lote,'
-      '       data_pes'
+      '       data_pes,'
+      '       cod_tras'
       '  from t_pescarcaca with(nolock)'
       ' where data_abate = @data'
       '   and status not in ('#39'O'#39','#39'G'#39','#39'T'#39')'
@@ -917,25 +888,24 @@ object frmMonitorAbate: TfrmMonitorAbate
       Required = True
       Size = 1
     end
-    object ZQuery1class_rastr: TWideStringField
-      Alignment = taCenter
-      FieldName = 'class_rastr'
-      Size = 5
-    end
-    object ZQuery1class_rastr2: TWideStringField
-      Alignment = taCenter
-      FieldName = 'class_rastr2'
-      Size = 5
-    end
     object ZQuery1num_lote: TWideStringField
       Alignment = taCenter
       FieldName = 'num_lote'
       Required = True
       Size = 2
     end
+    object ZQuery1rastr: TWideStringField
+      Alignment = taCenter
+      FieldName = 'rastr'
+      ReadOnly = True
+      Size = 255
+    end
     object ZQuery1data_pes: TDateTimeField
       Alignment = taCenter
       FieldName = 'data_pes'
+    end
+    object ZQuery1cod_tras: TWideStringField
+      FieldName = 'cod_tras'
     end
   end
   object DataSource1: TDataSource
@@ -960,10 +930,16 @@ object frmMonitorAbate: TfrmMonitorAbate
       '       ras.sexo,'
       #9'     ras.idade,'
       #9'     clas.cod_matur,'
-      #9'     ras.class_rastr,'
-      #9'     clas.class_rastr,'
-      #9'     ras.class_rastr2,'
-      '  '#9'   clas.class_rastr2,'
+      
+        #9'     replace(concat(rtrim(ras.class_rastr), '#39'-'#39', rtrim(ras.clas' +
+        's_rastr2), '#39'-'#39', rtrim(ras.class_rastr3), '#39'-'#39', rtrim(ras.class_ra' +
+        'str4), '#39'-'#39', rtrim(ras.class_rastr5), '#39'-'#39', rtrim(ras.class_rastr6' +
+        ')),'#39'--'#39','#39#39') as rastr,'
+      
+        #9'     replace(concat(rtrim(clas.class_rastr), '#39'-'#39', rtrim(clas.cl' +
+        'ass_rastr2), '#39'-'#39', rtrim(clas.class_rastr3), '#39'-'#39', rtrim(clas.clas' +
+        's_rastr4), '#39'-'#39', rtrim(clas.class_rastr5), '#39'-'#39', rtrim(clas.class_' +
+        'rastr6)),'#39'--'#39','#39#39') as class,'
       #9'     ras.cod_rastr,'
       #9'     dia.cod_rastr'
       '  from t_ab_sequencial_rastr ras    with (nolock)'
@@ -1017,25 +993,17 @@ object frmMonitorAbate: TfrmMonitorAbate
       FieldName = 'cod_matur'
       Size = 1
     end
-    object ZQuery2class_rastr: TWideStringField
+    object ZQuery2rastr: TWideStringField
       Alignment = taCenter
-      FieldName = 'class_rastr'
-      Size = 5
+      FieldName = 'rastr'
+      ReadOnly = True
+      Size = 255
     end
-    object ZQuery2class_rastr_1: TWideStringField
+    object ZQuery2class: TWideStringField
       Alignment = taCenter
-      FieldName = 'class_rastr_1'
-      Size = 5
-    end
-    object ZQuery2class_rastr2: TWideStringField
-      Alignment = taCenter
-      FieldName = 'class_rastr2'
-      Size = 5
-    end
-    object ZQuery2class_rastr2_1: TWideStringField
-      Alignment = taCenter
-      FieldName = 'class_rastr2_1'
-      Size = 5
+      FieldName = 'class'
+      ReadOnly = True
+      Size = 255
     end
     object ZQuery2cod_rastr: TWideStringField
       Alignment = taCenter
@@ -1205,8 +1173,11 @@ object frmMonitorAbate: TfrmMonitorAbate
       'declare @data datetime = cast(getdate() as date)'
       ''
       'select pes.cod_camara,'
-      '       pes.class_rastr,'
-      #9'     pes.class_rastr2,'
+      
+        '       replace(concat(rtrim(pes.class_rastr), '#39'-'#39', rtrim(pes.cla' +
+        'ss_rastr2), '#39'-'#39', rtrim(pes.class_rastr3), '#39'-'#39', rtrim(pes.class_r' +
+        'astr4), '#39'-'#39', rtrim(pes.class_rastr5), '#39'-'#39', rtrim(pes.class_rastr' +
+        '6)),'#39'--'#39','#39#39') as rastr,'
       #9'     count (1)/2 as quant,'
       
         '       periodo = Concat((select top 1 Convert(Char(8),cast(abert' +
@@ -1222,8 +1193,16 @@ object frmMonitorAbate: TfrmMonitorAbate
       '   and cast(mapa.data_ent as date) = @data'
       '   and pes.class_rastr not in ('#39'DIF'#39')'
       '   and pes.cod_camara <> '#39#39
-      ' group by pes.cod_camara, pes.class_rastr, pes.class_rastr2'
-      ' order by pes.cod_camara, pes.class_rastr, pes.class_rastr2'
+      
+        ' group by pes.cod_camara, replace(concat(rtrim(pes.class_rastr),' +
+        ' '#39'-'#39', rtrim(pes.class_rastr2), '#39'-'#39', rtrim(pes.class_rastr3), '#39'-'#39 +
+        ', rtrim(pes.class_rastr4), '#39'-'#39', rtrim(pes.class_rastr5), '#39'-'#39', rt' +
+        'rim(pes.class_rastr6)),'#39'--'#39','#39#39')'
+      
+        ' order by pes.cod_camara, replace(concat(rtrim(pes.class_rastr),' +
+        ' '#39'-'#39', rtrim(pes.class_rastr2), '#39'-'#39', rtrim(pes.class_rastr3), '#39'-'#39 +
+        ', rtrim(pes.class_rastr4), '#39'-'#39', rtrim(pes.class_rastr5), '#39'-'#39', rt' +
+        'rim(pes.class_rastr6)),'#39'--'#39','#39#39')'
       ''
       ''
       '')
@@ -1234,16 +1213,6 @@ object frmMonitorAbate: TfrmMonitorAbate
       Alignment = taCenter
       FieldName = 'cod_camara'
       Size = 3
-    end
-    object ZQuery7class_rastr: TWideStringField
-      Alignment = taCenter
-      FieldName = 'class_rastr'
-      Size = 5
-    end
-    object ZQuery7class_rastr2: TWideStringField
-      Alignment = taCenter
-      FieldName = 'class_rastr2'
-      Size = 5
     end
     object ZQuery7quant: TIntegerField
       Alignment = taCenter
@@ -1269,8 +1238,11 @@ object frmMonitorAbate: TfrmMonitorAbate
       'select pes.cod_camara,'
       '       pes.seq_abate,'
       #9'     cam.cod_trilho,'
-      '  '#9'   pes.class_rastr,'
-      #9'     pes.class_rastr2,'
+      
+        '  '#9'   replace(concat(rtrim(pes.class_rastr), '#39'-'#39', rtrim(pes.clas' +
+        's_rastr2), '#39'-'#39', rtrim(pes.class_rastr3), '#39'-'#39', rtrim(pes.class_ra' +
+        'str4), '#39'-'#39', rtrim(pes.class_rastr5), '#39'-'#39', rtrim(pes.class_rastr6' +
+        ')),'#39'--'#39','#39#39') as rastr,'
       '       pes.num_lote,'
       
         '       periodo = (select Concat(Convert(Char(8),cast(min(data_en' +
@@ -1298,18 +1270,16 @@ object frmMonitorAbate: TfrmMonitorAbate
       Alignment = taCenter
       FieldName = 'seq_abate'
     end
+    object ZQuery8rastr: TWideStringField
+      Alignment = taCenter
+      FieldName = 'rastr'
+      ReadOnly = True
+      Size = 255
+    end
     object ZQuery8cod_trilho: TWideStringField
       Alignment = taCenter
       FieldName = 'cod_trilho'
       Size = 4
-    end
-    object ZQuery8class_rastr: TWideStringField
-      FieldName = 'class_rastr'
-      Size = 5
-    end
-    object ZQuery8class_rastr2: TWideStringField
-      FieldName = 'class_rastr2'
-      Size = 5
     end
     object ZQuery8num_lote: TWideStringField
       FieldName = 'num_lote'
@@ -1358,6 +1328,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       'declare @data datetime = cast(getdate() as date)'
       ''
       'select cod_camara,'
+      '       num_lote,'
       #9'     count(1)/2 as animais'
       '  from t_pescarcaca'
       ' where data_abate = @data'
@@ -1397,11 +1368,17 @@ object frmMonitorAbate: TfrmMonitorAbate
         #9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9#9'                                            ' +
         '                     where desc_motivo like '#39'%TUBERCULOSE%'#39'))))'
       ') and class_rastr <> '#39'DIF'#39
-      'group by cod_camara'
-      'order by cod_camara')
+      'group by cod_camara, num_lote'
+      'order by cod_camara, num_lote')
     Params = <>
     Left = 824
     Top = 712
+    object ZQuery10num_lote: TWideStringField
+      Alignment = taCenter
+      FieldName = 'num_lote'
+      Required = True
+      Size = 2
+    end
     object ZQuery10cod_camara: TWideStringField
       FieldName = 'cod_camara'
       Size = 3
@@ -1427,7 +1404,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       '       count(1)/2 as quant'
       '  from t_pescarcaca'
       ' where data_abate = @data'
-      ' group by num_lote, class_rastr, isnull(class_rastr2, '#39#39')')
+      ' group by num_lote, class_rastr, isnull(class_rastr2, '#39#39')'
+      ' order by num_lote desc')
     Params = <>
     Left = 440
     Top = 736

@@ -17,8 +17,6 @@ type
     BitBtn1: TBitBtn;
     ZQuery1seq_abate: TIntegerField;
     ZQuery1banda: TWideStringField;
-    ZQuery1class_rastr: TWideStringField;
-    ZQuery1class_rastr2: TWideStringField;
     DBGrid1: TDBGrid;
     Label1: TLabel;
     ZQuery1data_pes: TDateTimeField;
@@ -30,10 +28,6 @@ type
     ZQuery2num_lote: TWideStringField;
     ZQuery2idade: TSmallintField;
     ZQuery2cod_matur: TWideStringField;
-    ZQuery2class_rastr: TWideStringField;
-    ZQuery2class_rastr_1: TWideStringField;
-    ZQuery2class_rastr2: TWideStringField;
-    ZQuery2class_rastr2_1: TWideStringField;
     ZQuery2cod_rastr: TWideStringField;
     Label2: TLabel;
     StatusBar1: TStatusBar;
@@ -54,8 +48,6 @@ type
     ZQuery5: TZQuery;
     ZQuery5sequencial: TSmallintField;
     ZQuery6: TZQuery;
-    ZQuery6class_rastr: TWideStringField;
-    ZQuery6class_rastr2: TWideStringField;
     ZQuery6quant: TIntegerField;
     DBGrid4: TDBGrid;
     Label4: TLabel;
@@ -65,8 +57,6 @@ type
     DBGrid5: TDBGrid;
     Label5: TLabel;
     ZQuery7cod_camara: TWideStringField;
-    ZQuery7class_rastr: TWideStringField;
-    ZQuery7class_rastr2: TWideStringField;
     ZQuery7quant: TIntegerField;
     ZQuery8: TZQuery;
     DataSource7: TDataSource;
@@ -75,8 +65,6 @@ type
     ZQuery8seq_abate: TIntegerField;
     ZQuery8cod_trilho: TWideStringField;
     CheckBox1: TCheckBox;
-    ZQuery8class_rastr: TWideStringField;
-    ZQuery8class_rastr2: TWideStringField;
     ZQuery8num_lote: TWideStringField;
     ZQuery2cod_rastr_1: TWideStringField;
     DBText1: TDBText;
@@ -103,11 +91,16 @@ type
     DataSource10: TDataSource;
     DBGrid8: TDBGrid;
     ZQuery11num_lote: TWideStringField;
-    ZQuery11class_rastr: TWideStringField;
-    ZQuery11class_rastr2: TWideStringField;
     ZQuery11quant: TIntegerField;
     ZQuery1cod_tras: TWideStringField;
     ZQuery10num_lote: TWideStringField;
+    ZQuery2rastr: TWideStringField;
+    ZQuery2class: TWideStringField;
+    ZQuery1rastr: TWideStringField;
+    ZQuery8rastr: TWideStringField;
+    ZQuery7rastr: TWideStringField;
+    ZQuery6rastr: TWideStringField;
+    ZQuery11rastr: TWideStringField;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -236,10 +229,10 @@ end;
 procedure TfrmMonitorAbate.DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
-  if (ZQuery2class_rastr.Text <> ZQuery2class_rastr_1.Text) and (ZQuery2class_rastr_1.Text <> '') then
-    DBGrid2.Canvas.Brush.Color:= $00A6A6FF;
-  if (ZQuery2class_rastr2.Text <> ZQuery2class_rastr2_1.Text) and (ZQuery2class_rastr2_1.Text <> '') then
-    DBGrid2.Canvas.Brush.Color := $0079FDFA;
+  //if (ZQuery2rastr.Text <> ZQuery2class.Text) and (ZQuery2rastr.Text <> '') then
+    //DBGrid2.Canvas.Brush.Color:= $00A6A6FF;
+  //if (ZQuery2class_rastr2.Text <> ZQuery2class_rastr2_1.Text) and (ZQuery2class_rastr2_1.Text <> '') then
+    //DBGrid2.Canvas.Brush.Color := $0079FDFA;
   if ((ZQuery2cod_rastr.AsString <> '0000000000000000') and (ZQuery2cod_rastr.AsString <> ZQuery2cod_rastr_1.AsString)) then
     DBGrid2.Canvas.Brush.Color := $00FD93C0;
   if ((ZQuery2cod_rastr.AsString <> '0000000000000000') and (ZQuery2cod_rastr.AsString = ZQuery2cod_rastr_1.AsString)) then
