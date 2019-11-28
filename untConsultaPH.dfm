@@ -268,25 +268,66 @@ object frmConsultaPH: TfrmConsultaPH
       'declare @data date = cast(:data as date)'
       'declare @desclass char(2) = :desclass'
       ''
+      'select t.cod_camara,'
+      '       t.seq_abate,'
+      '       t.banda,'
+      '       t.data_quebra,'
+      
+        #9'     case when (substring(t.class_rastr,len(t.class_rastr),1)) ' +
+        '= '#39'-'#39' then substring(t.class_rastr, 1, len(t.class_rastr)-1) els' +
+        'e t.class_rastr end as class_rastr,'
+      
+        #9'     case when (substring(t.desclass,len(t.desclass),1)) = '#39'-'#39' ' +
+        'then substring(t.desclass, 1, len(t.desclass)-1) else t.desclass' +
+        ' end as desclass,'
+      #9'     t.cod_tipo_desclas,'
+      #9'     t.ph_quebra'
+      '  from ('
       'select pes.cod_camara,'
       '       pes.seq_abate,'
       '       pes.banda,'
       '       pes.data_quebra,'
-      '       pes.class_rastr,'
-      '       isnull(his.class_rastr, pes.class_rastr) as desclass,'
+      
+        #9'   replace(concat(rtrim(pes.class_rastr), rtrim('#39'-'#39'+pes.class_r' +
+        'astr2), rtrim('#39'-'#39'+pes.class_rastr3), rtrim('#39'-'#39'+pes.class_rastr4)' +
+        ', rtrim('#39'-'#39'+pes.class_rastr5), rtrim('#39'-'#39'+pes.class_rastr6)),'#39'--'#39 +
+        ','#39#39') as class_rastr,'
+      
+        #9'   replace(concat(rtrim(isnull(his.class_rastr, pes.class_rastr' +
+        ')), rtrim('#39'-'#39'+isnull(his2.class_rastr2, pes.class_rastr2)), rtri' +
+        'm('#39'-'#39'+isnull(his3.class_rastr3, pes.class_rastr3)), rtrim('#39'-'#39'+is' +
+        'null(his4.class_rastr4, pes.class_rastr4)), rtrim('#39'-'#39'+isnull(his' +
+        '5.class_rastr5, pes.class_rastr5)), rtrim('#39'-'#39'+isnull(his6.class_' +
+        'rastr6, pes.class_rastr6))),'#39'--'#39','#39#39') as desclass,'
       '       his.cod_tipo_desclas,'
       '       pes.ph_quebra'
       '  from t_pescarcaca pes with (nolock)'
       
         '  left join t_historico_rastr his with (nolock) on his.cod_tras ' +
         '= pes.cod_tras'
+      
+        '  left join t_historico_rastr2 his2 with (nolock) on his2.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr3 his3 with (nolock) on his3.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr4 his4 with (nolock) on his4.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr5 his5 with (nolock) on his5.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr6 his6 with (nolock) on his6.cod_tr' +
+        'as = pes.cod_tras'
       ' where pes.data_abate = @data'
       
         '   and @desclass = case when @desclass = '#39'PH'#39' then his.cod_tipo_' +
         'desclas else @desclass end'
       '   and pes.status <> '#39'T'#39
       '   and pes.ph_quebra is not null'
-      ' order by pes.data_quebra desc')
+      ')t'
+      ' order by t.data_quebra desc')
     Params = <
       item
         DataType = ftUnknown
@@ -368,7 +409,13 @@ object frmConsultaPH: TfrmConsultaPH
         '('
       'select pes.data_abate,'
       '       pes.cod_camara,'
-      '       isnull(his.class_rastr, pes.class_rastr) as class_rastr,'
+      
+        '       replace(concat(rtrim(isnull(his.class_rastr, pes.class_ra' +
+        'str)), rtrim('#39'-'#39'+isnull(his2.class_rastr2, pes.class_rastr2)), r' +
+        'trim('#39'-'#39'+isnull(his3.class_rastr3, pes.class_rastr3)), rtrim('#39'-'#39 +
+        '+isnull(his4.class_rastr4, pes.class_rastr4)), rtrim('#39'-'#39'+isnull(' +
+        'his5.class_rastr5, pes.class_rastr5)), rtrim('#39'-'#39'+isnull(his6.cla' +
+        'ss_rastr6, pes.class_rastr6))),'#39'--'#39','#39#39') as class_rastr,'
       #9'     count(1)/2 as quant,'
       
         #9'     (select count(1)/2 from t_pescarcaca tot where  tot.data_a' +
@@ -381,6 +428,21 @@ object frmConsultaPH: TfrmConsultaPH
       
         '  left join t_historico_rastr his with (nolock) on his.cod_tras ' +
         '= pes.cod_tras'
+      
+        '  left join t_historico_rastr2 his2 with (nolock) on his2.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr3 his3 with (nolock) on his3.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr4 his4 with (nolock) on his4.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr5 his5 with (nolock) on his5.cod_tr' +
+        'as = pes.cod_tras'
+      
+        '  left join t_historico_rastr6 his6 with (nolock) on his6.cod_tr' +
+        'as = pes.cod_tras'
       ' where pes.data_abate = @data'
       
         '   and @desclass = case when @desclass = '#39'PH'#39' then his.cod_tipo_' +
@@ -388,8 +450,13 @@ object frmConsultaPH: TfrmConsultaPH
       '   and pes.status <> '#39'T'#39
       '   and pes.ph_quebra is not null'
       
-        ' group by pes.data_abate, pes.cod_camara, isnull(his.class_rastr' +
-        ', pes.class_rastr) ) t'
+        ' group by pes.data_abate, pes.cod_camara, replace(concat(rtrim(i' +
+        'snull(his.class_rastr, pes.class_rastr)), rtrim('#39'-'#39'+isnull(his2.' +
+        'class_rastr2, pes.class_rastr2)), rtrim('#39'-'#39'+isnull(his3.class_ra' +
+        'str3, pes.class_rastr3)), rtrim('#39'-'#39'+isnull(his4.class_rastr4, pe' +
+        's.class_rastr4)), rtrim('#39'-'#39'+isnull(his5.class_rastr5, pes.class_' +
+        'rastr5)), rtrim('#39'-'#39'+isnull(his6.class_rastr6, pes.class_rastr6))' +
+        '),'#39'--'#39','#39#39') ) t'
       ' order by 1, 2, 3')
     Params = <
       item
