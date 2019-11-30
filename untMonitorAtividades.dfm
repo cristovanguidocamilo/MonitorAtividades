@@ -549,6 +549,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnDrawColumnCell = DBGrid5DrawColumnCell
+    OnDblClick = DBGrid5DblClick
     Columns = <
       item
         Expanded = False
@@ -1175,7 +1176,9 @@ object frmMonitorAbate: TfrmMonitorAbate
         '       case when (substring(t.rastr,len(t.rastr),1)) = '#39'-'#39' then ' +
         'substring(t.rastr, 1, len(t.rastr)-1) else t.rastr end as rastr,'
       '       t.quant,'
-      '       t.periodo'
+      '       t.periodo,'
+      #9'     t.abertura,'
+      #9'     t.fechamento'
       '  from ('
       'select pes.cod_camara,'
       
@@ -1189,7 +1192,13 @@ object frmMonitorAbate: TfrmMonitorAbate
         'uramin as time),108) from dbo.F_INFO_CAMARA_PROC(min(mapa.data_e' +
         'nt),pes.cod_camara)), '#39' - '#39',(select top 1 Convert(Char(8),cast(f' +
         'echamentomax as time),108) from dbo.F_INFO_CAMARA_PROC(max(mapa.' +
-        'data_ent),pes.cod_camara)))'
+        'data_ent),pes.cod_camara))),'
+      
+        #9'     abertura = (select top 1 aberturamin from dbo.F_INFO_CAMAR' +
+        'A_PROC(min(mapa.data_ent),pes.cod_camara)),'
+      
+        #9'     fechamento = (select top 1 fechamentomax from dbo.F_INFO_C' +
+        'AMARA_PROC(max(mapa.data_ent),pes.cod_camara))'
       '  from t_pescarcaca pes with(nolock)'
       
         ' inner join t_mapa_camaras_abate mapa on mapa.cod_carcaca = pes.' +
@@ -1204,10 +1213,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         '('#39'-'#39'+pes.class_rastr4), rtrim('#39'-'#39'+pes.class_rastr5), rtrim('#39'-'#39'+p' +
         'es.class_rastr6)),'#39'--'#39','#39#39')'
       ' )t'
-      ' order by t.cod_camara, t.rastr'
-      ''
-      ''
-      '')
+      ' order by t.cod_camara, t.rastr')
     Params = <>
     Left = 48
     Top = 104
@@ -1231,6 +1237,14 @@ object frmMonitorAbate: TfrmMonitorAbate
       FieldName = 'periodo'
       ReadOnly = True
       Size = 19
+    end
+    object ZQuery7abertura: TDateTimeField
+      FieldName = 'abertura'
+      ReadOnly = True
+    end
+    object ZQuery7fechamento: TDateTimeField
+      FieldName = 'fechamento'
+      ReadOnly = True
     end
   end
   object DataSource6: TDataSource
@@ -1459,5 +1473,23 @@ object frmMonitorAbate: TfrmMonitorAbate
     DataSet = ZQuery11
     Left = 472
     Top = 736
+  end
+  object CONEXAO_TEMP: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    HostName = 'SRVBMENG'
+    Port = 1433
+    Database = 'SLQM1'
+    User = 'sa'
+    Password = 'engenharia'
+    Protocol = 'mssql'
+    Left = 40
+    Top = 184
+  end
+  object QRY_TEMP: TZQuery
+    Connection = CONEXAO_TEMP
+    Params = <>
+    Left = 40
+    Top = 232
   end
 end
