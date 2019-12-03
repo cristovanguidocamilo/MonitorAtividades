@@ -5,7 +5,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   BorderStyle = bsSingle
   Caption = 'Monitoramento do Abate  (F12 - Programar Quantidade Aviso)'
   ClientHeight = 821
-  ClientWidth = 974
+  ClientWidth = 995
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -35,7 +35,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 423
+    Left = 445
     Top = 14
     Width = 208
     Height = 19
@@ -48,7 +48,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 615
+    Left = 637
     Top = 583
     Width = 96
     Height = 19
@@ -61,7 +61,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 423
+    Left = 445
     Top = 583
     Width = 102
     Height = 19
@@ -116,7 +116,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 199
+    Left = 219
     Top = 331
     Width = 184
     Height = 13
@@ -130,7 +130,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
   end
   object DBText3: TDBText
-    Left = 199
+    Left = 219
     Top = 350
     Width = 218
     Height = 17
@@ -167,7 +167,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     OnClick = SpeedButton1Click
   end
   object Label9: TLabel
-    Left = 799
+    Left = 821
     Top = 583
     Width = 99
     Height = 19
@@ -180,7 +180,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
   end
   object BitBtn1: TBitBtn
-    Left = 832
+    Left = 854
     Top = 8
     Width = 131
     Height = 25
@@ -191,7 +191,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DBGrid1: TDBGrid
     Left = 8
     Top = 432
-    Width = 409
+    Width = 428
     Height = 364
     Hint = 
       'Animais que passaram pela balan'#231'a do Abate e ainda n'#227'o foram Map' +
@@ -259,7 +259,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 120
+        Width = 138
         Visible = True
       end
       item
@@ -275,7 +275,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       end>
   end
   object DBGrid2: TDBGrid
-    Left = 423
+    Left = 445
     Top = 39
     Width = 540
     Height = 538
@@ -308,7 +308,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'num_lote'
         Title.Alignment = taCenter
-        Title.Caption = 'Lote'
+        Title.Caption = 'LT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -320,7 +320,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'sexo'
         Title.Alignment = taCenter
-        Title.Caption = 'Sexo'
+        Title.Caption = 'Sex'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -332,20 +332,20 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'idade'
         Title.Alignment = taCenter
-        Title.Caption = 'Idade R'
+        Title.Caption = 'Id R'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 52
+        Width = 31
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cod_matur'
         Title.Alignment = taCenter
-        Title.Caption = 'Idade C'
+        Title.Caption = 'Id C'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -363,7 +363,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 105
+        Width = 136
         Visible = True
       end
       item
@@ -376,7 +376,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 105
+        Width = 135
         Visible = True
       end
       item
@@ -395,7 +395,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object StatusBar1: TStatusBar
     Left = 0
     Top = 802
-    Width = 974
+    Width = 995
     Height = 19
     Panels = <
       item
@@ -416,9 +416,10 @@ object frmMonitorAbate: TfrmMonitorAbate
         Text = 'ATUALIZA'#199#195'O 2019.11.28-1'
         Width = 100
       end>
+    ExplicitWidth = 974
   end
   object DBGrid3: TDBGrid
-    Left = 615
+    Left = 637
     Top = 608
     Width = 178
     Height = 187
@@ -485,7 +486,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       end>
   end
   object DBGrid4: TDBGrid
-    Left = 423
+    Left = 445
     Top = 608
     Width = 186
     Height = 187
@@ -510,7 +511,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 80
+        Width = 113
         Visible = True
       end
       item
@@ -524,14 +525,14 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 63
+        Width = 37
         Visible = True
       end>
   end
   object DBGrid5: TDBGrid
     Left = 8
     Top = 39
-    Width = 185
+    Width = 204
     Height = 290
     DataSource = DataSource6
     Font.Charset = DEFAULT_CHARSET
@@ -573,25 +574,25 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 80
+        Width = 110
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'quant'
         Title.Alignment = taCenter
-        Title.Caption = 'Quant'
+        Title.Caption = 'QT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 44
+        Width = 32
         Visible = True
       end>
   end
   object DBGrid6: TDBGrid
-    Left = 199
+    Left = 218
     Top = 39
     Width = 218
     Height = 290
@@ -608,7 +609,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'num_lote'
         Title.Alignment = taCenter
-        Title.Caption = 'Lote'
+        Title.Caption = 'LT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -626,19 +627,20 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 40
+        Width = 32
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cod_trilho'
         Title.Alignment = taCenter
-        Title.Caption = 'Trilho'
+        Title.Caption = 'TR'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 23
         Visible = True
       end
       item
@@ -651,12 +653,12 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 80
+        Width = 112
         Visible = True
       end>
   end
   object CheckBox1: TCheckBox
-    Left = 328
+    Left = 347
     Top = 16
     Width = 89
     Height = 17
@@ -708,7 +710,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     end
   end
   object DBGrid7: TDBGrid
-    Left = 799
+    Left = 821
     Top = 608
     Width = 167
     Height = 188
@@ -759,7 +761,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       end>
   end
   object CheckBox2: TCheckBox
-    Left = 531
+    Left = 553
     Top = 585
     Width = 78
     Height = 17
@@ -769,7 +771,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     OnClick = CheckBox2Click
   end
   object DBGrid8: TDBGrid
-    Left = 423
+    Left = 445
     Top = 608
     Width = 186
     Height = 188
@@ -786,7 +788,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'num_lote'
         Title.Alignment = taCenter
-        Title.Caption = 'Lote'
+        Title.Caption = 'LT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -804,20 +806,20 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 80
+        Width = 103
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'quant'
         Title.Alignment = taCenter
-        Title.Caption = 'Quant'
+        Title.Caption = 'QT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 46
+        Width = 30
         Visible = True
       end>
   end
@@ -957,7 +959,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       ')t'
       ' order by t.sequencial')
     Params = <>
-    Left = 880
+    Left = 902
     Top = 72
     object ZQuery2sequencial: TSmallintField
       Alignment = taCenter
@@ -1007,7 +1009,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DataSource2: TDataSource
     DataSet = ZQuery2
-    Left = 880
+    Left = 902
     Top = 120
   end
   object ZQuery3: TZQuery
@@ -1041,7 +1043,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       '   and pes.status is null'
       ' order by ras.sequencial')
     Params = <>
-    Left = 703
+    Left = 725
     Top = 684
     object ZQuery3sequencial: TSmallintField
       Alignment = taCenter
@@ -1065,7 +1067,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DataSource3: TDataSource
     DataSet = ZQuery3
-    Left = 735
+    Left = 757
     Top = 684
   end
   object ZQuery4: TZQuery
@@ -1085,7 +1087,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       #9#9'      from t_pescarcaca pes with (nolock)'
       '         where cast(data_abate as DATE) = @data ) t')
     Params = <>
-    Left = 680
+    Left = 702
     Top = 392
     object ZQuery4restam: TFloatField
       FieldName = 'restam'
@@ -1102,7 +1104,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DataSource4: TDataSource
     DataSet = ZQuery4
-    Left = 744
+    Left = 766
     Top = 392
   end
   object ZQuery5: TZQuery
@@ -1115,7 +1117,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         'ras with (nolock)'
       'where data =  @data')
     Params = <>
-    Left = 760
+    Left = 782
     Top = 328
     object ZQuery5sequencial: TSmallintField
       FieldName = 'sequencial'
@@ -1147,7 +1149,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       ' order by t.rastr'
       '')
     Params = <>
-    Left = 447
+    Left = 469
     Top = 660
     object ZQuery6rastr: TWideStringField
       Alignment = taCenter
@@ -1162,7 +1164,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DataSource5: TDataSource
     DataSet = ZQuery6
-    Left = 487
+    Left = 509
     Top = 660
   end
   object ZQuery7: TZQuery
@@ -1403,7 +1405,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       'group by cod_camara, num_lote'
       'order by cod_camara, num_lote')
     Params = <>
-    Left = 824
+    Left = 846
     Top = 712
     object ZQuery10num_lote: TWideStringField
       Alignment = taCenter
@@ -1422,7 +1424,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DataSource9: TDataSource
     DataSet = ZQuery10
-    Left = 856
+    Left = 878
     Top = 712
   end
   object ZQuery11: TZQuery
@@ -1449,7 +1451,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       ' )t'
       ' order by t.num_lote desc')
     Params = <>
-    Left = 440
+    Left = 462
     Top = 736
     object ZQuery11num_lote: TWideStringField
       Alignment = taCenter
@@ -1471,7 +1473,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DataSource10: TDataSource
     DataSet = ZQuery11
-    Left = 472
+    Left = 494
     Top = 736
   end
   object CONEXAO_TEMP: TZConnection

@@ -57,7 +57,7 @@ object frmConsultaPH: TfrmConsultaPH
         Expanded = False
         FieldName = 'cod_camara'
         Title.Alignment = taCenter
-        Title.Caption = 'C'#226'mara'
+        Title.Caption = 'C'#226'm'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -69,19 +69,20 @@ object frmConsultaPH: TfrmConsultaPH
         Expanded = False
         FieldName = 'seq_abate'
         Title.Alignment = taCenter
-        Title.Caption = 'Seq Abate'
+        Title.Caption = 'Seq'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 44
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'banda'
         Title.Alignment = taCenter
-        Title.Caption = 'Banda'
+        Title.Caption = 'BD'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -99,6 +100,7 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 125
         Visible = True
       end
       item
@@ -111,13 +113,14 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 121
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cod_tipo_desclas'
         Title.Alignment = taCenter
-        Title.Caption = 'Tipo Desc'
+        Title.Caption = 'Desc'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -135,6 +138,7 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 44
         Visible = True
       end>
   end
@@ -184,14 +188,14 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 104
+        Width = 80
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cod_camara'
         Title.Alignment = taCenter
-        Title.Caption = 'C'#226'mara'
+        Title.Caption = 'C'#226'm'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -209,6 +213,7 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 113
         Visible = True
       end
       item
@@ -288,18 +293,21 @@ object frmConsultaPH: TfrmConsultaPH
       '       pes.banda,'
       '       pes.data_quebra,'
       
-        #9'   replace(concat(rtrim(pes.class_rastr), rtrim('#39'-'#39'+pes.class_r' +
-        'astr2), rtrim('#39'-'#39'+pes.class_rastr3), rtrim('#39'-'#39'+pes.class_rastr4)' +
-        ', rtrim('#39'-'#39'+pes.class_rastr5), rtrim('#39'-'#39'+pes.class_rastr6)),'#39'--'#39 +
-        ','#39#39') as class_rastr,'
+        #9'     replace(concat(rtrim(pes.class_rastr), rtrim('#39'-'#39'+pes.class' +
+        '_rastr2), rtrim('#39'-'#39'+pes.class_rastr3), rtrim('#39'-'#39'+pes.class_rastr' +
+        '4), rtrim('#39'-'#39'+pes.class_rastr5), rtrim('#39'-'#39'+pes.class_rastr6)),'#39'-' +
+        '-'#39','#39'-'#39') as class_rastr,'
       
-        #9'   replace(concat(rtrim(isnull(his.class_rastr, pes.class_rastr' +
-        ')), rtrim('#39'-'#39'+isnull(his2.class_rastr2, pes.class_rastr2)), rtri' +
-        'm('#39'-'#39'+isnull(his3.class_rastr3, pes.class_rastr3)), rtrim('#39'-'#39'+is' +
-        'null(his4.class_rastr4, pes.class_rastr4)), rtrim('#39'-'#39'+isnull(his' +
-        '5.class_rastr5, pes.class_rastr5)), rtrim('#39'-'#39'+isnull(his6.class_' +
-        'rastr6, pes.class_rastr6))),'#39'--'#39','#39#39') as desclass,'
-      '       his.cod_tipo_desclas,'
+        #9'     replace(concat(rtrim(isnull(his.class_rastr, pes.class_ras' +
+        'tr)), rtrim('#39'-'#39'+isnull(his2.class_rastr2, pes.class_rastr2)), rt' +
+        'rim('#39'-'#39'+isnull(his3.class_rastr3, pes.class_rastr3)), rtrim('#39'-'#39'+' +
+        'isnull(his4.class_rastr4, pes.class_rastr4)), rtrim('#39'-'#39'+isnull(h' +
+        'is5.class_rastr5, pes.class_rastr5)), rtrim('#39'-'#39'+isnull(his6.clas' +
+        's_rastr6, pes.class_rastr6))),'#39'--'#39','#39'-'#39') as desclass,'
+      
+        '       isnull(isnull(isnull(his.cod_tipo_desclas, his2.cod_tipo_' +
+        'desclas),his3.cod_tipo_desclas),his4.cod_tipo_desclas) as cod_ti' +
+        'po_desclas,'
       '       pes.ph_quebra'
       '  from t_pescarcaca pes with (nolock)'
       
@@ -322,8 +330,9 @@ object frmConsultaPH: TfrmConsultaPH
         'as = pes.cod_tras'
       ' where pes.data_abate = @data'
       
-        '   and @desclass = case when @desclass = '#39'PH'#39' then his.cod_tipo_' +
-        'desclas else @desclass end'
+        '   and @desclass = case when @desclass = '#39'PH'#39' then isnull(isnull' +
+        '(isnull(his.cod_tipo_desclas, his2.cod_tipo_desclas),his3.cod_ti' +
+        'po_desclas),his4.cod_tipo_desclas) else @desclass end'
       '   and pes.status <> '#39'T'#39
       '   and pes.ph_quebra is not null'
       ')t'
@@ -403,10 +412,19 @@ object frmConsultaPH: TfrmConsultaPH
       'declare @data date = cast(:data as date)'
       'declare @desclass char(2) = :desclass'
       ''
+      'select t.data_abate,'
+      '       t.cod_camara,'
       
-        'select t.*, cast((cast(t.quant as decimal(15,2)) * 100) / cast(t' +
-        '.total_cam as decimal(15,2)) as decimal(15,2)) as perc_cam from ' +
-        '('
+        #9'     case when (substring(t.class_rastr,len(t.class_rastr),1)) ' +
+        '= '#39'-'#39' then substring(t.class_rastr, 1, len(t.class_rastr)-1) els' +
+        'e t.class_rastr end as class_rastr,'
+      #9'     t.quant,'
+      #9'     t.total_cam,'
+      #9'     t.total_lido,'
+      
+        '       cast((cast(t.quant as decimal(15,2)) * 100) / cast(t.tota' +
+        'l_cam as decimal(15,2)) as decimal(15,2)) as perc_cam'
+      '  from ('
       'select pes.data_abate,'
       '       pes.cod_camara,'
       
@@ -415,7 +433,7 @@ object frmConsultaPH: TfrmConsultaPH
         'trim('#39'-'#39'+isnull(his3.class_rastr3, pes.class_rastr3)), rtrim('#39'-'#39 +
         '+isnull(his4.class_rastr4, pes.class_rastr4)), rtrim('#39'-'#39'+isnull(' +
         'his5.class_rastr5, pes.class_rastr5)), rtrim('#39'-'#39'+isnull(his6.cla' +
-        'ss_rastr6, pes.class_rastr6))),'#39'--'#39','#39#39') as class_rastr,'
+        'ss_rastr6, pes.class_rastr6))),'#39'--'#39','#39'-'#39') as class_rastr,'
       #9'     count(1)/2 as quant,'
       
         #9'     (select count(1)/2 from t_pescarcaca tot where  tot.data_a' +
@@ -445,8 +463,9 @@ object frmConsultaPH: TfrmConsultaPH
         'as = pes.cod_tras'
       ' where pes.data_abate = @data'
       
-        '   and @desclass = case when @desclass = '#39'PH'#39' then his.cod_tipo_' +
-        'desclas else @desclass end'
+        '   and @desclass = case when @desclass = '#39'PH'#39' then isnull(isnull' +
+        '(isnull(his.cod_tipo_desclas, his2.cod_tipo_desclas),his3.cod_ti' +
+        'po_desclas),his4.cod_tipo_desclas) else @desclass end'
       '   and pes.status <> '#39'T'#39
       '   and pes.ph_quebra is not null'
       
@@ -456,7 +475,7 @@ object frmConsultaPH: TfrmConsultaPH
         'str3, pes.class_rastr3)), rtrim('#39'-'#39'+isnull(his4.class_rastr4, pe' +
         's.class_rastr4)), rtrim('#39'-'#39'+isnull(his5.class_rastr5, pes.class_' +
         'rastr5)), rtrim('#39'-'#39'+isnull(his6.class_rastr6, pes.class_rastr6))' +
-        '),'#39'--'#39','#39#39') ) t'
+        '),'#39'--'#39','#39'-'#39') ) t'
       ' order by 1, 2, 3')
     Params = <
       item

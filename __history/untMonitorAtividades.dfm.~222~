@@ -308,7 +308,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'num_lote'
         Title.Alignment = taCenter
-        Title.Caption = 'Lote'
+        Title.Caption = 'LT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -320,7 +320,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'sexo'
         Title.Alignment = taCenter
-        Title.Caption = 'Sexo'
+        Title.Caption = 'Sex'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -332,20 +332,20 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'idade'
         Title.Alignment = taCenter
-        Title.Caption = 'Idade R'
+        Title.Caption = 'Id R'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 52
+        Width = 31
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cod_matur'
         Title.Alignment = taCenter
-        Title.Caption = 'Idade C'
+        Title.Caption = 'Id C'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -363,7 +363,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 105
+        Width = 142
         Visible = True
       end
       item
@@ -376,7 +376,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 105
+        Width = 140
         Visible = True
       end
       item
@@ -549,6 +549,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnDrawColumnCell = DBGrid5DrawColumnCell
+    OnDblClick = DBGrid5DblClick
     Columns = <
       item
         Expanded = False
@@ -572,20 +573,20 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 80
+        Width = 92
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'quant'
         Title.Alignment = taCenter
-        Title.Caption = 'Quant'
+        Title.Caption = 'QT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 44
+        Width = 32
         Visible = True
       end>
   end
@@ -607,7 +608,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Expanded = False
         FieldName = 'num_lote'
         Title.Alignment = taCenter
-        Title.Caption = 'Lote'
+        Title.Caption = 'LT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
@@ -625,7 +626,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 40
+        Width = 32
         Visible = True
       end
       item
@@ -650,7 +651,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 80
+        Width = 101
         Visible = True
       end>
   end
@@ -803,20 +804,20 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 80
+        Width = 96
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'quant'
         Title.Alignment = taCenter
-        Title.Caption = 'Quant'
+        Title.Caption = 'QT'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 46
+        Width = 30
         Visible = True
       end>
   end
@@ -825,8 +826,17 @@ object frmMonitorAbate: TfrmMonitorAbate
     SQL.Strings = (
       'declare @data datetime = cast(getdate() as date)'
       ''
+      'select t.seq_abate,'
+      '       t.banda,'
+      
+        #9'     case when (substring(t.rastr,len(t.rastr),1)) = '#39'-'#39' then s' +
+        'ubstring(t.rastr, 1, len(t.rastr)-1) else t.rastr end as rastr,'
+      #9'     t.num_lote,'
+      #9'     t.data_pes,'
+      #9'     t.cod_tras'
+      '  from ('
       'select seq_abate,'
-      '       banda, '
+      '       banda,'
       
         #9'     replace(concat(rtrim(class_rastr), rtrim('#39'-'#39'+class_rastr2)' +
         ', rtrim('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim('#39'-'#39'+cl' +
@@ -837,8 +847,9 @@ object frmMonitorAbate: TfrmMonitorAbate
       '  from t_pescarcaca with(nolock)'
       ' where data_abate = @data'
       '   and status not in ('#39'O'#39','#39'G'#39','#39'T'#39')'
-      '   and cod_camara = '#39#39' '
-      ' order by data_pes')
+      '   and cod_camara = '#39#39
+      '   )t'
+      ' order by t.data_pes')
     Params = <>
     Left = 273
     Top = 447
@@ -1160,6 +1171,15 @@ object frmMonitorAbate: TfrmMonitorAbate
     SQL.Strings = (
       'declare @data datetime = cast(getdate() as date)'
       ''
+      'select t.cod_camara,'
+      
+        '       case when (substring(t.rastr,len(t.rastr),1)) = '#39'-'#39' then ' +
+        'substring(t.rastr, 1, len(t.rastr)-1) else t.rastr end as rastr,'
+      '       t.quant,'
+      '       t.periodo,'
+      #9'     t.abertura,'
+      #9'     t.fechamento'
+      '  from ('
       'select pes.cod_camara,'
       
         '       replace(concat(rtrim(pes.class_rastr), rtrim('#39'-'#39'+pes.clas' +
@@ -1172,7 +1192,13 @@ object frmMonitorAbate: TfrmMonitorAbate
         'uramin as time),108) from dbo.F_INFO_CAMARA_PROC(min(mapa.data_e' +
         'nt),pes.cod_camara)), '#39' - '#39',(select top 1 Convert(Char(8),cast(f' +
         'echamentomax as time),108) from dbo.F_INFO_CAMARA_PROC(max(mapa.' +
-        'data_ent),pes.cod_camara)))'
+        'data_ent),pes.cod_camara))),'
+      
+        #9'     abertura = (select top 1 aberturamin from dbo.F_INFO_CAMAR' +
+        'A_PROC(min(mapa.data_ent),pes.cod_camara)),'
+      
+        #9'     fechamento = (select top 1 fechamentomax from dbo.F_INFO_C' +
+        'AMARA_PROC(max(mapa.data_ent),pes.cod_camara))'
       '  from t_pescarcaca pes with(nolock)'
       
         ' inner join t_mapa_camaras_abate mapa on mapa.cod_carcaca = pes.' +
@@ -1186,14 +1212,8 @@ object frmMonitorAbate: TfrmMonitorAbate
         ' rtrim('#39'-'#39'+pes.class_rastr2), rtrim('#39'-'#39'+pes.class_rastr3), rtrim' +
         '('#39'-'#39'+pes.class_rastr4), rtrim('#39'-'#39'+pes.class_rastr5), rtrim('#39'-'#39'+p' +
         'es.class_rastr6)),'#39'--'#39','#39#39')'
-      
-        ' order by pes.cod_camara, replace(concat(rtrim(pes.class_rastr),' +
-        ' rtrim('#39'-'#39'+pes.class_rastr2), rtrim('#39'-'#39'+pes.class_rastr3), rtrim' +
-        '('#39'-'#39'+pes.class_rastr4), rtrim('#39'-'#39'+pes.class_rastr5), rtrim('#39'-'#39'+p' +
-        'es.class_rastr6)),'#39'--'#39','#39#39')'
-      ''
-      ''
-      '')
+      ' )t'
+      ' order by t.cod_camara, t.rastr')
     Params = <>
     Left = 48
     Top = 104
@@ -1217,6 +1237,14 @@ object frmMonitorAbate: TfrmMonitorAbate
       FieldName = 'periodo'
       ReadOnly = True
       Size = 19
+    end
+    object ZQuery7abertura: TDateTimeField
+      FieldName = 'abertura'
+      ReadOnly = True
+    end
+    object ZQuery7fechamento: TDateTimeField
+      FieldName = 'fechamento'
+      ReadOnly = True
     end
   end
   object DataSource6: TDataSource
@@ -1445,5 +1473,23 @@ object frmMonitorAbate: TfrmMonitorAbate
     DataSet = ZQuery11
     Left = 472
     Top = 736
+  end
+  object CONEXAO_TEMP: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    HostName = 'SRVBMENG'
+    Port = 1433
+    Database = 'SLQM1'
+    User = 'sa'
+    Password = 'engenharia'
+    Protocol = 'mssql'
+    Left = 40
+    Top = 184
+  end
+  object QRY_TEMP: TZQuery
+    Connection = CONEXAO_TEMP
+    Params = <>
+    Left = 40
+    Top = 232
   end
 end
