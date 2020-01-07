@@ -47,9 +47,6 @@ type
     DBText3: TDBText;
     ZQuery1total: TIntegerField;
     ZQuery3total: TIntegerField;
-    ZQuery2habilitacao: TWideStringField;
-    ZQuery1habilitacao: TWideStringField;
-    ZQuery3habilitacao: TWideStringField;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);

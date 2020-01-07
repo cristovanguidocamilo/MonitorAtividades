@@ -4,8 +4,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Monitoramento da Desossa'
-  ClientHeight = 608
-  ClientWidth = 997
+  ClientHeight = 634
+  ClientWidth = 371
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -58,7 +58,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 288
+    Left = 247
     Top = 11
     Width = 73
     Height = 16
@@ -70,10 +70,55 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object DBText1: TDBText
+    Left = 296
+    Top = 207
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'total'
+    DataSource = DataSource2
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DBText2: TDBText
+    Left = 296
+    Top = 414
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'total'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DBText3: TDBText
+    Left = 296
+    Top = 592
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'total'
+    DataSource = DataSource3
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object DBGrid1: TDBGrid
     Left = 8
     Top = 240
-    Width = 393
+    Width = 353
     Height = 176
     DataSource = DataSource1
     Font.Charset = DEFAULT_CHARSET
@@ -95,32 +140,35 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       item
         Expanded = False
         FieldName = 'num_lote'
-        Title.Caption = 'Num Lote'
+        Title.Caption = 'Lote'
+        Width = 30
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'diant_ini'
-        Title.Caption = 'Horario Inicio'
+        FieldName = 'habilitacao'
+        Width = 129
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'diant_fim'
         Title.Caption = 'Horario Final'
+        Width = 109
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'quant'
-        Title.Caption = 'Quantidade'
+        Title.Caption = 'Quant'
+        Width = 45
         Visible = True
       end>
   end
   object DBGrid2: TDBGrid
     Left = 8
     Top = 33
-    Width = 393
+    Width = 353
     Height = 176
     DataSource = DataSource2
     Font.Charset = DEFAULT_CHARSET
@@ -142,33 +190,36 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       item
         Expanded = False
         FieldName = 'num_lote'
-        Title.Caption = 'Num Lote'
+        Title.Caption = 'Lote'
+        Width = 30
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'diant_ini'
-        Title.Caption = 'Horario Inicio'
+        FieldName = 'habilitacao'
+        Width = 129
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'diant_fim'
         Title.Caption = 'Horario Final'
+        Width = 109
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'quant'
-        Title.Caption = 'Quantidade'
+        Title.Caption = 'Quant'
+        Width = 45
         Visible = True
       end>
   end
   object DBGrid3: TDBGrid
     Left = 9
     Top = 447
-    Width = 393
-    Height = 128
+    Width = 352
+    Height = 145
     DataSource = DataSource3
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -189,30 +240,33 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       item
         Expanded = False
         FieldName = 'num_lote'
-        Title.Caption = 'Num Lote'
+        Title.Caption = 'Lote'
+        Width = 30
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'diant_ini'
-        Title.Caption = 'Horario Inicio'
+        FieldName = 'habilitacao'
+        Width = 129
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'diant_fim'
         Title.Caption = 'Horario Final'
+        Width = 109
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'quant'
-        Title.Caption = 'Quantidade'
+        Title.Caption = 'Quant'
+        Width = 45
         Visible = True
       end>
   end
   object SpinEdit1: TSpinEdit
-    Left = 361
+    Left = 320
     Top = 8
     Width = 41
     Height = 22
@@ -224,8 +278,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 589
-    Width = 997
+    Top = 615
+    Width = 371
     Height = 19
     Panels = <
       item
@@ -233,26 +287,38 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Text = 'TOTAL DE PE'#199'AS DA DESOSSA: '
         Width = 50
       end>
-    ExplicitWidth = 410
+    ExplicitTop = 592
+    ExplicitWidth = 409
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
       'declare @data datetime = cast(getdate() as date)'
       ''
-      'select num_lote,'
-      '       min(data_ent) as diant_ini,'
-      #9'     max(data_ent) as diant_fim,'
+      'select ent.num_lote,'
+      
+        '       concat(rtrim(ras.class_rastr), '#39'/'#39', rtrim(ras.class_rastr' +
+        '2), '#39'/'#39', rtrim(ras.class_rastr3), '#39'/'#39', rtrim(ras.class_rastr4)) ' +
+        'as habilitacao,'
+      '       min(ent.data_ent) as diant_ini,'
+      #9'     max(ent.data_ent) as diant_fim,'
       '       count(1) as quant,'
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
         't(data_ent as date) = @data - :dia and cod_prod in ('#39'011001'#39','#39'01' +
         '1017'#39')) as total'
-      '  from t_entdesossa with(nolock)'
-      ' where cast(data_ent as date) = @data - :dia'
-      '   and cod_prod in ('#39'011001'#39','#39'011017'#39')'
-      ' group by num_lote'
-      ' order by 2')
+      '  from t_entdesossa ent with(nolock)'
+      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
+      
+        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
+        'cod_barra'
+      ' where cast(ent.data_ent as date) = @data - :dia'
+      '   and ent.cod_prod in ('#39'011001'#39','#39'011017'#39')'
+      
+        ' group by ent.num_lote, concat(rtrim(ras.class_rastr), '#39'/'#39', rtri' +
+        'm(ras.class_rastr2), '#39'/'#39', rtrim(ras.class_rastr3), '#39'/'#39', rtrim(ra' +
+        's.class_rastr4))'
+      ' order by 3')
     Params = <
       item
         DataType = ftUnknown
@@ -271,6 +337,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       Alignment = taCenter
       FieldName = 'num_lote'
     end
+    object ZQuery1habilitacao: TWideStringField
+      FieldName = 'habilitacao'
+      ReadOnly = True
+      Size = 23
+    end
     object ZQuery1diant_ini: TDateTimeField
       Alignment = taCenter
       FieldName = 'diant_ini'
@@ -286,6 +357,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'quant'
       ReadOnly = True
     end
+    object ZQuery1total: TIntegerField
+      FieldName = 'total'
+      ReadOnly = True
+    end
   end
   object DataSource1: TDataSource
     DataSet = ZQuery1
@@ -297,19 +372,30 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     SQL.Strings = (
       'declare @data datetime = cast(getdate() as date)'
       ''
-      'select num_lote,'
-      '       min(data_ent) as diant_ini,'
-      #9'     max(data_ent) as diant_fim,'
+      'select ent.num_lote,'
+      
+        '       concat(rtrim(ras.class_rastr), '#39'/'#39', rtrim(ras.class_rastr' +
+        '2), '#39'/'#39', rtrim(ras.class_rastr3), '#39'/'#39', rtrim(ras.class_rastr4)) ' +
+        'as habilitacao,'
+      '       min(ent.data_ent) as diant_ini,'
+      #9'     max(ent.data_ent) as diant_fim,'
       '       count(1) as quant,'
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
         't(data_ent as date) = @data - :dia and cod_prod in ('#39'011000'#39','#39'01' +
         '1016'#39')) as total'
-      '  from t_entdesossa with(nolock)'
-      ' where cast(data_ent as date) = @data - :dia'
-      '   and cod_prod in ('#39'011000'#39','#39'011016'#39')'
-      ' group by num_lote'
-      ' order by 2')
+      '  from t_entdesossa ent with(nolock)'
+      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
+      
+        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
+        'cod_barra'
+      ' where cast(ent.data_ent as date) = @data - :dia'
+      '   and ent.cod_prod in ('#39'011000'#39','#39'011016'#39')'
+      
+        ' group by ent.num_lote, concat(rtrim(ras.class_rastr), '#39'/'#39', rtri' +
+        'm(ras.class_rastr2), '#39'/'#39', rtrim(ras.class_rastr3), '#39'/'#39', rtrim(ra' +
+        's.class_rastr4))'
+      ' order by 3')
     Params = <
       item
         DataType = ftUnknown
@@ -327,6 +413,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     object SmallintField1: TSmallintField
       Alignment = taCenter
       FieldName = 'num_lote'
+    end
+    object ZQuery2habilitacao: TWideStringField
+      FieldName = 'habilitacao'
+      ReadOnly = True
+      Size = 23
     end
     object DateTimeField1: TDateTimeField
       Alignment = taCenter
@@ -358,15 +449,30 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     SQL.Strings = (
       'declare @data datetime = cast(getdate() as date)'
       ''
-      'select num_lote,'
-      '       min(data_ent) as diant_ini,'
-      #9'     max(data_ent) as diant_fim,'
-      '       count(1) as quant'
-      '  from t_entdesossa with(nolock)'
-      ' where cast(data_ent as date) = @data - :dia'
-      '   and cod_prod in ('#39'011004'#39','#39'011010'#39')'
-      ' group by num_lote'
-      ' order by 2')
+      'select ent.num_lote,'
+      
+        '       concat(rtrim(ras.class_rastr), '#39'/'#39', rtrim(ras.class_rastr' +
+        '2), '#39'/'#39', rtrim(ras.class_rastr3), '#39'/'#39', rtrim(ras.class_rastr4)) ' +
+        'as habilitacao,'
+      '       min(ent.data_ent) as diant_ini,'
+      #9'     max(ent.data_ent) as diant_fim,'
+      '       count(1) as quant,'
+      
+        '       (select count(1) from t_entdesossa with(nolock) where cas' +
+        't(data_ent as date) = @data - :dia and cod_prod in ('#39'011004'#39','#39'01' +
+        '1010'#39')) as total'
+      '  from t_entdesossa ent with(nolock)'
+      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
+      
+        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
+        'cod_barra'
+      ' where cast(ent.data_ent as date) = @data - :dia'
+      '   and ent.cod_prod in ('#39'011004'#39','#39'011010'#39')'
+      
+        ' group by ent.num_lote, concat(rtrim(ras.class_rastr), '#39'-'#39', rtri' +
+        'm(ras.class_rastr2), '#39'-'#39', rtrim(ras.class_rastr3), '#39'-'#39', rtrim(ra' +
+        's.class_rastr4))'
+      ' order by 3')
     Params = <
       item
         DataType = ftUnknown
@@ -385,6 +491,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       Alignment = taCenter
       FieldName = 'num_lote'
     end
+    object ZQuery3habilitacao: TWideStringField
+      FieldName = 'habilitacao'
+      ReadOnly = True
+      Size = 23
+    end
     object DateTimeField3: TDateTimeField
       Alignment = taCenter
       FieldName = 'diant_ini'
@@ -400,6 +511,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'quant'
       ReadOnly = True
     end
+    object ZQuery3total: TIntegerField
+      FieldName = 'total'
+      ReadOnly = True
+    end
   end
   object DataSource3: TDataSource
     DataSet = ZQuery3
@@ -409,7 +524,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   object Timer1: TTimer
     Interval = 10000
     OnTimer = Timer1Timer
-    Left = 344
+    Left = 280
     Top = 295
   end
   object ZQuery4: TZQuery
@@ -426,7 +541,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Name = 'dia'
         ParamType = ptUnknown
       end>
-    Left = 312
+    Left = 240
     Top = 560
     ParamData = <
       item
