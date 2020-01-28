@@ -273,37 +273,33 @@ object frmConsultaPH: TfrmConsultaPH
       'declare @data date = cast(:data as date)'
       'declare @desclass char(2) = :desclass'
       ''
-      'select t.cod_camara,'
-      '       t.seq_abate,'
-      '       t.banda,'
-      '       t.data_quebra,'
-      
-        #9'     case when (substring(t.class_rastr,len(t.class_rastr),1)) ' +
-        '= '#39'-'#39' then substring(t.class_rastr, 1, len(t.class_rastr)-1) els' +
-        'e t.class_rastr end as class_rastr,'
-      
-        #9'     case when (substring(t.desclass,len(t.desclass),1)) = '#39'-'#39' ' +
-        'then substring(t.desclass, 1, len(t.desclass)-1) else t.desclass' +
-        ' end as desclass,'
-      #9'     t.cod_tipo_desclas,'
-      #9'     t.ph_quebra'
-      '  from ('
       'select pes.cod_camara,'
       '       pes.seq_abate,'
       '       pes.banda,'
       '       pes.data_quebra,'
       
-        #9'     replace(concat(rtrim(pes.class_rastr), rtrim('#39'-'#39'+pes.class' +
-        '_rastr2), rtrim('#39'-'#39'+pes.class_rastr3), rtrim('#39'-'#39'+pes.class_rastr' +
-        '4), rtrim('#39'-'#39'+pes.class_rastr5), rtrim('#39'-'#39'+pes.class_rastr6)),'#39'-' +
-        '-'#39','#39'-'#39') as class_rastr,'
+        #9'   concat(rtrim(pes.class_rastr), case when isnull(pes.class_ra' +
+        'str2,'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(pes.class_rastr2)) end, cas' +
+        'e when isnull(pes.class_rastr3,'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(p' +
+        'es.class_rastr3)) end, case when isnull(pes.class_rastr4,'#39#39') <> ' +
+        #39#39' then concat('#39'-'#39',rtrim(pes.class_rastr4)) end, case when isnul' +
+        'l(pes.class_rastr5,'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(pes.class_ras' +
+        'tr5)) end, case when isnull(pes.class_rastr6,'#39#39') <> '#39#39' then conc' +
+        'at('#39'-'#39',rtrim(pes.class_rastr6)) end) as class_rastr,'
       
-        #9'     replace(concat(rtrim(isnull(his.class_rastr, pes.class_ras' +
-        'tr)), rtrim('#39'-'#39'+isnull(his2.class_rastr2, pes.class_rastr2)), rt' +
-        'rim('#39'-'#39'+isnull(his3.class_rastr3, pes.class_rastr3)), rtrim('#39'-'#39'+' +
-        'isnull(his4.class_rastr4, pes.class_rastr4)), rtrim('#39'-'#39'+isnull(h' +
-        'is5.class_rastr5, pes.class_rastr5)), rtrim('#39'-'#39'+isnull(his6.clas' +
-        's_rastr6, pes.class_rastr6))),'#39'--'#39','#39'-'#39') as desclass,'
+        #9'   concat(rtrim(isnull(his.class_rastr, pes.class_rastr)), case' +
+        ' when isnull(rtrim(isnull(his2.class_rastr2, pes.class_rastr2)),' +
+        #39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull(his2.class_rastr2, pes.cl' +
+        'ass_rastr2))) end, case when isnull(rtrim(isnull(his3.class_rast' +
+        'r3, pes.class_rastr3)),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull(hi' +
+        's3.class_rastr3, pes.class_rastr3))) end, case when isnull(rtrim' +
+        '(isnull(his4.class_rastr4, pes.class_rastr4)),'#39#39') <> '#39#39' then con' +
+        'cat('#39'-'#39',rtrim(isnull(his4.class_rastr4, pes.class_rastr4))) end,' +
+        ' case when isnull(rtrim(isnull(his5.class_rastr5, pes.class_rast' +
+        'r5)),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull(his5.class_rastr5, p' +
+        'es.class_rastr5))) end, case when isnull(rtrim(isnull(his6.class' +
+        '_rastr6, pes.class_rastr6)),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnu' +
+        'll(his6.class_rastr6, pes.class_rastr6))) end) as desclass,'
       
         '       isnull(isnull(isnull(his.cod_tipo_desclas, his2.cod_tipo_' +
         'desclas),his3.cod_tipo_desclas),his4.cod_tipo_desclas) as cod_ti' +
@@ -335,8 +331,8 @@ object frmConsultaPH: TfrmConsultaPH
         'po_desclas),his4.cod_tipo_desclas) else @desclass end'
       '   and pes.status <> '#39'T'#39
       '   and pes.ph_quebra is not null'
-      ')t'
-      ' order by t.data_quebra desc')
+      ''
+      'order by data_quebra desc')
     Params = <
       item
         DataType = ftUnknown
@@ -428,12 +424,20 @@ object frmConsultaPH: TfrmConsultaPH
       'select pes.data_abate,'
       '       pes.cod_camara,'
       
-        '       replace(concat(rtrim(isnull(his.class_rastr, pes.class_ra' +
-        'str)), rtrim('#39'-'#39'+isnull(his2.class_rastr2, pes.class_rastr2)), r' +
-        'trim('#39'-'#39'+isnull(his3.class_rastr3, pes.class_rastr3)), rtrim('#39'-'#39 +
-        '+isnull(his4.class_rastr4, pes.class_rastr4)), rtrim('#39'-'#39'+isnull(' +
-        'his5.class_rastr5, pes.class_rastr5)), rtrim('#39'-'#39'+isnull(his6.cla' +
-        'ss_rastr6, pes.class_rastr6))),'#39'--'#39','#39'-'#39') as class_rastr,'
+        '       concat(rtrim(isnull(his.class_rastr, pes.class_rastr)), c' +
+        'ase when isnull(rtrim(isnull(his2.class_rastr2, pes.class_rastr2' +
+        ')),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull(his2.class_rastr2, pes' +
+        '.class_rastr2))) end, case when isnull(rtrim(isnull(his3.class_r' +
+        'astr3, pes.class_rastr3)),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull' +
+        '(his3.class_rastr3, pes.class_rastr3))) end, case when isnull(rt' +
+        'rim(isnull(his4.class_rastr4, pes.class_rastr4)),'#39#39') <> '#39#39' then ' +
+        'concat('#39'-'#39',rtrim(isnull(his4.class_rastr4, pes.class_rastr4))) e' +
+        'nd, case when isnull(rtrim(isnull(his5.class_rastr5, pes.class_r' +
+        'astr5)),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull(his5.class_rastr5' +
+        ', pes.class_rastr5))) end, case when isnull(rtrim(isnull(his6.cl' +
+        'ass_rastr6, pes.class_rastr6)),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(i' +
+        'snull(his6.class_rastr6, pes.class_rastr6))) end) as class_rastr' +
+        ','
       #9'     count(1)/2 as quant,'
       
         #9'     (select count(1)/2 from t_pescarcaca tot where  tot.data_a' +
@@ -469,13 +473,20 @@ object frmConsultaPH: TfrmConsultaPH
       '   and pes.status <> '#39'T'#39
       '   and pes.ph_quebra is not null'
       
-        ' group by pes.data_abate, pes.cod_camara, replace(concat(rtrim(i' +
-        'snull(his.class_rastr, pes.class_rastr)), rtrim('#39'-'#39'+isnull(his2.' +
-        'class_rastr2, pes.class_rastr2)), rtrim('#39'-'#39'+isnull(his3.class_ra' +
-        'str3, pes.class_rastr3)), rtrim('#39'-'#39'+isnull(his4.class_rastr4, pe' +
-        's.class_rastr4)), rtrim('#39'-'#39'+isnull(his5.class_rastr5, pes.class_' +
-        'rastr5)), rtrim('#39'-'#39'+isnull(his6.class_rastr6, pes.class_rastr6))' +
-        '),'#39'--'#39','#39'-'#39') ) t'
+        ' group by pes.data_abate, pes.cod_camara, concat(rtrim(isnull(hi' +
+        's.class_rastr, pes.class_rastr)), case when isnull(rtrim(isnull(' +
+        'his2.class_rastr2, pes.class_rastr2)),'#39#39') <> '#39#39' then concat('#39'-'#39',' +
+        'rtrim(isnull(his2.class_rastr2, pes.class_rastr2))) end, case wh' +
+        'en isnull(rtrim(isnull(his3.class_rastr3, pes.class_rastr3)),'#39#39')' +
+        ' <> '#39#39' then concat('#39'-'#39',rtrim(isnull(his3.class_rastr3, pes.class' +
+        '_rastr3))) end, case when isnull(rtrim(isnull(his4.class_rastr4,' +
+        ' pes.class_rastr4)),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull(his4.' +
+        'class_rastr4, pes.class_rastr4))) end, case when isnull(rtrim(is' +
+        'null(his5.class_rastr5, pes.class_rastr5)),'#39#39') <> '#39#39' then concat' +
+        '('#39'-'#39',rtrim(isnull(his5.class_rastr5, pes.class_rastr5))) end, ca' +
+        'se when isnull(rtrim(isnull(his6.class_rastr6, pes.class_rastr6)' +
+        '),'#39#39') <> '#39#39' then concat('#39'-'#39',rtrim(isnull(his6.class_rastr6, pes.' +
+        'class_rastr6))) end) ) t'
       ' order by 1, 2, 3')
     Params = <
       item

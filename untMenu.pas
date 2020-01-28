@@ -20,6 +20,8 @@ type
     Image1: TImage;
     Desossa2: TMenuItem;
     PH2: TMenuItem;
+    Estoque1: TMenuItem;
+    Label1: TLabel;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure GravaIni(Arquivo, Secao, Propriedade, Valor : String);
@@ -29,6 +31,7 @@ type
     procedure Monitorar1Click(Sender: TObject);
     procedure Desossa2Click(Sender: TObject);
     procedure PH2Click(Sender: TObject);
+    procedure Estoque1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,7 +45,8 @@ implementation
 
 {$R *.dfm}
 
-uses untMonitorAtividades, untMonitorDesossa, untConsultaQuebra, untConsultaPH;
+uses untMonitorAtividades, untMonitorDesossa, untConsultaQuebra, untConsultaPH,
+  untEstoqueOsso;
 
 procedure TfrmMenu.Desossa2Click(Sender: TObject);
 begin
@@ -54,6 +58,17 @@ begin
   Else
     Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
 
+end;
+
+procedure TfrmMenu.Estoque1Click(Sender: TObject);
+begin
+  if frmEstoqueOsso = Nil then
+  Begin
+    Application.CreateForm(TfrmEstoqueOsso, frmEstoqueOsso);
+    frmEstoqueOsso.Show;
+  End
+  Else
+    Application.MessageBox('Tela já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
 end;
 
 procedure TfrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);

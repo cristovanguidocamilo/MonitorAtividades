@@ -413,10 +413,8 @@ object frmMonitorAbate: TfrmMonitorAbate
         Width = 100
       end
       item
-        Text = 'ATUALIZA'#199#195'O 2019.11.28-1'
-        Width = 100
+        Width = 50
       end>
-    ExplicitWidth = 974
   end
   object DBGrid3: TDBGrid
     Left = 637

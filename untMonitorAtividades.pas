@@ -326,6 +326,7 @@ end;
 
 procedure TfrmMonitorAbate.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  Timer1.Enabled := False;
   frmMenu.GravaIni('CONFIG.INI', 'frmMonitorAbate', 'TOP' , IntToStr(frmMonitorAbate.Top ));
   frmMenu.GravaIni('CONFIG.INI', 'frmMonitorAbate', 'LEFT', IntToStr(frmMonitorAbate.Left));
   if BitBtn1.Caption = 'Parar Monitoramento' then

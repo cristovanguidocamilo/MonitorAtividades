@@ -373,6 +373,13 @@ object frmMenu: TfrmMenu
     ExplicitWidth = 105
     ExplicitHeight = 105
   end
+  object Label1: TLabel
+    Left = 274
+    Top = 8
+    Width = 128
+    Height = 13
+    Caption = 'Atualiza'#231#227'o: 2020.01.28-1'
+  end
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF16
     Catalog = ''
@@ -386,8 +393,8 @@ object frmMenu: TfrmMenu
     Left = 8
   end
   object MainMenu1: TMainMenu
-    Left = 368
-    Top = 8
+    Left = 8
+    Top = 48
     object Monitorar1: TMenuItem
       Caption = 'Abate'
       OnClick = Monitorar1Click
@@ -399,6 +406,10 @@ object frmMenu: TfrmMenu
     object PH2: TMenuItem
       Caption = 'PH'
       OnClick = PH2Click
+    end
+    object Estoque1: TMenuItem
+      Caption = 'Estoque'
+      OnClick = Estoque1Click
     end
     object Sair1: TMenuItem
       Caption = 'Sair'

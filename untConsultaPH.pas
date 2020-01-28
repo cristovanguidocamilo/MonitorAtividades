@@ -149,6 +149,7 @@ end;
 procedure TfrmConsultaPH.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  Timer1.Enabled := False;
   frmMenu.GravaIni('CONFIG.INI', 'frmConsultaPH', 'TOP' , IntToStr(frmConsultaPH.Top ));
   frmMenu.GravaIni('CONFIG.INI', 'frmConsultaPH', 'LEFT', IntToStr(frmConsultaPH.Left));
   ZQuery1.Active := False;

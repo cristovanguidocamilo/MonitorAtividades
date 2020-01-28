@@ -128,6 +128,7 @@ end;
 procedure TfrmMonitorDesossa.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  Timer1.Enabled := False;
   frmMenu.GravaIni('CONFIG.INI', 'frmMonitorDesossa', 'TOP' , IntToStr(frmMonitorDesossa.Top ));
   frmMenu.GravaIni('CONFIG.INI', 'frmMonitorDesossa', 'LEFT', IntToStr(frmMonitorDesossa.Left));
   Timer1.Enabled := False;

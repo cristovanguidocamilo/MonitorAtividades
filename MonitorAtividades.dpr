@@ -7,7 +7,8 @@ uses
   untMonitorDesossa in 'untMonitorDesossa.pas' {frmMonitorDesossa},
   untLogAbate in 'untLogAbate.pas' {frmLogAbate},
   untConsultaQuebra in 'untConsultaQuebra.pas' {frmConsultaQuebra},
-  untConsultaPH in 'untConsultaPH.pas' {frmConsultaPH};
+  untConsultaPH in 'untConsultaPH.pas' {frmConsultaPH},
+  untEstoqueOsso in 'untEstoqueOsso.pas' {frmEstoqueOsso};
 
 {$R *.res}
 

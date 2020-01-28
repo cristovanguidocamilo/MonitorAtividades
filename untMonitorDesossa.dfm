@@ -287,8 +287,6 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Text = 'TOTAL DE PE'#199'AS DA DESOSSA: '
         Width = 50
       end>
-    ExplicitTop = 592
-    ExplicitWidth = 409
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
@@ -297,9 +295,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       ''
       'select ent.num_lote,'
       
-        '       replace(replace(concat(rtrim(ras.class_rastr), '#39'-'#39', rtrim' +
-        '(ras.class_rastr2), '#39'-'#39', rtrim(ras.class_rastr3), '#39'-'#39', rtrim(ras' +
-        '.class_rastr4)),'#39'--'#39','#39'-'#39'),'#39'--'#39','#39'-'#39') as habilitacao,'
+        '       concat(rtrim(ras.class_rastr), case when ras.class_rastr2' +
+        ' <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2)) end, case when r' +
+        'as.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr3)) e' +
+        'nd, case when ras.class_rastr4 <> '#39#39' then concat('#39'-'#39',rtrim(ras.c' +
+        'lass_rastr4)) end) as habilitacao,'
       '       min(ent.data_ent) as diant_ini,'
       #9'     max(ent.data_ent) as diant_fim,'
       '       count(1) as quant,'
@@ -315,9 +315,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       ' where cast(ent.data_ent as date) = @data - :dia'
       '   and ent.cod_prod in ('#39'011001'#39','#39'011017'#39')'
       
-        ' group by ent.num_lote, replace(replace(concat(rtrim(ras.class_r' +
-        'astr), '#39'-'#39', rtrim(ras.class_rastr2), '#39'-'#39', rtrim(ras.class_rastr3' +
-        '), '#39'-'#39', rtrim(ras.class_rastr4)),'#39'--'#39','#39'-'#39'),'#39'--'#39','#39'-'#39')'
+        ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
+        ' ras.class_rastr2 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2))' +
+        ' end, case when ras.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras' +
+        '.class_rastr3)) end, case when ras.class_rastr4 <> '#39#39' then conca' +
+        't('#39'-'#39',rtrim(ras.class_rastr4)) end)'
       ' order by 3')
     Params = <
       item
@@ -374,9 +376,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       ''
       'select ent.num_lote,'
       
-        '       replace(replace(concat(rtrim(ras.class_rastr), '#39'-'#39', rtrim' +
-        '(ras.class_rastr2), '#39'-'#39', rtrim(ras.class_rastr3), '#39'-'#39', rtrim(ras' +
-        '.class_rastr4)),'#39'--'#39','#39'-'#39'),'#39'--'#39','#39'-'#39') as habilitacao,'
+        '       concat(rtrim(ras.class_rastr), case when ras.class_rastr2' +
+        ' <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2)) end, case when r' +
+        'as.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr3)) e' +
+        'nd, case when ras.class_rastr4 <> '#39#39' then concat('#39'-'#39',rtrim(ras.c' +
+        'lass_rastr4)) end) as habilitacao,'
       '       min(ent.data_ent) as diant_ini,'
       #9'     max(ent.data_ent) as diant_fim,'
       '       count(1) as quant,'
@@ -392,9 +396,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       ' where cast(ent.data_ent as date) = @data - :dia'
       '   and ent.cod_prod in ('#39'011000'#39','#39'011016'#39')'
       
-        ' group by ent.num_lote, replace(replace(concat(rtrim(ras.class_r' +
-        'astr), '#39'-'#39', rtrim(ras.class_rastr2), '#39'-'#39', rtrim(ras.class_rastr3' +
-        '), '#39'-'#39', rtrim(ras.class_rastr4)),'#39'--'#39','#39'-'#39'),'#39'--'#39','#39'-'#39')'
+        ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
+        ' ras.class_rastr2 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2))' +
+        ' end, case when ras.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras' +
+        '.class_rastr3)) end, case when ras.class_rastr4 <> '#39#39' then conca' +
+        't('#39'-'#39',rtrim(ras.class_rastr4)) end)'
       ' order by 3')
     Params = <
       item
@@ -451,9 +457,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       ''
       'select ent.num_lote,'
       
-        '       replace(replace(concat(rtrim(ras.class_rastr), '#39'-'#39', rtrim' +
-        '(ras.class_rastr2), '#39'-'#39', rtrim(ras.class_rastr3), '#39'-'#39', rtrim(ras' +
-        '.class_rastr4)),'#39'--'#39','#39'-'#39'),'#39'--'#39','#39'-'#39') as habilitacao,'
+        '       concat(rtrim(ras.class_rastr), case when ras.class_rastr2' +
+        ' <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2)) end, case when r' +
+        'as.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr3)) e' +
+        'nd, case when ras.class_rastr4 <> '#39#39' then concat('#39'-'#39',rtrim(ras.c' +
+        'lass_rastr4)) end) as habilitacao,'
       '       min(ent.data_ent) as diant_ini,'
       #9'     max(ent.data_ent) as diant_fim,'
       '       count(1) as quant,'
@@ -462,16 +470,56 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         't(data_ent as date) = @data - :dia and cod_prod in ('#39'011004'#39','#39'01' +
         '1010'#39')) as total'
       '  from t_entdesossa ent with(nolock)'
-      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
       
-        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
-        'cod_barra'
+        '  left join pescaixa pes with(nolock) on pes.cod_barra = ent.cod' +
+        '_barra'
+      
+        '  inner join rastreabilidade_pesagem ras with(nolock) on ras.cod' +
+        '_barra = pes.cod_barra'
       ' where cast(ent.data_ent as date) = @data - :dia'
       '   and ent.cod_prod in ('#39'011004'#39','#39'011010'#39')'
+      '   and pes.cod_barra_origem is null'
       
-        ' group by ent.num_lote, replace(replace(concat(rtrim(ras.class_r' +
-        'astr), '#39'-'#39', rtrim(ras.class_rastr2), '#39'-'#39', rtrim(ras.class_rastr3' +
-        '), '#39'-'#39', rtrim(ras.class_rastr4)),'#39'--'#39','#39'-'#39'),'#39'--'#39','#39'-'#39')'
+        ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
+        ' ras.class_rastr2 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2))' +
+        ' end, case when ras.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras' +
+        '.class_rastr3)) end, case when ras.class_rastr4 <> '#39#39' then conca' +
+        't('#39'-'#39',rtrim(ras.class_rastr4)) end)'
+      ''
+      ' union all'
+      ''
+      'select ent.num_lote,'
+      
+        '       concat(rtrim(ras.class_rastr), case when ras.class_rastr2' +
+        ' <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2)) end, case when r' +
+        'as.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr3)) e' +
+        'nd, case when ras.class_rastr4 <> '#39#39' then concat('#39'-'#39',rtrim(ras.c' +
+        'lass_rastr4)) end) as habilitacao,'
+      '       min(ent.data_ent) as diant_ini,'
+      #9'     max(ent.data_ent) as diant_fim,'
+      '       count(1) as quant,'
+      
+        '       (select count(1) from t_entdesossa with(nolock) where cas' +
+        't(data_ent as date) = @data - :dia and cod_prod in ('#39'011004'#39','#39'01' +
+        '1010'#39')) as total'
+      '  from t_entdesossa ent with(nolock)'
+      
+        '  left join pescaixa pes with(nolock) on pes.cod_barra = ent.cod' +
+        '_barra'
+      
+        '  inner join rastreabilidade_pesagem ras with(nolock) on ras.cod' +
+        '_barra = pes.cod_barra_origem'
+      ' where cast(ent.data_ent as date) = @data - :dia'
+      '   and ent.cod_prod in ('#39'011004'#39','#39'011010'#39')'
+      '   and pes.cod_barra_origem is not null'
+      
+        ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
+        ' ras.class_rastr2 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2))' +
+        ' end, case when ras.class_rastr3 <> '#39#39' then concat('#39'-'#39',rtrim(ras' +
+        '.class_rastr3)) end, case when ras.class_rastr4 <> '#39#39' then conca' +
+        't('#39'-'#39',rtrim(ras.class_rastr4)) end)'
+      ''
+      ''
       ' order by 3')
     Params = <
       item
