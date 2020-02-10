@@ -14,9 +14,24 @@ object frmEstoqueOsso: TfrmEstoqueOsso
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 20
+    Width = 33
+    Height = 13
+    Caption = 'Abate:'
+  end
+  object Label2: TLabel
+    Left = 251
+    Top = 20
+    Width = 56
+    Height = 13
+    Caption = 'Habilita'#231#227'o:'
+  end
   object DBGrid1: TDBGrid
     Left = 8
     Top = 39
@@ -109,9 +124,52 @@ object frmEstoqueOsso: TfrmEstoqueOsso
     TabOrder = 1
     OnClick = btnAtualizaClick
   end
+  object DateTimePicker1: TDateTimePicker
+    Left = 47
+    Top = 15
+    Width = 97
+    Height = 21
+    Date = 43858.609097094910000000
+    Time = 43858.609097094910000000
+    Enabled = False
+    TabOrder = 2
+    OnChange = DateTimePicker1Change
+  end
+  object CheckBox1: TCheckBox
+    Left = 149
+    Top = 16
+    Width = 44
+    Height = 17
+    Caption = 'Tudo'
+    Checked = True
+    State = cbChecked
+    TabOrder = 3
+    OnClick = CheckBox1Click
+  end
+  object ComboBox1: TComboBox
+    Left = 313
+    Top = 14
+    Width = 80
+    Height = 21
+    ItemIndex = 0
+    TabOrder = 4
+    OnChange = ComboBox1Change
+    Items.Strings = (
+      ''
+      'UA'
+      'LG'
+      'NE'
+      'CHINA'
+      'ARAB'
+      'HAL')
+  end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
+      'declare @abate date = cast(:abate as date)'
+      'declare @hab varchar(20) = :hab'
+      ''
+      'select * from ('
       'select t.cod_prod,'
       '       t.tipo,'
       #9'   cast(data_abate as date) as data_abate,'
@@ -213,11 +271,39 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       'and pes.data_sai is null'
       ') t'
       'group by t.cod_prod, t.tipo, t.data_abate, t.habilitacao'
+      ') x'
+      
+        'where @abate = case when @abate <> '#39#39' then x.data_abate else @ab' +
+        'ate end'
+      
+        'and x.habilitacao like case when @hab <> '#39#39' then '#39'%'#39'+@hab+'#39'%'#39' el' +
+        'se x.habilitacao end'
       ''
       'order by 1, 3, 4')
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'abate'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'hab'
+        ParamType = ptUnknown
+      end>
     Left = 200
     Top = 360
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'abate'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'hab'
+        ParamType = ptUnknown
+      end>
     object ZQuery1cod_prod: TWideStringField
       FieldName = 'cod_prod'
       ReadOnly = True

@@ -5,7 +5,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   BorderStyle = bsSingle
   Caption = 'Monitoramento da Desossa'
   ClientHeight = 634
-  ClientWidth = 371
+  ClientWidth = 1013
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -279,13 +279,187 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   object StatusBar1: TStatusBar
     Left = 0
     Top = 615
-    Width = 371
+    Width = 1013
     Height = 19
     Panels = <
       item
         Alignment = taCenter
         Text = 'TOTAL DE PE'#199'AS DA DESOSSA: '
         Width = 50
+      end>
+  end
+  object DBGrid4: TDBGrid
+    Left = 367
+    Top = 176
+    Width = 638
+    Height = 416
+    DataSource = DataSource4
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ReadOnly = True
+    TabOrder = 5
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    OnDrawColumnCell = DBGrid4DrawColumnCell
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'num_lote'
+        Title.Alignment = taCenter
+        Title.Caption = 'Lote'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cod_prod'
+        Title.Alignment = taCenter
+        Title.Caption = 'C'#243'digo'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 57
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'desc_ind'
+        Title.Alignment = taCenter
+        Title.Caption = 'Descri'#231#227'o Industrial'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 251
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'peso_liq'
+        Title.Alignment = taCenter
+        Title.Caption = 'Peso Liquido'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'peso_bruto'
+        Title.Alignment = taCenter
+        Title.Caption = 'Peso Bruto'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'num_caixas'
+        Title.Alignment = taCenter
+        Title.Caption = 'Caixas'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 54
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'quant'
+        Title.Alignment = taCenter
+        Title.Caption = 'Pe'#231'as'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 52
+        Visible = True
+      end>
+  end
+  object DBGrid5: TDBGrid
+    Left = 367
+    Top = 8
+    Width = 306
+    Height = 162
+    DataSource = DataSource5
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ReadOnly = True
+    TabOrder = 6
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'produto'
+        Title.Alignment = taCenter
+        Title.Caption = 'Produto'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 101
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'num_lote'
+        Title.Alignment = taCenter
+        Title.Caption = 'Lote'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 49
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'data_abate'
+        Title.Alignment = taCenter
+        Title.Caption = 'Abate'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 77
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'quant'
+        Title.Alignment = taCenter
+        Title.Caption = 'Quant'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 37
+        Visible = True
       end>
   end
   object ZQuery1: TZQuery
@@ -601,5 +775,172 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'quant'
       ReadOnly = True
     end
+  end
+  object ZQuery5: TZQuery
+    Connection = frmMenu.ZConnection1
+    ReadOnly = True
+    SQL.Strings = (
+      'declare @data_rend datetime = cast(getdate() as date)'
+      'declare @mat_prima char(20) = :mat_prima'
+      ''
+      
+        'select pes.num_lote, prod.cod_mat, rtrim(mat.desc_mat) as desc_m' +
+        'at, pes.cod_prod, prod.desc_ind, sum(pes.peso_liq) as peso_liq, ' +
+        'sum(pes.peso_bruto) as peso_bruto, sum(pes.num_caixas) as num_ca' +
+        'ixas, sum(pes.quant) as quant'
+      'from pescaixa pes'
+      'inner join produto prod on prod.cod_prod = pes.cod_prod'
+      'inner join materia_prima mat on mat.cod_mat = prod.cod_mat'
+      'where cast(pes.data_rend as date) = @data_rend - :dia'
+      'and mat.desc_mat = @mat_prima'
+      
+        'group by pes.num_lote, prod.cod_mat, rtrim(mat.desc_mat), pes.co' +
+        'd_prod, prod.desc_ind'
+      'order by 1, 2')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'mat_prima'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    MasterFields = 'num_lote'
+    MasterSource = DataSource5
+    LinkedFields = 'num_lote'
+    Left = 464
+    Top = 200
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'mat_prima'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    object ZQuery5num_lote: TSmallintField
+      Alignment = taCenter
+      FieldName = 'num_lote'
+    end
+    object ZQuery5cod_mat: TWideStringField
+      FieldName = 'cod_mat'
+      Size = 6
+    end
+    object ZQuery5desc_mat: TWideStringField
+      FieldName = 'desc_mat'
+      Required = True
+      Size = 40
+    end
+    object ZQuery5cod_prod: TWideStringField
+      Alignment = taCenter
+      FieldName = 'cod_prod'
+      Size = 6
+    end
+    object ZQuery5desc_ind: TWideStringField
+      Alignment = taCenter
+      FieldName = 'desc_ind'
+      Size = 50
+    end
+    object ZQuery5peso_liq: TFloatField
+      Alignment = taCenter
+      FieldName = 'peso_liq'
+      ReadOnly = True
+    end
+    object ZQuery5peso_bruto: TFloatField
+      Alignment = taCenter
+      FieldName = 'peso_bruto'
+      ReadOnly = True
+    end
+    object ZQuery5num_caixas: TFloatField
+      Alignment = taCenter
+      FieldName = 'num_caixas'
+      ReadOnly = True
+    end
+    object ZQuery5quant: TFloatField
+      Alignment = taCenter
+      FieldName = 'quant'
+      ReadOnly = True
+    end
+  end
+  object DataSource4: TDataSource
+    DataSet = ZQuery5
+    Left = 504
+    Top = 200
+  end
+  object ZQuery6: TZQuery
+    Connection = frmMenu.ZConnection1
+    AfterScroll = ZQuery6AfterScroll
+    ReadOnly = True
+    SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
+      
+        'select case when ent.cod_prod in ('#39'011000'#39','#39'011016'#39') then '#39'TRASE' +
+        'IRO'#39' when ent.cod_prod in ('#39'011001'#39','#39'011017'#39') then '#39'DIANTEIRO'#39' w' +
+        'hen ent.cod_prod in ('#39'011004'#39','#39'011010'#39') then '#39'PONTA DE AGULHA'#39' e' +
+        'nd as produto,'
+      '       ent.num_lote,'
+      '       cast(pes.data_abate as date) as data_abate,'
+      '       count(1) as quant'
+      '  from t_entdesossa ent with(nolock)'
+      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
+      
+        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
+        'cod_barra'
+      ' where cast(ent.data_ent as date) = @data - :dia'
+      
+        '   and ent.cod_prod in ('#39'011000'#39','#39'011016'#39','#39'011001'#39','#39'011017'#39','#39'011' +
+        '004'#39','#39'011010'#39')'
+      
+        ' group by case when ent.cod_prod in ('#39'011000'#39','#39'011016'#39') then '#39'TR' +
+        'ASEIRO'#39' when ent.cod_prod in ('#39'011001'#39','#39'011017'#39') then '#39'DIANTEIRO' +
+        #39' when ent.cod_prod in ('#39'011004'#39','#39'011010'#39') then '#39'PONTA DE AGULHA' +
+        #39' end, ent.num_lote,  pes.data_abate'
+      ' order by 1, 2')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    Left = 416
+    Top = 64
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    object ZQuery6produto: TWideStringField
+      Alignment = taCenter
+      FieldName = 'produto'
+      ReadOnly = True
+      Size = 9
+    end
+    object ZQuery6num_lote: TSmallintField
+      Alignment = taCenter
+      FieldName = 'num_lote'
+    end
+    object ZQuery6data_abate: TWideStringField
+      Alignment = taCenter
+      FieldName = 'data_abate'
+      ReadOnly = True
+    end
+    object ZQuery6quant: TIntegerField
+      Alignment = taCenter
+      FieldName = 'quant'
+      ReadOnly = True
+    end
+  end
+  object DataSource5: TDataSource
+    DataSet = ZQuery6
+    Left = 448
+    Top = 64
   end
 end

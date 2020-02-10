@@ -68,7 +68,7 @@ begin
     frmEstoqueOsso.Show;
   End
   Else
-    Application.MessageBox('Tela já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+    Application.MessageBox('Tela já aberta!','Aviso',MB_OK+MB_ICONEXCLAMATION);
 end;
 
 procedure TfrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -1,0 +1,56 @@
+unit untEstoqueOsso;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids, ZAbstractRODataset, ZAbstractDataset, ZDataset,
+  Vcl.ComCtrls;
+
+type
+  TfrmEstoqueOsso = class(TForm)
+    ZQuery1: TZQuery;
+    DataSource1: TDataSource;
+    ZQuery1cod_prod: TWideStringField;
+    ZQuery1tipo: TWideStringField;
+    ZQuery1data_abate: TWideStringField;
+    ZQuery1habilitacao: TWideStringField;
+    ZQuery1quant: TIntegerField;
+    DBGrid1: TDBGrid;
+    btnAtualiza: TBitBtn;
+    DateTimePicker1: TDateTimePicker;
+    Label1: TLabel;
+    CheckBox1: TCheckBox;
+    procedure btnAtualizaClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEstoqueOsso: TfrmEstoqueOsso;
+
+implementation
+
+{$R *.dfm}
+
+uses untMenu;
+
+procedure TfrmEstoqueOsso.btnAtualizaClick(Sender: TObject);
+begin
+  ZQuery1.ParamByName('abate').AsString := FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date);
+  ZQuery1.ParamByName('hab').AsString := '';
+  ZQuery1.Refresh;
+end;
+
+procedure TfrmEstoqueOsso.FormShow(Sender: TObject);
+begin
+  ZQuery1.ParamByName('abate').AsString := '';
+  ZQuery1.ParamByName('hab').AsString := '';
+  ZQuery1.Active := True;
+end;
+
+end.
