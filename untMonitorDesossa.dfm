@@ -152,9 +152,18 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       end
       item
         Expanded = False
-        FieldName = 'diant_fim'
-        Title.Caption = 'Horario Final'
-        Width = 109
+        FieldName = 'ini'
+        Title.Alignment = taCenter
+        Title.Caption = 'In'#237'cio'
+        Width = 53
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'fim'
+        Title.Alignment = taCenter
+        Title.Caption = 'Final'
+        Width = 53
         Visible = True
       end
       item
@@ -202,9 +211,18 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       end
       item
         Expanded = False
-        FieldName = 'diant_fim'
-        Title.Caption = 'Horario Final'
-        Width = 109
+        FieldName = 'ini'
+        Title.Alignment = taCenter
+        Title.Caption = 'In'#237'cio'
+        Width = 53
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'fim'
+        Title.Alignment = taCenter
+        Title.Caption = 'Final'
+        Width = 53
         Visible = True
       end
       item
@@ -252,9 +270,18 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       end
       item
         Expanded = False
-        FieldName = 'diant_fim'
-        Title.Caption = 'Horario Final'
-        Width = 109
+        FieldName = 'ini'
+        Title.Alignment = taCenter
+        Title.Caption = 'In'#237'cio'
+        Width = 53
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'fim'
+        Title.Alignment = taCenter
+        Title.Caption = 'Final'
+        Width = 53
         Visible = True
       end
       item
@@ -285,6 +312,9 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       item
         Alignment = taCenter
         Text = 'TOTAL DE PE'#199'AS DA DESOSSA: '
+        Width = 360
+      end
+      item
         Width = 50
       end>
   end
@@ -476,6 +506,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         'lass_rastr4)) end) as habilitacao,'
       '       min(ent.data_ent) as diant_ini,'
       #9'     max(ent.data_ent) as diant_fim,'
+      '       cast(min(ent.data_ent) as time) as ini,'
+      #9'     cast(max(ent.data_ent) as time) as fim,'
       '       count(1) as quant,'
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
@@ -537,6 +569,20 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'total'
       ReadOnly = True
     end
+    object ZQuery1ini: TWideStringField
+      Alignment = taCenter
+      FieldName = 'ini'
+      ReadOnly = True
+      EditMask = '!90:00:00;1;_'
+      Size = 32
+    end
+    object ZQuery1fim: TWideStringField
+      Alignment = taCenter
+      FieldName = 'fim'
+      ReadOnly = True
+      EditMask = '!90:00:00;1;_'
+      Size = 32
+    end
   end
   object DataSource1: TDataSource
     DataSet = ZQuery1
@@ -557,6 +603,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         'lass_rastr4)) end) as habilitacao,'
       '       min(ent.data_ent) as diant_ini,'
       #9'     max(ent.data_ent) as diant_fim,'
+      '       cast(min(ent.data_ent) as time) as ini,'
+      #9'     cast(max(ent.data_ent) as time) as fim,'
       '       count(1) as quant,'
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
@@ -618,6 +666,20 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'total'
       ReadOnly = True
     end
+    object ZQuery2ini: TWideStringField
+      Alignment = taCenter
+      FieldName = 'ini'
+      ReadOnly = True
+      EditMask = '!90:00:00;1;_'
+      Size = 32
+    end
+    object ZQuery2fim: TWideStringField
+      Alignment = taCenter
+      FieldName = 'fim'
+      ReadOnly = True
+      EditMask = '!90:00:00;1;_'
+      Size = 32
+    end
   end
   object DataSource2: TDataSource
     DataSet = ZQuery2
@@ -638,6 +700,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         'lass_rastr4)) end) as habilitacao,'
       '       min(ent.data_ent) as diant_ini,'
       #9'     max(ent.data_ent) as diant_fim,'
+      '       cast(min(ent.data_ent) as time) as ini,'
+      #9'     cast(max(ent.data_ent) as time) as fim,'
       '       count(1) as quant,'
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
@@ -671,6 +735,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         'lass_rastr4)) end) as habilitacao,'
       '       min(ent.data_ent) as diant_ini,'
       #9'     max(ent.data_ent) as diant_fim,'
+      '       cast(min(ent.data_ent) as time) as ini,'
+      #9'     cast(max(ent.data_ent) as time) as fim,'
       '       count(1) as quant,'
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
@@ -737,6 +803,20 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       FieldName = 'total'
       ReadOnly = True
     end
+    object ZQuery3ini: TWideStringField
+      Alignment = taCenter
+      FieldName = 'ini'
+      ReadOnly = True
+      EditMask = '!90:00:00;1;_'
+      Size = 32
+    end
+    object ZQuery3fim: TWideStringField
+      Alignment = taCenter
+      FieldName = 'fim'
+      ReadOnly = True
+      EditMask = '!90:00:00;1;_'
+      Size = 32
+    end
   end
   object DataSource3: TDataSource
     DataSet = ZQuery3
@@ -744,7 +824,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Top = 494
   end
   object Timer1: TTimer
-    Interval = 10000
+    Interval = 20000
     OnTimer = Timer1Timer
     Left = 280
     Top = 295
@@ -788,11 +868,16 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         'at, pes.cod_prod, prod.desc_ind, sum(pes.peso_liq) as peso_liq, ' +
         'sum(pes.peso_bruto) as peso_bruto, sum(pes.num_caixas) as num_ca' +
         'ixas, sum(pes.quant) as quant'
-      'from pescaixa pes'
-      'inner join produto prod on prod.cod_prod = pes.cod_prod'
-      'inner join materia_prima mat on mat.cod_mat = prod.cod_mat'
+      'from pescaixa pes with (nolock)'
+      
+        'inner join produto prod with (nolock) on prod.cod_prod = pes.cod' +
+        '_prod'
+      
+        'inner join materia_prima mat with (nolock) on mat.cod_mat = prod' +
+        '.cod_mat'
       'where cast(pes.data_rend as date) = @data_rend - :dia'
       'and mat.desc_mat = @mat_prima'
+      'and pes.status <> '#39'C'#39
       
         'group by pes.num_lote, prod.cod_mat, rtrim(mat.desc_mat), pes.co' +
         'd_prod, prod.desc_ind'
@@ -889,10 +974,12 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       '       cast(pes.data_abate as date) as data_abate,'
       '       count(1) as quant'
       '  from t_entdesossa ent with(nolock)'
-      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
       
-        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
-        'cod_barra'
+        '  left join pescaixa pes with (nolock) on pes.cod_barra = ent.co' +
+        'd_barra'
+      
+        '  inner join rastreabilidade_pesagem ras with (nolock) on ras.co' +
+        'd_barra = pes.cod_barra'
       ' where cast(ent.data_ent as date) = @data - :dia'
       
         '   and ent.cod_prod in ('#39'011000'#39','#39'011016'#39','#39'011001'#39','#39'011017'#39','#39'011' +

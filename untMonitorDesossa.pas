@@ -69,6 +69,12 @@ type
     ZQuery6quant: TIntegerField;
     ZQuery5cod_mat: TWideStringField;
     ZQuery5desc_mat: TWideStringField;
+    ZQuery2ini: TWideStringField;
+    ZQuery2fim: TWideStringField;
+    ZQuery1ini: TWideStringField;
+    ZQuery1fim: TWideStringField;
+    ZQuery3ini: TWideStringField;
+    ZQuery3fim: TWideStringField;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
