@@ -75,6 +75,7 @@ type
     ZQuery1fim: TWideStringField;
     ZQuery3ini: TWideStringField;
     ZQuery3fim: TWideStringField;
+    ZQuery5cod_contr: TWideStringField;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);

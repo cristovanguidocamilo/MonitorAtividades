@@ -69,6 +69,12 @@ type
     ZQuery6quant: TIntegerField;
     ZQuery5cod_mat: TWideStringField;
     ZQuery5desc_mat: TWideStringField;
+    ZQuery2ini: TWideStringField;
+    ZQuery2fim: TWideStringField;
+    ZQuery1ini: TWideStringField;
+    ZQuery1fim: TWideStringField;
+    ZQuery3ini: TWideStringField;
+    ZQuery3fim: TWideStringField;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -80,9 +86,9 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DBGrid3DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure DBGrid5CellClick(Column: TColumn);
     procedure DBGrid4DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure ZQuery6AfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -115,6 +121,7 @@ begin
   ZQuery6.ParamByName('dia').AsInteger := SpinEdit1.Value;
   ZQuery6.Active := True;
   ZQuery5.ParamByName('mat_prima').AsString := ZQuery6.FieldByName('produto').AsString;
+  ZQuery5.ParamByName('dia').AsInteger := SpinEdit1.Value;
   ZQuery5.Active := True;
 end;
 
@@ -155,16 +162,9 @@ procedure TfrmMonitorDesossa.DBGrid4DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
   if ZQuery5.FieldByName('quant').AsInteger > ZQuery6.FieldByName('quant').AsInteger then
-    DBGrid2.Canvas.Brush.Color:= $00A6A6FF;
-  DBGrid2.Canvas.FillRect(Rect);
-  DBGrid2.DefaultDrawDataCell(Rect, Column.Field, State);
-end;
-
-procedure TfrmMonitorDesossa.DBGrid5CellClick(Column: TColumn);
-begin
-  ZQuery5.Active := False;
-  ZQuery5.ParamByName('mat_prima').AsString := ZQuery6.FieldByName('produto').AsString;
-  ZQuery5.Active := True;
+    DBGrid4.Canvas.Brush.Color:= $00A6A6FF;
+  DBGrid4.Canvas.FillRect(Rect);
+  DBGrid4.DefaultDrawDataCell(Rect, Column.Field, State);
 end;
 
 procedure TfrmMonitorDesossa.FormClose(Sender: TObject;
@@ -206,6 +206,14 @@ begin
   ZQuery5.Refresh;
   ZQuery6.Refresh;
   StatusBar1.Panels.Items[0].Text := 'TOTAL DE PEÇAS DA DESOSSA: ' + ZQuery4quant.AsString;
+end;
+
+procedure TfrmMonitorDesossa.ZQuery6AfterScroll(DataSet: TDataSet);
+begin
+  ZQuery5.Active := False;
+  ZQuery5.ParamByName('mat_prima').AsString := ZQuery6.FieldByName('produto').AsString;
+  ZQuery5.ParamByName('dia').AsInteger := SpinEdit1.Value;
+  ZQuery5.Active := True;
 end;
 
 end.

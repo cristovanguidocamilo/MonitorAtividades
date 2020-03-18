@@ -145,8 +145,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Visible = True
       end
       item
+        Alignment = taCenter
         Expanded = False
         FieldName = 'habilitacao'
+        Title.Alignment = taCenter
         Width = 129
         Visible = True
       end
@@ -206,6 +208,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       item
         Expanded = False
         FieldName = 'habilitacao'
+        Title.Alignment = taCenter
         Width = 129
         Visible = True
       end
@@ -265,6 +268,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       item
         Expanded = False
         FieldName = 'habilitacao'
+        Title.Alignment = taCenter
         Width = 129
         Visible = True
       end
@@ -344,7 +348,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 40
+        Width = 34
         Visible = True
       end
       item
@@ -357,7 +361,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 57
+        Width = 46
         Visible = True
       end
       item
@@ -370,7 +374,19 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 251
+        Width = 224
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cod_contr'
+        Title.Alignment = taCenter
+        Title.Caption = 'Contrato'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -407,7 +423,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 54
+        Width = 45
         Visible = True
       end
       item
@@ -420,7 +436,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 52
+        Width = 43
         Visible = True
       end>
   end
@@ -865,9 +881,9 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       ''
       
         'select pes.num_lote, prod.cod_mat, rtrim(mat.desc_mat) as desc_m' +
-        'at, pes.cod_prod, prod.desc_ind, sum(pes.peso_liq) as peso_liq, ' +
-        'sum(pes.peso_bruto) as peso_bruto, sum(pes.num_caixas) as num_ca' +
-        'ixas, sum(pes.quant) as quant'
+        'at, pes.cod_prod, prod.desc_ind, pes.cod_contr, sum(pes.peso_liq' +
+        ') as peso_liq, sum(pes.peso_bruto) as peso_bruto, sum(pes.num_ca' +
+        'ixas) as num_caixas, sum(pes.quant) as quant'
       'from pescaixa pes with (nolock)'
       
         'inner join produto prod with (nolock) on prod.cod_prod = pes.cod' +
@@ -880,7 +896,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       'and pes.status <> '#39'C'#39
       
         'group by pes.num_lote, prod.cod_mat, rtrim(mat.desc_mat), pes.co' +
-        'd_prod, prod.desc_ind'
+        'd_prod, prod.desc_ind, pes.cod_contr'
       'order by 1, 2')
     Params = <
       item
@@ -931,6 +947,11 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       Alignment = taCenter
       FieldName = 'desc_ind'
       Size = 50
+    end
+    object ZQuery5cod_contr: TWideStringField
+      Alignment = taCenter
+      FieldName = 'cod_contr'
+      Size = 10
     end
     object ZQuery5peso_liq: TFloatField
       Alignment = taCenter

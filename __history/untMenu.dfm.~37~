@@ -378,7 +378,7 @@ object frmMenu: TfrmMenu
     Top = 8
     Width = 128
     Height = 13
-    Caption = 'Atualiza'#231#227'o: 2020.03.12-1'
+    Caption = 'Atualiza'#231#227'o: 2020.02.12-1'
   end
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF16
