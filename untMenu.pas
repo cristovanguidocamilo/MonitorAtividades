@@ -56,7 +56,10 @@ begin
     frmMonitorDesossa.Show;
   End
   Else
-    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+  begin
+    frmMonitorDesossa.FormStyle := fsStayOnTop;
+    frmMonitorDesossa.FormStyle := fsNormal;
+  end;
 
 end;
 
@@ -68,7 +71,10 @@ begin
     frmEstoqueOsso.Show;
   End
   Else
-    Application.MessageBox('Tela já aberta!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+  begin
+    frmEstoqueOsso.FormStyle := fsStayOnTop;
+    frmEstoqueOsso.FormStyle := fsNormal;
+  end;
 end;
 
 procedure TfrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -99,7 +105,10 @@ begin
         frmConsultaQuebra.Show;
       End
       Else
-        Application.MessageBox('Consulta de Quebra já aberta!', 'Aviso', MB_OK+MB_ICONEXCLAMATION);
+      begin
+        frmConsultaQuebra.FormStyle := fsStayOnTop;
+        frmConsultaQuebra.FormStyle := fsNormal;
+      end;
     end
 end;
 
@@ -172,7 +181,10 @@ begin
     frmMonitorAbate.Show;
   End
   Else
-    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+  begin
+    frmMonitorAbate.FormStyle := fsStayOnTop;
+    frmMonitorAbate.FormStyle := fsNormal;
+  end;
 end;
 
 procedure TfrmMenu.PH2Click(Sender: TObject);
@@ -183,7 +195,10 @@ begin
     frmConsultaPH.Show;
   End
   Else
-    Application.MessageBox('Monitoramento já aberto!','Aviso',MB_OK+MB_ICONEXCLAMATION);
+  begin
+    frmConsultaPH.FormStyle := fsStayOnTop;
+    frmConsultaPH.FormStyle := fsNormal;
+  end;
 end;
 
 procedure TfrmMenu.Sair1Click(Sender: TObject);

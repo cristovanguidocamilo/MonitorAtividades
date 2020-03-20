@@ -378,7 +378,7 @@ object frmMenu: TfrmMenu
     Top = 8
     Width = 128
     Height = 13
-    Caption = 'Atualiza'#231#227'o: 2020.03.12-1'
+    Caption = 'Atualiza'#231#227'o: 2020.03.20-1'
   end
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF16
@@ -396,23 +396,28 @@ object frmMenu: TfrmMenu
     Left = 8
     Top = 48
     object Monitorar1: TMenuItem
-      Caption = 'Abate'
+      Caption = 'F1-Abate'
+      ShortCut = 112
       OnClick = Monitorar1Click
     end
     object Desossa2: TMenuItem
-      Caption = 'Desossa'
+      Caption = 'F2-Desossa'
+      ShortCut = 113
       OnClick = Desossa2Click
     end
     object PH2: TMenuItem
-      Caption = 'PH'
+      Caption = 'F3-PH'
+      ShortCut = 114
       OnClick = PH2Click
     end
     object Estoque1: TMenuItem
-      Caption = 'Estoque'
+      Caption = 'F4-Estoque'
+      ShortCut = 115
       OnClick = Estoque1Click
     end
     object Sair1: TMenuItem
-      Caption = 'Sair'
+      Caption = 'F12-Sair'
+      ShortCut = 123
       OnClick = Sair1Click
     end
   end
