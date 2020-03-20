@@ -135,7 +135,7 @@ implementation
 
 {$R *.dfm}
 
-uses untMenu, untLogAbate;
+uses untMenu, untLogAbate, untAlterarIdade;
 
 procedure TfrmMonitorAbate.Alerta;
 Var
@@ -349,6 +349,12 @@ begin
         QuantidadeAviso := '0';
         frmMonitorAbate.Caption := 'Monitoramento do Abate  (F12 - Programar Quantidade Aviso)';
       end;
+  if (ssCtrl in Shift) and (ssShift in Shift) and (Key=Ord('I')) then
+  begin
+    Application.CreateForm(TfrmAlterarIdade, frmAlterarIdade);
+    frmAlterarIdade.ShowModal;
+    frmAlterarIdade.Free;
+  end;
 end;
 
 procedure TfrmMonitorAbate.FormShow(Sender: TObject);

@@ -1,0 +1,71 @@
+unit untAlterarIdade;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Samples.Spin, Vcl.ComCtrls, Data.DB, ZAbstractRODataset, ZAbstractDataset,
+  ZDataset;
+
+type
+  TfrmAlterarIdade = class(TForm)
+    DateTimePicker1: TDateTimePicker;
+    Label1: TLabel;
+    Label2: TLabel;
+    SpinEditMatricula: TSpinEdit;
+    Label3: TLabel;
+    SpinEditSequencial: TSpinEdit;
+    Panel1: TPanel;
+    SpinEditNovaIdade: TSpinEdit;
+    Label4: TLabel;
+    BitBtn1: TBitBtn;
+    qryExec: TZQuery;
+    SpeedButton1: TSpeedButton;
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure SpinEditSequencialExit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAlterarIdade: TfrmAlterarIdade;
+
+implementation
+
+{$R *.dfm}
+
+uses untMenu;
+
+procedure TfrmAlterarIdade.FormShow(Sender: TObject);
+begin
+  DateTimePicker1.Date := Date;
+end;
+
+procedure TfrmAlterarIdade.SpeedButton1Click(Sender: TObject);
+begin
+  if ((SpinEditMatricula.Value = 62) or (SpinEditMatricula.Value = 5467) or (SpinEditMatricula.Value = 5554)) then
+  begin
+    try
+      qryExec.SQL.Clear;
+      qryExec.SQL.Add('select idade from t_pescarcaca where data_abate = '''+FormatDateTime('yyyy-mm-dd', DateTimePicker1.Date)+''' and seq_abate = '''+IntToStr(SpinEditSequencial.Value)+''' and banda = 1');
+      qryExec.Active := True;
+      Panel1.Caption := 'Idade Atual: '+ qryExec.FieldByName('idade').AsString;
+      qryExec.Active := False;
+      SpinEditNovaIdade.SetFocus;
+    Except
+      MessageDlg('Erro ao consultar Idade! Tente Novamente!', mtError, [mbOK],0);
+    end;
+  end;
+
+end;
+
+procedure TfrmAlterarIdade.SpinEditSequencialExit(Sender: TObject);
+begin
+  SpeedButton1.Click;
+end;
+
+end.

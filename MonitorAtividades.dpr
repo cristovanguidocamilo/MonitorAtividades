@@ -8,7 +8,8 @@ uses
   untLogAbate in 'untLogAbate.pas' {frmLogAbate},
   untConsultaQuebra in 'untConsultaQuebra.pas' {frmConsultaQuebra},
   untConsultaPH in 'untConsultaPH.pas' {frmConsultaPH},
-  untEstoqueOsso in 'untEstoqueOsso.pas' {frmEstoqueOsso};
+  untEstoqueOsso in 'untEstoqueOsso.pas' {frmEstoqueOsso},
+  untAlterarIdade in 'untAlterarIdade.pas' {frmAlterarIdade};
 
 {$R *.res}
 
@@ -17,5 +18,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.Title := 'Monitoramento de Abate';
   Application.CreateForm(TfrmMenu, frmMenu);
+  Application.CreateForm(TfrmAlterarIdade, frmAlterarIdade);
   Application.Run;
 end.
