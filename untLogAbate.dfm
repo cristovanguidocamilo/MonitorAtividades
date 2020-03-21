@@ -256,7 +256,7 @@ object frmLogAbate: TfrmLogAbate
         Name = 'data_abate'
         ParamType = ptUnknown
       end>
-    Left = 184
+    Left = 200
     Top = 96
     ParamData = <
       item

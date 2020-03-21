@@ -400,8 +400,8 @@ object frmMonitorAbate: TfrmMonitorAbate
     Panels = <
       item
         Alignment = taCenter
-        Text = 'DESENVOLVIDO POR CRISTOVAN CAMILO - TI - JUNHO / 2018'
-        Width = 400
+        Text = 'TODAS AS QUANTIDADES S'#195'O EXPRESSAS EM ANIMAIS'
+        Width = 700
       end
       item
         Width = 100

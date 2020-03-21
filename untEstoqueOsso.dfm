@@ -4,7 +4,7 @@ object frmEstoqueOsso: TfrmEstoqueOsso
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Estoque com Osso'
-  ClientHeight = 797
+  ClientHeight = 657
   ClientWidth = 642
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,23 +20,23 @@ object frmEstoqueOsso: TfrmEstoqueOsso
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 20
+    Top = 25
     Width = 33
     Height = 13
     Caption = 'Abate:'
   end
   object Label2: TLabel
-    Left = 251
-    Top = 20
+    Left = 244
+    Top = 25
     Width = 56
     Height = 13
     Caption = 'Habilita'#231#227'o:'
   end
   object DBGrid1: TDBGrid
     Left = 8
-    Top = 39
+    Top = 62
     Width = 626
-    Height = 750
+    Height = 587
     DataSource = DataSource1
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -116,17 +116,31 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       end>
   end
   object btnAtualiza: TBitBtn
-    Left = 559
-    Top = 8
-    Width = 75
+    Left = 536
+    Top = 17
+    Width = 98
     Height = 25
     Caption = 'Atualizar'
+    Glyph.Data = {
+      76010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000130B0000130B00001000000000000000000000000000
+      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+      3333333333FFFFF3333333333999993333333333F77777FFF333333999999999
+      3333333777333777FF33339993707399933333773337F3777FF3399933000339
+      9933377333777F3377F3399333707333993337733337333337FF993333333333
+      399377F33333F333377F993333303333399377F33337FF333373993333707333
+      333377F333777F333333993333101333333377F333777F3FFFFF993333000399
+      999377FF33777F77777F3993330003399993373FF3777F37777F399933000333
+      99933773FF777F3F777F339993707399999333773F373F77777F333999999999
+      3393333777333777337333333999993333333333377777333333}
+    NumGlyphs = 2
     TabOrder = 1
     OnClick = btnAtualizaClick
   end
   object DateTimePicker1: TDateTimePicker
     Left = 47
-    Top = 15
+    Top = 20
     Width = 97
     Height = 21
     Date = 43858.609097094910000000
@@ -136,8 +150,8 @@ object frmEstoqueOsso: TfrmEstoqueOsso
     OnChange = DateTimePicker1Change
   end
   object CheckBox1: TCheckBox
-    Left = 149
-    Top = 16
+    Left = 150
+    Top = 24
     Width = 44
     Height = 17
     Caption = 'Tudo'
@@ -147,8 +161,8 @@ object frmEstoqueOsso: TfrmEstoqueOsso
     OnClick = CheckBox1Click
   end
   object ComboBox1: TComboBox
-    Left = 313
-    Top = 14
+    Left = 306
+    Top = 19
     Width = 80
     Height = 21
     ItemIndex = 0
@@ -163,11 +177,47 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       'ARAB'
       'HAL')
   end
+  object CheckBox2: TCheckBox
+    Left = 436
+    Top = 8
+    Width = 65
+    Height = 17
+    Caption = 'Dianteiro'
+    Checked = True
+    State = cbChecked
+    TabOrder = 5
+    OnClick = CheckBox2Click
+  end
+  object CheckBox3: TCheckBox
+    Left = 436
+    Top = 23
+    Width = 58
+    Height = 17
+    Caption = 'Traseiro'
+    Checked = True
+    State = cbChecked
+    TabOrder = 6
+    OnClick = CheckBox3Click
+  end
+  object CheckBox4: TCheckBox
+    Left = 436
+    Top = 38
+    Width = 35
+    Height = 17
+    Caption = 'PA'
+    Checked = True
+    State = cbChecked
+    TabOrder = 7
+    OnClick = CheckBox4Click
+  end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
       'declare @abate date = cast(:abate as date)'
       'declare @hab varchar(20) = :hab'
+      'declare @diant varchar(1) = :diant'
+      'declare @tras varchar(1) = :tras'
+      'declare @pa varchar(1) = :pa'
       ''
       'select * from ('
       'select t.cod_prod,'
@@ -278,6 +328,15 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       
         'and x.habilitacao like case when @hab <> '#39#39' then '#39'%'#39'+@hab+'#39'%'#39' el' +
         'se x.habilitacao end'
+      
+        'and ((x.cod_prod like case when @diant = '#39'S'#39' then '#39'%DIANTEIRO%'#39' ' +
+        'else '#39#39' end) or'
+      
+        '(x.cod_prod like case when @tras = '#39'S'#39' then '#39'%TRASEIRO%'#39' else '#39#39 +
+        ' end) or'
+      
+        '(x.cod_prod like case when @pa = '#39'S'#39' then '#39'%PONTA%'#39' else '#39#39' end)' +
+        ')'
       ''
       'order by 1, 3, 4')
     Params = <
@@ -289,6 +348,21 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       item
         DataType = ftUnknown
         Name = 'hab'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'diant'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'tras'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pa'
         ParamType = ptUnknown
       end>
     Left = 200
@@ -302,6 +376,21 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       item
         DataType = ftUnknown
         Name = 'hab'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'diant'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'tras'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pa'
         ParamType = ptUnknown
       end>
     object ZQuery1cod_prod: TWideStringField

@@ -114,7 +114,7 @@ end;
 
 procedure TfrmMenu.FormShow(Sender: TObject);
 Var
-  ABT, DES, PH:String;
+  ABT, DES, PH, ESTOQUE:String;
 begin
   Try
     ZConnection1.Connected := False;
@@ -135,24 +135,23 @@ begin
   ABT := LeIni('CONFIG.INI', 'frmMenu', 'ABT');
   DES := LeIni('CONFIG.INI', 'frmMenu', 'DES');
   PH := LeIni('CONFIG.INI', 'frmMenu', 'PH');
+  ESTOQUE := LeIni('CONFIG.INI', 'frmMenu', 'ESTOQUE');
   if ABT = 'S' then
-    //BitBtn1.Visible := True
     MainMenu1.Items[0].Visible := True
   else
-    //BitBtn1.Visible := False;
     MainMenu1.Items[0].Visible := False;
   if DES = 'S' then
-    //BitBtn2.Visible := True
     MainMenu1.Items[1].Visible := True
   else
-    //BitBtn2.Visible := False;
     MainMenu1.Items[1].Visible := False;
   if PH = 'S' then
-    //BitBtn3.Visible := True
     MainMenu1.Items[2].Visible := True
   else
-    //BitBtn3.Visible := False;
     MainMenu1.Items[2].Visible := False;
+  if ESTOQUE = 'S' then
+    MainMenu1.Items[3].Visible := True
+  else
+    MainMenu1.Items[3].Visible := False;
   end;
 
 procedure TfrmMenu.GravaIni(Arquivo, Secao, Propriedade, Valor: String);

@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
   Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, ZAbstractConnection,
   ZConnection, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, DateUtils, IniFiles, Clipbrd,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, Math;
 
 type
   TfrmMonitorAbate = class(TForm)
@@ -123,6 +123,7 @@ type
   private
     { Private declarations }
     procedure Alerta;
+    function MensagensAjuda(Sorteio:Integer):String;
   public
     { Public declarations }
   end;
@@ -365,6 +366,34 @@ begin
   QuantidadeAviso := '0';
 end;
 
+function TfrmMonitorAbate.MensagensAjuda(Sorteio: Integer): String;
+begin
+  if Sorteio = 1 then
+    StatusBar1.Panels.Items[0].Text := 'TODAS AS QUANTIDADES SÃO EXPRESSAS EM ANIMAIS';
+  if Sorteio = 2 then
+    StatusBar1.Panels.Items[0].Text := 'NA GRID TUBERCULOSE SÃO APRESENTADOS TODOS ANIMAIS ENVOLVIDOS REFERENTES A MESMA PROPRIEDADE';
+  if Sorteio = 3 then
+    StatusBar1.Panels.Items[0].Text := 'MONITOR DO DIF MOSTRA OS ANIMAIS NÃO CLASSIFICADOS';
+  if Sorteio = 4 then
+    StatusBar1.Panels.Items[0].Text := 'NO GRID QUANTIDADES SÃO EXIBIDOS ANIMAIS QUE PASSARAM DA BALANÇA DO ABATE';
+  if Sorteio = 5 then
+    StatusBar1.Panels.Items[0].Text := 'O GRID QUANTIDADES PODE EXIBIR POR LOTE, BASTA SELECIONAR "MOSTRAR LOTE"';
+  if Sorteio = 6 then
+    StatusBar1.Panels.Items[0].Text := 'MONITOR RASTR E CLASSIFICA MOSTRAM ANIMAIS NA CALHA DE SANGRIA E NO CLASSIFICA';
+  if Sorteio = 7 then
+    StatusBar1.Panels.Items[0].Text := 'MONITOR DA BALANÇA EXIBE BANDA A BANDA OS ANIMAIS PESADOS';
+  if Sorteio = 8 then
+    StatusBar1.Panels.Items[0].Text := 'COLORAÇÃO AMARELA NO MONITOR DA BALANÇA INDICA 5 MINUTOS APÓS PESADO SEM MAPEAR';
+  if Sorteio = 9 then
+    StatusBar1.Panels.Items[0].Text := 'COLORAÇÃO VERMELHA NO MONITOR DA BALANÇA INDICA 10 MINUTOS APÓS PESADO SEM MAPEAR';
+  if Sorteio = 10 then
+    StatusBar1.Panels.Items[0].Text := 'CÂMARAS COM COLORAÇÃO VERDE ESTÃO FECHADAS';
+  if Sorteio = 11 then
+    StatusBar1.Panels.Items[0].Text := 'DUPLO CLIQUE NA CÂMARA PARA EXIBIR TEMPERATURAS DE ABERTURA E FECHAMENTO';
+  if Sorteio = 12 then
+    StatusBar1.Panels.Items[0].Text := 'VELOCIDADE DA NÓRIA OSCILA POIS É A MÉDIA DE TEMPO ENTRE AS DUAS ÚLTIMAS PESAGENS';
+end;
+
 procedure TfrmMonitorAbate.SpeedButton1Click(Sender: TObject);
 begin
   if frmLogAbate = Nil then
@@ -373,7 +402,10 @@ begin
     frmLogAbate.Show;
   end
   Else
-    Application.MessageBox('Tela já aberto!','Aviso',mb_Ok+mb_IconExclamation);
+  begin
+    frmLogAbate.FormStyle := fsStayOnTop;
+    frmLogAbate.FormStyle := fsNormal;
+  end;
 end;
 
 procedure TfrmMonitorAbate.Timer1Timer(Sender: TObject);
@@ -397,6 +429,7 @@ begin
     if StrToInt(QuantidadeAviso) <= ZQuery5sequencial.AsInteger then
       Alerta;
 
+  MensagensAjuda(RandomRange(1,13));
   StatusBar1.Panels.Items[1].Text := 'Total: '+ZQuery4qtdlote.AsString;
   StatusBar1.Panels.Items[2].Text := 'Abatidos: '+ZQuery4qtdabate.AsString;
   StatusBar1.Panels.Items[3].Text := 'Restam: '+ZQuery4restam.AsString;
