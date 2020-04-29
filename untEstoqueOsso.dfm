@@ -38,6 +38,7 @@ object frmEstoqueOsso: TfrmEstoqueOsso
     Width = 626
     Height = 587
     DataSource = DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -70,7 +71,7 @@ object frmEstoqueOsso: TfrmEstoqueOsso
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 82
+        Width = 65
         Visible = True
       end
       item
@@ -84,7 +85,7 @@ object frmEstoqueOsso: TfrmEstoqueOsso
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 89
+        Width = 79
         Visible = True
       end
       item
@@ -106,12 +107,26 @@ object frmEstoqueOsso: TfrmEstoqueOsso
         Expanded = False
         FieldName = 'quant'
         Title.Alignment = taCenter
-        Title.Caption = 'Quantidade'
+        Title.Caption = 'Qtd'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
+        Width = 46
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'qtd_bloq'
+        Title.Alignment = taCenter
+        Title.Caption = 'Bloq'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 46
         Visible = True
       end>
   end
@@ -165,17 +180,26 @@ object frmEstoqueOsso: TfrmEstoqueOsso
     Top = 19
     Width = 80
     Height = 21
-    ItemIndex = 0
     TabOrder = 4
     OnChange = ComboBox1Change
     Items.Strings = (
       ''
+      'UA-CHINA-ARAB-HAL'
+      'UA-CHINA-HAL'
+      'UA-CHINA'
+      'UA-HAL'
       'UA'
+      'LE-CHINA-ARAB-HAL'
+      'LE-CHINA-HAL'
+      'LE-CHINA'
+      'LE-HAL'
+      'LE'
+      'LG-CHINA-ARAB-HAL'
+      'LG-CHINA-HAL'
+      'LG-CHINA'
+      'LG-HAL'
       'LG'
-      'NE'
-      'CHINA'
-      'ARAB'
-      'HAL')
+      'NE')
   end
   object CheckBox2: TCheckBox
     Left = 436
@@ -232,7 +256,8 @@ object frmEstoqueOsso: TfrmEstoqueOsso
         'd, case when (isnull(ras4.class_rastr4, t.class_rastr4)) <> '#39#39' t' +
         'hen concat('#39'-'#39', rtrim(isnull(ras4.class_rastr4, t.class_rastr4))' +
         ') end) as habilitacao,'
-      #9'   count(1) as quant'
+      #9'   count(1) as quant,'
+      #9'   count(res.cod_barra) as qtd_bloq'
       'from ('
       
         'select '#39'011000 - TRASEIRO BOI'#39' as cod_prod, '#39'ABATE'#39' as tipo, dat' +
@@ -275,6 +300,9 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       'left join t_historico_rastr3 ras3 on ras3.cod_tras = t.cod_barra'
       'left join t_historico_rastr4 ras4 on ras4.cod_tras = t.cod_barra'
       
+        'left join t_reserva_estoque_it res on res.cod_barra = t.cod_barr' +
+        'a and res.situacao = 1'
+      
         'group by t.cod_prod, t.tipo, cast(data_abate as date), concat(rt' +
         'rim(isnull(ras1.class_rastr, t.class_rastr)), case when (isnull(' +
         'ras2.class_rastr2, t.class_rastr2)) <> '#39#39' then concat('#39'-'#39', rtrim' +
@@ -284,11 +312,12 @@ object frmEstoqueOsso: TfrmEstoqueOsso
         '(isnull(ras4.class_rastr4, t.class_rastr4)) <> '#39#39' then concat('#39'-' +
         #39', rtrim(isnull(ras4.class_rastr4, t.class_rastr4))) end)'
       ''
+      ''
       'union all'
       ''
       
         'select t.cod_prod, t.tipo, t.data_abate, t.habilitacao, count (1' +
-        ') as quant from ('
+        ') as quant, 0 as qtd_bloq from ('
       
         'select case when pes.cod_prod = '#39'011000'#39' then '#39'011000 - TRASEIRO' +
         ' BOI'#39
@@ -326,8 +355,8 @@ object frmEstoqueOsso: TfrmEstoqueOsso
         'where @abate = case when @abate <> '#39#39' then x.data_abate else @ab' +
         'ate end'
       
-        'and x.habilitacao like case when @hab <> '#39#39' then '#39'%'#39'+@hab+'#39'%'#39' el' +
-        'se x.habilitacao end'
+        'and x.habilitacao = case when @hab <> '#39#39' then @hab else x.habili' +
+        'tacao end'
       
         'and ((x.cod_prod like case when @diant = '#39'S'#39' then '#39'%DIANTEIRO%'#39' ' +
         'else '#39#39' end) or'
@@ -414,6 +443,11 @@ object frmEstoqueOsso: TfrmEstoqueOsso
     end
     object ZQuery1quant: TIntegerField
       FieldName = 'quant'
+      ReadOnly = True
+    end
+    object ZQuery1qtd_bloq: TIntegerField
+      Alignment = taCenter
+      FieldName = 'qtd_bloq'
       ReadOnly = True
     end
   end

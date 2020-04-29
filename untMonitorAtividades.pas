@@ -105,6 +105,9 @@ type
     QRY_TEMP: TZQuery;
     ZQuery7abertura: TDateTimeField;
     ZQuery7fechamento: TDateTimeField;
+    ZQuery12: TZQuery;
+    DataSource11: TDataSource;
+    SpeedButton2: TSpeedButton;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -120,6 +123,7 @@ type
     procedure CheckBox2Click(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DBGrid5DblClick(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
   private
     { Private declarations }
     procedure Alerta;
@@ -406,6 +410,16 @@ begin
     frmLogAbate.FormStyle := fsStayOnTop;
     frmLogAbate.FormStyle := fsNormal;
   end;
+end;
+
+procedure TfrmMonitorAbate.SpeedButton2Click(Sender: TObject);
+begin
+  ZQuery12.Active := True;
+  Application.MessageBox(PChar('Coletor Calha: '+FormatDateTime('hh:nn:ss', ZQuery12.FieldByName('hora_rastr').AsDateTime)+#13#10+
+                               'Coletor Classifica: '+FormatDateTime('hh:nn:ss', ZQuery12.FieldByName('hora_class').AsDateTime)+#13#10+
+                               'Balança do Abate: '+FormatDateTime('hh:nn:ss', ZQuery12.FieldByName('hora_balan').AsDateTime)+#13#10+
+                               'Coletor Mapa Abate: '+FormatDateTime('hh:nn:ss', ZQuery12.FieldByName('hora_mapa').AsDateTime)), 'Horários das Últimas Leituras', MB_OK + MB_ICONINFORMATION);
+  ZQuery12.Active := False;
 end;
 
 procedure TfrmMonitorAbate.Timer1Timer(Sender: TObject);

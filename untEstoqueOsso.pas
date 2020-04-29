@@ -27,6 +27,7 @@ type
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
+    ZQuery1qtd_bloq: TIntegerField;
     procedure btnAtualizaClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);

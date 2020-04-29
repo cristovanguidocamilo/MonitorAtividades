@@ -36,8 +36,6 @@ type
     DBGrid3: TDBGrid;
     Label3: TLabel;
     Timer1: TTimer;
-    SpinEdit1: TSpinEdit;
-    Label4: TLabel;
     StatusBar1: TStatusBar;
     ZQuery4: TZQuery;
     ZQuery4quant: TIntegerField;
@@ -76,6 +74,10 @@ type
     ZQuery3ini: TWideStringField;
     ZQuery3fim: TWideStringField;
     ZQuery5cod_contr: TWideStringField;
+    Panel1: TPanel;
+    Label4: TLabel;
+    SpinEdit1: TSpinEdit;
+    Label5: TLabel;
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -191,11 +193,13 @@ begin
   Timer1.Enabled := True;
   frmMonitorDesossa.Top  := StrToInt(frmMenu.LeIni('CONFIG.INI', 'frmMonitorDesossa', 'TOP' ));
   frmMonitorDesossa.Left := StrToInt(frmMenu.LeIni('CONFIG.INI', 'frmMonitorDesossa', 'LEFT'));
+  Label5.Caption := 'Desossa: '+FormatDateTime('dd/mm/yyyy', Date-SpinEdit1.Value);
 end;
 
 procedure TfrmMonitorDesossa.SpinEdit1Change(Sender: TObject);
 begin
   AtivaQuery;
+  Label5.Caption := 'Desossa: '+FormatDateTime('dd/mm/yyyy', Date-SpinEdit1.Value);
 end;
 
 procedure TfrmMonitorDesossa.Timer1Timer(Sender: TObject);

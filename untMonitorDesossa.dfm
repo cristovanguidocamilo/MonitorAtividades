@@ -57,22 +57,9 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Label4: TLabel
-    Left = 247
-    Top = 11
-    Width = 73
-    Height = 16
-    Caption = 'Dia Atual - '
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object DBText1: TDBText
     Left = 296
-    Top = 207
+    Top = 208
     Width = 65
     Height = 17
     Alignment = taRightJustify
@@ -87,7 +74,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object DBText2: TDBText
     Left = 296
-    Top = 414
+    Top = 415
     Width = 65
     Height = 17
     Alignment = taRightJustify
@@ -126,10 +113,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     ReadOnly = True
-    TabOrder = 0
+    TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clMaroon
     TitleFont.Height = -11
@@ -187,10 +174,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     ReadOnly = True
-    TabOrder = 1
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clMaroon
     TitleFont.Height = -11
@@ -247,10 +234,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     ReadOnly = True
-    TabOrder = 2
+    TabOrder = 3
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clMaroon
     TitleFont.Height = -11
@@ -296,17 +283,6 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Visible = True
       end>
   end
-  object SpinEdit1: TSpinEdit
-    Left = 320
-    Top = 8
-    Width = 41
-    Height = 22
-    MaxValue = 365
-    MinValue = 0
-    TabOrder = 3
-    Value = 0
-    OnChange = SpinEdit1Change
-  end
   object StatusBar1: TStatusBar
     Left = 0
     Top = 615
@@ -328,7 +304,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Width = 638
     Height = 416
     DataSource = DataSource4
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
@@ -446,7 +422,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Width = 306
     Height = 162
     DataSource = DataSource5
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 6
     TitleFont.Charset = DEFAULT_CHARSET
@@ -507,6 +483,51 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Width = 37
         Visible = True
       end>
+  end
+  object Panel1: TPanel
+    Left = 679
+    Top = 8
+    Width = 326
+    Height = 41
+    BevelInner = bvLowered
+    TabOrder = 0
+    object Label4: TLabel
+      Left = 6
+      Top = 11
+      Width = 73
+      Height = 16
+      Caption = 'Dia Atual - '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 124
+      Top = 11
+      Width = 63
+      Height = 16
+      Caption = 'Dessosa: '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object SpinEdit1: TSpinEdit
+      Left = 77
+      Top = 10
+      Width = 41
+      Height = 22
+      MaxValue = 365
+      MinValue = 0
+      TabOrder = 0
+      Value = 0
+      OnChange = SpinEdit1Change
+    end
   end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
@@ -881,9 +902,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       ''
       
         'select pes.num_lote, prod.cod_mat, rtrim(mat.desc_mat) as desc_m' +
-        'at, pes.cod_prod, prod.desc_ind, pes.cod_contr, sum(pes.peso_liq' +
-        ') as peso_liq, sum(pes.peso_bruto) as peso_bruto, sum(pes.num_ca' +
-        'ixas) as num_caixas, sum(pes.quant) as quant'
+        'at, pes.cod_prod, prod.desc_ind, pes.cod_contr, convert(decimal(' +
+        '18,3),sum(pes.peso_liq)) as peso_liq, convert(decimal(18,3),sum(' +
+        'pes.peso_bruto)) as peso_bruto, sum(pes.num_caixas) as num_caixa' +
+        's, sum(pes.quant) as quant'
       'from pescaixa pes with (nolock)'
       
         'inner join produto prod with (nolock) on prod.cod_prod = pes.cod' +

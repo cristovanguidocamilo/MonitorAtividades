@@ -4,8 +4,8 @@ object frmMonitorAbate: TfrmMonitorAbate
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Monitoramento do Abate  (F12 - Programar Quantidade Aviso)'
-  ClientHeight = 821
-  ClientWidth = 995
+  ClientHeight = 795
+  ClientWidth = 993
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,72 +23,72 @@ object frmMonitorAbate: TfrmMonitorAbate
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 407
-    Width = 157
-    Height = 19
+    Top = 386
+    Width = 124
+    Height = 16
     Caption = 'Monitor da Balan'#231'a'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label2: TLabel
     Left = 445
-    Top = 14
-    Width = 208
-    Height = 19
+    Top = 17
+    Width = 165
+    Height = 16
     Caption = 'Monitor Rastr e Classifica'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label3: TLabel
     Left = 637
-    Top = 583
-    Width = 96
-    Height = 19
+    Top = 559
+    Width = 74
+    Height = 16
     Caption = 'Monitor DIF'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label4: TLabel
     Left = 445
-    Top = 583
-    Width = 102
-    Height = 19
+    Top = 559
+    Width = 81
+    Height = 16
     Caption = 'Quantidades'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label5: TLabel
     Left = 8
-    Top = 14
-    Width = 308
-    Height = 19
+    Top = 17
+    Width = 245
+    Height = 16
     Caption = 'Monitor de Mapeamento das C'#226'maras'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object DBText1: TDBText
     Left = 8
-    Top = 350
+    Top = 330
     Width = 185
     Height = 17
     Alignment = taCenter
@@ -103,7 +103,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object Label6: TLabel
     Left = 8
-    Top = 331
+    Top = 311
     Width = 173
     Height = 13
     Alignment = taCenter
@@ -117,7 +117,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object Label8: TLabel
     Left = 219
-    Top = 331
+    Top = 311
     Width = 184
     Height = 13
     Alignment = taCenter
@@ -131,7 +131,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBText3: TDBText
     Left = 219
-    Top = 350
+    Top = 330
     Width = 218
     Height = 17
     Alignment = taCenter
@@ -145,8 +145,8 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
   end
   object SpeedButton1: TSpeedButton
-    Left = 394
-    Top = 404
+    Left = 138
+    Top = 380
     Width = 23
     Height = 22
     Hint = 'Log da Balan'#231'a'
@@ -168,31 +168,54 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object Label9: TLabel
     Left = 821
-    Top = 583
-    Width = 99
-    Height = 19
+    Top = 559
+    Width = 78
+    Height = 16
     Caption = 'Tuberculose'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object SpeedButton2: TSpeedButton
+    Left = 413
+    Top = 380
+    Width = 23
+    Height = 22
+    Hint = 'Hor'#225'rios das '#218'ltimas Leituras'
+    Glyph.Data = {
+      76010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000000000000000000000000
+      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+      3333333333FFFFF3333333333000003333333333F77777FFF333333009999900
+      3333333777777777FF33330998FFF899033333777333F3777FF33099FFFCFFF9
+      903337773337333777F3309FFFFFFFCF9033377333F3337377FF098FF0FFFFFF
+      890377F3373F3333377F09FFFF0FFFFFF90377F3F373FFFFF77F09FCFFF90000
+      F90377F733377777377F09FFFFFFFFFFF90377F333333333377F098FFFFFFFFF
+      890377FF3F33333F3773309FCFFFFFCF9033377F7333F37377F33099FFFCFFF9
+      90333777FF37F3377733330998FCF899033333777FF7FF777333333009999900
+      3333333777777777333333333000003333333333377777333333}
+    NumGlyphs = 2
+    OnClick = SpeedButton2Click
+  end
   object BitBtn1: TBitBtn
-    Left = 854
+    Left = 616
     Top = 8
-    Width = 131
+    Width = 25
     Height = 25
     Caption = 'Iniciar Monitoramento'
     TabOrder = 0
+    Visible = False
     OnClick = BitBtn1Click
   end
   object DBGrid1: TDBGrid
     Left = 8
-    Top = 432
+    Top = 408
     Width = 428
-    Height = 364
+    Height = 361
     Hint = 
       'Animais que passaram pela balan'#231'a do Abate e ainda n'#227'o foram Map' +
       'eados'
@@ -278,7 +301,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     Left = 445
     Top = 39
     Width = 540
-    Height = 538
+    Height = 514
     Hint = 'Animais Lan'#231'ados pelo Rastr_Abate (Calha) e Classifica'
     DataSource = DataSource2
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -394,8 +417,8 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 802
-    Width = 995
+    Top = 776
+    Width = 993
     Height = 19
     Panels = <
       item
@@ -418,7 +441,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid3: TDBGrid
     Left = 637
-    Top = 608
+    Top = 581
     Width = 178
     Height = 187
     Hint = 'Animais que passaram pela Calha e N'#227'o Foram Classificados'
@@ -485,7 +508,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid4: TDBGrid
     Left = 445
-    Top = 608
+    Top = 581
     Width = 186
     Height = 187
     Hint = 'Quantidades Totais por Habilita'#231#227'o'
@@ -531,7 +554,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     Left = 8
     Top = 39
     Width = 204
-    Height = 290
+    Height = 266
     DataSource = DataSource6
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -593,7 +616,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     Left = 218
     Top = 39
     Width = 218
-    Height = 290
+    Height = 266
     DataSource = DataSource7
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 7
@@ -656,19 +679,19 @@ object frmMonitorAbate: TfrmMonitorAbate
       end>
   end
   object CheckBox1: TCheckBox
-    Left = 347
+    Left = 336
     Top = 16
-    Width = 89
+    Width = 100
     Height = 17
     Alignment = taLeftJustify
-    Caption = 'Pause Refresh'
+    Caption = 'Parar de Atualizar'
     TabOrder = 8
   end
   object Panel1: TPanel
-    Left = 255
-    Top = 373
-    Width = 133
-    Height = 49
+    Left = 873
+    Top = 1
+    Width = 112
+    Height = 35
     BevelInner = bvLowered
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -678,11 +701,11 @@ object frmMonitorAbate: TfrmMonitorAbate
     ParentFont = False
     TabOrder = 9
     object Label7: TLabel
-      Left = 8
-      Top = 4
-      Width = 109
+      Left = 4
+      Top = 1
+      Width = 105
       Height = 13
-      Caption = 'Velocidade '#8773' da N'#243'ria:'
+      Caption = 'Velocidade '#8773' da N'#243'ria'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clMaroon
       Font.Height = -11
@@ -691,8 +714,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       ParentFont = False
     end
     object DBText2: TDBText
-      Left = 8
-      Top = 23
+      Left = 0
+      Top = 10
       Width = 113
       Height = 30
       Hint = 'Velocidade Calculada sobre as '#218'ltimas 2 Pesagens da Balan'#231'a'
@@ -709,7 +732,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid7: TDBGrid
     Left = 821
-    Top = 608
+    Top = 581
     Width = 167
     Height = 188
     DataSource = DataSource9
@@ -760,7 +783,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object CheckBox2: TCheckBox
     Left = 553
-    Top = 585
+    Top = 558
     Width = 78
     Height = 17
     Alignment = taLeftJustify
@@ -770,7 +793,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid8: TDBGrid
     Left = 445
-    Top = 608
+    Top = 581
     Width = 186
     Height = 188
     DataSource = DataSource10
@@ -852,7 +875,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       ' order by t.data_pes')
     Params = <>
     Left = 273
-    Top = 447
+    Top = 420
     object ZQuery1seq_abate: TIntegerField
       Alignment = taCenter
       FieldName = 'seq_abate'
@@ -886,14 +909,14 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource1: TDataSource
     DataSet = ZQuery1
     Left = 273
-    Top = 495
+    Top = 468
   end
   object Timer1: TTimer
     Enabled = False
     Interval = 10000
     OnTimer = Timer1Timer
     Left = 57
-    Top = 503
+    Top = 476
   end
   object ZQuery2: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1042,7 +1065,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       ' order by ras.sequencial')
     Params = <>
     Left = 725
-    Top = 684
+    Top = 657
     object ZQuery3sequencial: TSmallintField
       Alignment = taCenter
       FieldName = 'sequencial'
@@ -1066,7 +1089,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource3: TDataSource
     DataSet = ZQuery3
     Left = 757
-    Top = 684
+    Top = 657
   end
   object ZQuery4: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1148,7 +1171,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       '')
     Params = <>
     Left = 469
-    Top = 660
+    Top = 633
     object ZQuery6rastr: TWideStringField
       Alignment = taCenter
       FieldName = 'rastr'
@@ -1163,7 +1186,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource5: TDataSource
     DataSet = ZQuery6
     Left = 509
-    Top = 660
+    Top = 633
   end
   object ZQuery7: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1342,8 +1365,8 @@ object frmMonitorAbate: TfrmMonitorAbate
       '         where data_abate = @data'
       '         order by data_pes desc) t')
     Params = <>
-    Left = 224
-    Top = 392
+    Left = 909
+    Top = 4
     object ZQuery9velocidade: TIntegerField
       FieldName = 'velocidade'
       ReadOnly = True
@@ -1351,8 +1374,8 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DataSource8: TDataSource
     DataSet = ZQuery9
-    Left = 256
-    Top = 392
+    Left = 941
+    Top = 4
   end
   object ZQuery10: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1404,7 +1427,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       'order by cod_camara, num_lote')
     Params = <>
     Left = 846
-    Top = 712
+    Top = 685
     object ZQuery10num_lote: TWideStringField
       Alignment = taCenter
       FieldName = 'num_lote'
@@ -1423,7 +1446,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource9: TDataSource
     DataSet = ZQuery10
     Left = 878
-    Top = 712
+    Top = 685
   end
   object ZQuery11: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1450,7 +1473,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       ' order by t.num_lote desc')
     Params = <>
     Left = 462
-    Top = 736
+    Top = 709
     object ZQuery11num_lote: TWideStringField
       Alignment = taCenter
       FieldName = 'num_lote'
@@ -1472,7 +1495,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource10: TDataSource
     DataSet = ZQuery11
     Left = 494
-    Top = 736
+    Top = 709
   end
   object CONEXAO_TEMP: TZConnection
     ControlsCodePage = cCP_UTF16
@@ -1491,5 +1514,33 @@ object frmMonitorAbate: TfrmMonitorAbate
     Params = <>
     Left = 40
     Top = 232
+  end
+  object ZQuery12: TZQuery
+    Connection = frmMenu.ZConnection1
+    SQL.Strings = (
+      'declare @data date = cast(getdate() as date)'
+      ''
+      'select'
+      
+        'hora_rastr = (select max(data_mov) from t_ab_sequencial_rastr wi' +
+        'th (nolock) where cast(data as date) = @data),'
+      
+        'hora_class = (select max(data_mov) from t_classifica_abate with ' +
+        '(nolock) where data_abate = @data),'
+      
+        'hora_balan = (select max(data_pes) from t_pescarcaca with (noloc' +
+        'k) where data_abate = @data),'
+      
+        'hora_mapa  = (select max(data_ent) from t_mapa_camaras_abate wit' +
+        'h (nolock) where data_mapa = @data)'
+      '')
+    Params = <>
+    Left = 456
+    Top = 336
+  end
+  object DataSource11: TDataSource
+    DataSet = ZQuery12
+    Left = 488
+    Top = 336
   end
 end

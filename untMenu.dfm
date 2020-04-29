@@ -4,8 +4,8 @@ object frmMenu: TfrmMenu
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Menu de Monitoramento'
-  ClientHeight = 140
-  ClientWidth = 410
+  ClientHeight = 147
+  ClientWidth = 407
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,8 +24,8 @@ object frmMenu: TfrmMenu
   object Image1: TImage
     Left = 0
     Top = 0
-    Width = 410
-    Height = 140
+    Width = 407
+    Height = 128
     Align = alClient
     Center = True
     Picture.Data = {
@@ -373,12 +373,23 @@ object frmMenu: TfrmMenu
     ExplicitWidth = 105
     ExplicitHeight = 105
   end
-  object Label1: TLabel
-    Left = 274
-    Top = 8
-    Width = 128
-    Height = 13
-    Caption = 'Atualiza'#231#227'o: 2020.03.20-1'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 128
+    Width = 407
+    Height = 19
+    Color = clWhite
+    Panels = <
+      item
+        Alignment = taCenter
+        Text = 'Desenvolvido por Cristovan G. Camilo'
+        Width = 250
+      end
+      item
+        Alignment = taCenter
+        Text = 'Vers'#227'o: 2020.04.03-1'
+        Width = 100
+      end>
   end
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF16
@@ -397,27 +408,22 @@ object frmMenu: TfrmMenu
     Top = 48
     object Monitorar1: TMenuItem
       Caption = 'F1-Abate'
-      ShortCut = 112
       OnClick = Monitorar1Click
     end
     object Desossa2: TMenuItem
       Caption = 'F2-Desossa'
-      ShortCut = 113
       OnClick = Desossa2Click
     end
     object PH2: TMenuItem
       Caption = 'F3-PH'
-      ShortCut = 114
       OnClick = PH2Click
     end
     object Estoque1: TMenuItem
       Caption = 'F4-Estoque'
-      ShortCut = 115
       OnClick = Estoque1Click
     end
     object Sair1: TMenuItem
       Caption = 'F12-Sair'
-      ShortCut = 123
       OnClick = Sair1Click
     end
   end

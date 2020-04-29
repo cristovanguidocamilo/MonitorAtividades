@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons,
   ZAbstractConnection, ZConnection, IniFiles, Vcl.Menus, Vcl.Imaging.jpeg,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, Vcl.ComCtrls;
 
 Const
   InputBoxMessage = WM_USER + 200;
@@ -21,7 +21,7 @@ type
     Desossa2: TMenuItem;
     PH2: TMenuItem;
     Estoque1: TMenuItem;
-    Label1: TLabel;
+    StatusBar1: TStatusBar;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure GravaIni(Arquivo, Secao, Propriedade, Valor : String);
@@ -137,21 +137,34 @@ begin
   PH := LeIni('CONFIG.INI', 'frmMenu', 'PH');
   ESTOQUE := LeIni('CONFIG.INI', 'frmMenu', 'ESTOQUE');
   if ABT = 'S' then
-    MainMenu1.Items[0].Visible := True
+  begin
+    MainMenu1.Items[0].Visible := True;
+    MainMenu1.Items[0].ShortCut := VK_F1;
+  end
   else
     MainMenu1.Items[0].Visible := False;
   if DES = 'S' then
-    MainMenu1.Items[1].Visible := True
+  begin
+    MainMenu1.Items[1].Visible := True;
+    MainMenu1.Items[1].ShortCut := VK_F2;
+  end
   else
     MainMenu1.Items[1].Visible := False;
   if PH = 'S' then
-    MainMenu1.Items[2].Visible := True
+  begin
+    MainMenu1.Items[2].Visible := True;
+    MainMenu1.Items[2].ShortCut := VK_F3;
+  end
   else
     MainMenu1.Items[2].Visible := False;
   if ESTOQUE = 'S' then
-    MainMenu1.Items[3].Visible := True
+  begin
+    MainMenu1.Items[3].Visible := True;
+    MainMenu1.Items[3].ShortCut := VK_F4;
+  end
   else
     MainMenu1.Items[3].Visible := False;
+  MainMenu1.Items[4].ShortCut := VK_F12;
   end;
 
 procedure TfrmMenu.GravaIni(Arquivo, Secao, Propriedade, Valor: String);
