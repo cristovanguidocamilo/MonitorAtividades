@@ -387,7 +387,7 @@ object frmMenu: TfrmMenu
       end
       item
         Alignment = taCenter
-        Text = 'Vers'#227'o: 2020.04.03-1'
+        Text = 'Vers'#227'o: 2020.07.29-1'
         Width = 100
       end>
   end

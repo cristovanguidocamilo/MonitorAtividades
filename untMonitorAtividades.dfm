@@ -4,7 +4,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Monitoramento do Abate  (F12 - Programar Quantidade Aviso)'
-  ClientHeight = 795
+  ClientHeight = 771
   ClientWidth = 993
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,7 +23,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 386
+    Top = 360
     Width = 124
     Height = 16
     Caption = 'Monitor da Balan'#231'a'
@@ -49,7 +49,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object Label3: TLabel
     Left = 637
-    Top = 559
+    Top = 533
     Width = 74
     Height = 16
     Caption = 'Monitor DIF'
@@ -62,7 +62,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object Label4: TLabel
     Left = 445
-    Top = 559
+    Top = 533
     Width = 81
     Height = 16
     Caption = 'Quantidades'
@@ -146,7 +146,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object SpeedButton1: TSpeedButton
     Left = 138
-    Top = 380
+    Top = 354
     Width = 23
     Height = 22
     Hint = 'Log da Balan'#231'a'
@@ -168,7 +168,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object Label9: TLabel
     Left = 821
-    Top = 559
+    Top = 533
     Width = 78
     Height = 16
     Caption = 'Tuberculose'
@@ -181,7 +181,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object SpeedButton2: TSpeedButton
     Left = 413
-    Top = 380
+    Top = 354
     Width = 23
     Height = 22
     Hint = 'Hor'#225'rios das '#218'ltimas Leituras'
@@ -213,7 +213,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid1: TDBGrid
     Left = 8
-    Top = 408
+    Top = 382
     Width = 428
     Height = 361
     Hint = 
@@ -240,29 +240,20 @@ object frmMonitorAbate: TfrmMonitorAbate
       item
         Expanded = False
         FieldName = 'seq_abate'
-        Title.Caption = 'Seq Abate'
+        Title.Alignment = taCenter
+        Title.Caption = 'Seq.'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 68
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'banda'
-        Title.Caption = 'Banda'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
+        Width = 45
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'num_lote'
+        Title.Alignment = taCenter
         Title.Caption = 'Lote'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
@@ -270,6 +261,18 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
         Width = 31
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cod_matur'
+        Title.Alignment = taCenter
+        Title.Caption = 'Idade'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
         Visible = True
       end
       item
@@ -282,12 +285,13 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 138
+        Width = 165
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'data_pes'
+        Title.Alignment = taCenter
         Title.Caption = 'Data Pesagem'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clMaroon
@@ -301,7 +305,7 @@ object frmMonitorAbate: TfrmMonitorAbate
     Left = 445
     Top = 39
     Width = 540
-    Height = 514
+    Height = 488
     Hint = 'Animais Lan'#231'ados pelo Rastr_Abate (Calha) e Classifica'
     DataSource = DataSource2
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -417,7 +421,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 776
+    Top = 752
     Width = 993
     Height = 19
     Panels = <
@@ -441,7 +445,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid3: TDBGrid
     Left = 637
-    Top = 581
+    Top = 555
     Width = 178
     Height = 187
     Hint = 'Animais que passaram pela Calha e N'#227'o Foram Classificados'
@@ -508,7 +512,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid4: TDBGrid
     Left = 445
-    Top = 581
+    Top = 555
     Width = 186
     Height = 187
     Hint = 'Quantidades Totais por Habilita'#231#227'o'
@@ -608,7 +612,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 32
+        Width = 29
         Visible = True
       end>
   end
@@ -648,7 +652,7 @@ object frmMonitorAbate: TfrmMonitorAbate
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 32
+        Width = 30
         Visible = True
       end
       item
@@ -732,7 +736,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid7: TDBGrid
     Left = 821
-    Top = 581
+    Top = 555
     Width = 167
     Height = 188
     DataSource = DataSource9
@@ -783,7 +787,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object CheckBox2: TCheckBox
     Left = 553
-    Top = 558
+    Top = 532
     Width = 78
     Height = 17
     Alignment = taLeftJustify
@@ -793,7 +797,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   end
   object DBGrid8: TDBGrid
     Left = 445
-    Top = 581
+    Top = 555
     Width = 186
     Height = 188
     DataSource = DataSource10
@@ -849,14 +853,16 @@ object frmMonitorAbate: TfrmMonitorAbate
     SQL.Strings = (
       'declare @data datetime = cast(getdate() as date)'
       ''
-      'select t.seq_abate,'
-      '       t.banda,'
+      
+        'select cast(t.seq_abate as varchar) + '#39'-'#39' + case when t.banda = ' +
+        '1 then '#39'D'#39' else '#39'E'#39' end as seq_abate,'
       
         #9'     case when (substring(t.rastr,len(t.rastr),1)) = '#39'-'#39' then s' +
         'ubstring(t.rastr, 1, len(t.rastr)-1) else t.rastr end as rastr,'
       #9'     t.num_lote,'
       #9'     t.data_pes,'
-      #9'     t.cod_tras'
+      #9'     t.cod_tras,'
+      '       t.cod_matur'
       '  from ('
       'select seq_abate,'
       '       banda,'
@@ -866,7 +872,8 @@ object frmMonitorAbate: TfrmMonitorAbate
         'ass_rastr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39') as rastr,'
       '       num_lote,'
       '       data_pes,'
-      '       cod_tras'
+      '       cod_tras,'
+      '       cod_matur'
       '  from t_pescarcaca with(nolock)'
       ' where data_abate = @data'
       '   and status not in ('#39'O'#39','#39'G'#39','#39'T'#39')'
@@ -875,16 +882,10 @@ object frmMonitorAbate: TfrmMonitorAbate
       ' order by t.data_pes')
     Params = <>
     Left = 273
-    Top = 420
-    object ZQuery1seq_abate: TIntegerField
+    Top = 394
+    object ZQuery1seq_abate: TWideStringField
       Alignment = taCenter
       FieldName = 'seq_abate'
-    end
-    object ZQuery1banda: TWideStringField
-      Alignment = taCenter
-      FieldName = 'banda'
-      Required = True
-      Size = 1
     end
     object ZQuery1num_lote: TWideStringField
       Alignment = taCenter
@@ -905,18 +906,24 @@ object frmMonitorAbate: TfrmMonitorAbate
     object ZQuery1cod_tras: TWideStringField
       FieldName = 'cod_tras'
     end
+    object ZQuery1cod_matur: TWideStringField
+      Alignment = taCenter
+      FieldName = 'cod_matur'
+      ReadOnly = True
+      Size = 1
+    end
   end
   object DataSource1: TDataSource
     DataSet = ZQuery1
     Left = 273
-    Top = 468
+    Top = 442
   end
   object Timer1: TTimer
     Enabled = False
     Interval = 10000
     OnTimer = Timer1Timer
     Left = 57
-    Top = 476
+    Top = 450
   end
   object ZQuery2: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1065,7 +1072,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       ' order by ras.sequencial')
     Params = <>
     Left = 725
-    Top = 657
+    Top = 631
     object ZQuery3sequencial: TSmallintField
       Alignment = taCenter
       FieldName = 'sequencial'
@@ -1089,7 +1096,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource3: TDataSource
     DataSet = ZQuery3
     Left = 757
-    Top = 657
+    Top = 631
   end
   object ZQuery4: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1156,22 +1163,28 @@ object frmMonitorAbate: TfrmMonitorAbate
       '       t.quant'
       '  from ('
       
-        'select replace(concat(rtrim(class_rastr), rtrim('#39'-'#39'+class_rastr2' +
-        '), rtrim('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim('#39'-'#39'+c' +
-        'lass_rastr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39') as rastr,'
+        'select replace(concat(rtrim(case when class_rastr = '#39'DIF'#39' and st' +
+        'atus = '#39'T'#39' then '#39'T.F.'#39' when class_rastr = '#39'DIF'#39' and status = '#39'O'#39 +
+        ' then '#39'CONSERVA'#39' when class_rastr = '#39'DIF'#39' and status = '#39'G'#39' then ' +
+        #39'GRAXARIA'#39' else class_rastr end), rtrim('#39'-'#39'+class_rastr2), rtrim' +
+        '('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim('#39'-'#39'+class_ras' +
+        'tr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39') as rastr,'
       '       count(1)/2 as quant'
       '  from t_pescarcaca'
       ' where data_abate = @data'
       
-        ' group by replace(concat(rtrim(class_rastr), rtrim('#39'-'#39'+class_ras' +
-        'tr2), rtrim('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim('#39'-' +
-        #39'+class_rastr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39')'
+        ' group by replace(concat(rtrim(case when class_rastr = '#39'DIF'#39' and' +
+        ' status = '#39'T'#39' then '#39'T.F.'#39' when class_rastr = '#39'DIF'#39' and status = ' +
+        #39'O'#39' then '#39'CONSERVA'#39' when class_rastr = '#39'DIF'#39' and status = '#39'G'#39' th' +
+        'en '#39'GRAXARIA'#39' else class_rastr end), rtrim('#39'-'#39'+class_rastr2), rt' +
+        'rim('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim('#39'-'#39'+class_' +
+        'rastr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39')'
       ' )t'
       ' order by t.rastr'
       '')
     Params = <>
     Left = 469
-    Top = 633
+    Top = 607
     object ZQuery6rastr: TWideStringField
       Alignment = taCenter
       FieldName = 'rastr'
@@ -1186,7 +1199,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource5: TDataSource
     DataSet = ZQuery6
     Left = 509
-    Top = 633
+    Top = 607
   end
   object ZQuery7: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1281,7 +1294,9 @@ object frmMonitorAbate: TfrmMonitorAbate
       'declare @data datetime = cast(getdate() as date)'
       ''
       'select t.cod_camara,'
-      '       t.seq_abate,'
+      
+        '       cast(t.seq_abate as varchar) + '#39'-'#39' + case when t.banda = ' +
+        '1 then '#39'D'#39' else '#39'E'#39' end as seq_abate,'
       '       t.cod_trilho,'
       
         '       case when (substring(t.rastr,len(t.rastr),1)) = '#39'-'#39' then ' +
@@ -1291,6 +1306,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       '  from ('
       'select pes.cod_camara,'
       '       pes.seq_abate,'
+      '       pes.banda,'
       #9'     cam.cod_trilho,'
       
         '  '#9'   replace(concat(rtrim(pes.class_rastr), rtrim('#39'-'#39'+pes.class' +
@@ -1321,7 +1337,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       FieldName = 'cod_camara'
       Size = 3
     end
-    object ZQuery8seq_abate: TIntegerField
+    object ZQuery8seq_abate: TWideStringField
       Alignment = taCenter
       FieldName = 'seq_abate'
     end
@@ -1427,7 +1443,7 @@ object frmMonitorAbate: TfrmMonitorAbate
       'order by cod_camara, num_lote')
     Params = <>
     Left = 846
-    Top = 685
+    Top = 659
     object ZQuery10num_lote: TWideStringField
       Alignment = taCenter
       FieldName = 'num_lote'
@@ -1446,7 +1462,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource9: TDataSource
     DataSet = ZQuery10
     Left = 878
-    Top = 685
+    Top = 659
   end
   object ZQuery11: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1459,21 +1475,27 @@ object frmMonitorAbate: TfrmMonitorAbate
         'nd as rastr, t.quant from ('
       'select num_lote,'
       
-        '       replace(concat(rtrim(class_rastr), rtrim('#39'-'#39'+class_rastr2' +
-        '), rtrim('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim('#39'-'#39'+c' +
-        'lass_rastr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39') as rastr,'
+        '       replace(concat(rtrim(case when class_rastr = '#39'DIF'#39' and st' +
+        'atus = '#39'T'#39' then '#39'T.F.'#39' when class_rastr = '#39'DIF'#39' and status = '#39'O'#39 +
+        ' then '#39'CONSERVA'#39' when class_rastr = '#39'DIF'#39' and status = '#39'G'#39' then ' +
+        #39'GRAXARIA'#39' else class_rastr end), rtrim('#39'-'#39'+class_rastr2), rtrim' +
+        '('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim('#39'-'#39'+class_ras' +
+        'tr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39') as rastr,'
       '       count(1)/2 as quant'
       '  from t_pescarcaca'
       ' where data_abate = @data'
       
-        ' group by num_lote, replace(concat(rtrim(class_rastr), rtrim('#39'-'#39 +
-        '+class_rastr2), rtrim('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4)' +
-        ', rtrim('#39'-'#39'+class_rastr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39')'
+        ' group by num_lote, replace(concat(rtrim(case when class_rastr =' +
+        ' '#39'DIF'#39' and status = '#39'T'#39' then '#39'T.F.'#39' when class_rastr = '#39'DIF'#39' and' +
+        ' status = '#39'O'#39' then '#39'CONSERVA'#39' when class_rastr = '#39'DIF'#39' and statu' +
+        's = '#39'G'#39' then '#39'GRAXARIA'#39' else class_rastr end), rtrim('#39'-'#39'+class_r' +
+        'astr2), rtrim('#39'-'#39'+class_rastr3), rtrim('#39'-'#39'+class_rastr4), rtrim(' +
+        #39'-'#39'+class_rastr5), rtrim('#39'-'#39'+class_rastr6)),'#39'--'#39','#39#39')'
       ' )t'
       ' order by t.num_lote desc')
     Params = <>
     Left = 462
-    Top = 709
+    Top = 683
     object ZQuery11num_lote: TWideStringField
       Alignment = taCenter
       FieldName = 'num_lote'
@@ -1495,7 +1517,7 @@ object frmMonitorAbate: TfrmMonitorAbate
   object DataSource10: TDataSource
     DataSet = ZQuery11
     Left = 494
-    Top = 709
+    Top = 683
   end
   object CONEXAO_TEMP: TZConnection
     ControlsCodePage = cCP_UTF16

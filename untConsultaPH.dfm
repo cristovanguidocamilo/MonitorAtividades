@@ -5,7 +5,7 @@ object frmConsultaPH: TfrmConsultaPH
   BorderStyle = bsSingle
   Caption = 'Consulta PH'
   ClientHeight = 612
-  ClientWidth = 473
+  ClientWidth = 453
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -41,8 +41,8 @@ object frmConsultaPH: TfrmConsultaPH
   object DBGrid1: TDBGrid
     Left = 8
     Top = 37
-    Width = 457
-    Height = 339
+    Width = 433
+    Height = 292
     DataSource = DataSource1
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
@@ -75,19 +75,7 @@ object frmConsultaPH: TfrmConsultaPH
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 44
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'banda'
-        Title.Alignment = taCenter
-        Title.Caption = 'BD'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clMaroon
-        Title.Font.Height = -11
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = [fsBold]
+        Width = 45
         Visible = True
       end
       item
@@ -152,7 +140,7 @@ object frmConsultaPH: TfrmConsultaPH
     OnClick = BitBtn1Click
   end
   object CheckBox1: TCheckBox
-    Left = 320
+    Left = 296
     Top = 19
     Width = 145
     Height = 17
@@ -163,9 +151,9 @@ object frmConsultaPH: TfrmConsultaPH
   end
   object DBGrid2: TDBGrid
     Left = 8
-    Top = 382
+    Top = 335
     Width = 369
-    Height = 222
+    Height = 269
     Hint = 'Quantidade em Animais'
     DataSource = DataSource2
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -243,9 +231,9 @@ object frmConsultaPH: TfrmConsultaPH
       end>
   end
   object Panel1: TPanel
-    Left = 383
+    Left = 380
     Top = 584
-    Width = 82
+    Width = 71
     Height = 20
     BevelOuter = bvNone
     Caption = 'Leitura 100%'
@@ -254,7 +242,7 @@ object frmConsultaPH: TfrmConsultaPH
     TabOrder = 5
   end
   object CheckBox2: TCheckBox
-    Left = 320
+    Left = 296
     Top = 0
     Width = 145
     Height = 17
@@ -274,8 +262,9 @@ object frmConsultaPH: TfrmConsultaPH
       'declare @desclass char(2) = :desclass'
       ''
       'select pes.cod_camara,'
-      '       pes.seq_abate,'
-      '       pes.banda,'
+      
+        '       cast(pes.seq_abate as varchar) + '#39'-'#39' + case when pes.band' +
+        'a = 1 then '#39'D'#39' else '#39'E'#39' end as seq_abate,'
       '       pes.data_quebra,'
       
         #9'   concat(rtrim(pes.class_rastr), case when isnull(pes.class_ra' +
@@ -344,8 +333,8 @@ object frmConsultaPH: TfrmConsultaPH
         Name = 'desclass'
         ParamType = ptUnknown
       end>
-    Left = 48
-    Top = 304
+    Left = 40
+    Top = 168
     ParamData = <
       item
         DataType = ftUnknown
@@ -362,15 +351,9 @@ object frmConsultaPH: TfrmConsultaPH
       FieldName = 'cod_camara'
       Size = 3
     end
-    object ZQuery1seq_abate: TIntegerField
+    object ZQuery1seq_abate: TWideStringField
       Alignment = taCenter
       FieldName = 'seq_abate'
-    end
-    object ZQuery1banda: TWideStringField
-      Alignment = taCenter
-      FieldName = 'banda'
-      Required = True
-      Size = 1
     end
     object ZQuery1data_quebra: TDateTimeField
       Alignment = taCenter
@@ -399,8 +382,8 @@ object frmConsultaPH: TfrmConsultaPH
   end
   object DataSource1: TDataSource
     DataSet = ZQuery1
-    Left = 80
-    Top = 304
+    Left = 72
+    Top = 168
   end
   object ZQuery2: TZQuery
     Connection = frmMenu.ZConnection1
@@ -555,7 +538,7 @@ object frmConsultaPH: TfrmConsultaPH
   object Timer1: TTimer
     Interval = 10000
     OnTimer = Timer1Timer
-    Left = 432
-    Top = 384
+    Left = 408
+    Top = 336
   end
 end

@@ -15,8 +15,7 @@ type
     DataSource1: TDataSource;
     Timer1: TTimer;
     BitBtn1: TBitBtn;
-    ZQuery1seq_abate: TIntegerField;
-    ZQuery1banda: TWideStringField;
+    ZQuery1seq_abate: TWideStringField;
     DBGrid1: TDBGrid;
     Label1: TLabel;
     ZQuery1data_pes: TDateTimeField;
@@ -62,7 +61,7 @@ type
     DataSource7: TDataSource;
     DBGrid6: TDBGrid;
     ZQuery8cod_camara: TWideStringField;
-    ZQuery8seq_abate: TIntegerField;
+    ZQuery8seq_abate: TWideStringField;
     ZQuery8cod_trilho: TWideStringField;
     CheckBox1: TCheckBox;
     ZQuery8num_lote: TWideStringField;
@@ -108,6 +107,7 @@ type
     ZQuery12: TZQuery;
     DataSource11: TDataSource;
     SpeedButton2: TSpeedButton;
+    ZQuery1cod_matur: TWideStringField;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -311,6 +311,24 @@ begin
       QRY_TEMP.SQL.Add('abertura = (select top 1 CAM_09_AMBIENTE as temperatura from CAMARA09 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7abertura.AsDateTime)+'''),');
       QRY_TEMP.SQL.Add('fechamento = (select top 1 CAM_09_AMBIENTE as temperatura from CAMARA09 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7fechamento.AsDateTime)+''')');
     end;
+    if ZQuery7cod_camara.AsString = '10' then
+    begin
+      QRY_TEMP.SQL.Add('select ');
+      QRY_TEMP.SQL.Add('abertura = (select top 1 CAM_10_AMBIENTE as temperatura from CAMARA10 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7abertura.AsDateTime)+'''),');
+      QRY_TEMP.SQL.Add('fechamento = (select top 1 CAM_10_AMBIENTE as temperatura from CAMARA10 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7fechamento.AsDateTime)+''')');
+    end;
+    if ZQuery7cod_camara.AsString = '11' then
+    begin
+      QRY_TEMP.SQL.Add('select ');
+      QRY_TEMP.SQL.Add('abertura = (select top 1 CAM_11_AMBIENTE as temperatura from CAMARA11 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7abertura.AsDateTime)+'''),');
+      QRY_TEMP.SQL.Add('fechamento = (select top 1 CAM_11_AMBIENTE as temperatura from CAMARA11 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7fechamento.AsDateTime)+''')');
+    end;
+    if ZQuery7cod_camara.AsString = '12' then
+    begin
+      QRY_TEMP.SQL.Add('select ');
+      QRY_TEMP.SQL.Add('abertura = (select top 1 CAM_12_AMBIENTE as temperatura from CAMARA12 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7abertura.AsDateTime)+'''),');
+      QRY_TEMP.SQL.Add('fechamento = (select top 1 CAM_12_AMBIENTE as temperatura from CAMARA12 where Time_Stamp >= '''+FormatDateTime('yyyy-mm-dd hh:nn:ss',ZQuery7fechamento.AsDateTime)+''')');
+    end;
     QRY_TEMP.Active := True;
     Application.MessageBox(PChar('Abertura: '+QRY_TEMP.FieldByName('abertura').AsString+'°C'+#13#10+'Fechamento: '+QRY_TEMP.FieldByName('fechamento').AsString+'°C'),'Aviso',MB_OK+MB_ICONINFORMATION);
     QRY_TEMP.Active := False;
@@ -356,9 +374,9 @@ begin
       end;
   if (ssCtrl in Shift) and (ssShift in Shift) and (Key=Ord('I')) then
   begin
-    Application.CreateForm(TfrmAlterarIdade, frmAlterarIdade);
-    frmAlterarIdade.ShowModal;
-    frmAlterarIdade.Free;
+    //Application.CreateForm(TfrmAlterarIdade, frmAlterarIdade);
+    //frmAlterarIdade.ShowModal;
+    //frmAlterarIdade.Free;
   end;
 end;
 

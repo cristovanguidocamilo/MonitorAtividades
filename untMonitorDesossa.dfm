@@ -20,13 +20,13 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 215
-    Width = 170
-    Height = 19
+    Top = 218
+    Width = 134
+    Height = 16
     Caption = 'Entrada do Dianteiro'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
@@ -34,32 +34,32 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   object Label2: TLabel
     Left = 8
     Top = 8
-    Width = 162
-    Height = 19
+    Width = 128
+    Height = 16
     Caption = 'Entrada do Traseiro'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 9
-    Top = 422
-    Width = 117
-    Height = 19
+    Left = 8
+    Top = 425
+    Width = 93
+    Height = 16
     Caption = 'Entrada da PA'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -16
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object DBText1: TDBText
     Left = 296
-    Top = 208
+    Top = 205
     Width = 65
     Height = 17
     Alignment = taRightJustify
@@ -165,7 +165,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object DBGrid2: TDBGrid
     Left = 8
-    Top = 33
+    Top = 30
     Width = 353
     Height = 176
     DataSource = DataSource2
@@ -488,7 +488,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     Left = 679
     Top = 8
     Width = 326
-    Height = 41
+    Height = 39
     BevelInner = bvLowered
     TabOrder = 0
     object Label4: TLabel

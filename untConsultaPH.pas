@@ -19,7 +19,6 @@ type
     CheckBox1: TCheckBox;
     ZQuery1cod_camara: TWideStringField;
     ZQuery1seq_abate: TIntegerField;
-    ZQuery1banda: TWideStringField;
     ZQuery1data_quebra: TDateTimeField;
     ZQuery1class_rastr: TWideStringField;
     ZQuery1desclass: TWideStringField;
