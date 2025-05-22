@@ -22,6 +22,7 @@ type
     PH2: TMenuItem;
     Estoque1: TMenuItem;
     StatusBar1: TStatusBar;
+    Timer1: TTimer;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure GravaIni(Arquivo, Secao, Propriedade, Valor : String);
@@ -32,6 +33,7 @@ type
     procedure Desossa2Click(Sender: TObject);
     procedure PH2Click(Sender: TObject);
     procedure Estoque1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,13 +42,14 @@ type
 
 var
   frmMenu: TfrmMenu;
+  MonitorAbate, PH, Desossa: Boolean;
 
 implementation
 
 {$R *.dfm}
 
 uses untMonitorAtividades, untMonitorDesossa, untConsultaQuebra, untConsultaPH,
-  untEstoqueOsso;
+  untEstoqueOsso, untAguarde;
 
 procedure TfrmMenu.Desossa2Click(Sender: TObject);
 begin
@@ -216,6 +219,51 @@ end;
 procedure TfrmMenu.Sair1Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfrmMenu.Timer1Timer(Sender: TObject);
+begin
+  MonitorAbate := (frmMonitorAbate <> Nil);
+  PH := (frmConsultaPH <> Nil);
+  Desossa := (frmMonitorDesossa <> Nil);
+  if ZConnection1.Ping then
+  begin
+    if ZConnection1.PingServer = False then
+    begin
+      if MonitorAbate then
+        frmMonitorAbate.Close;
+      if PH then
+        frmConsultaPH.Close;
+      if Desossa then
+        frmMonitorDesossa.Close;
+      if frmAguarde = Nil then
+      begin
+        Application.CreateForm(TfrmAguarde, frmAguarde);
+        frmAguarde.ShowModal;
+      end;
+    end
+    else
+    begin
+      if frmAguarde <> Nil then
+        frmAguarde.Close;
+      if MonitorAbate then
+      begin
+        Application.CreateForm(TfrmMonitorAbate, frmMonitorAbate);
+        frmMonitorAbate.Show;
+      end;
+      if PH then
+      begin
+        Application.CreateForm(TfrmConsultaPH, frmConsultaPH);
+        frmConsultaPH.Show;
+      end;
+      if Desossa then
+      begin
+        Application.CreateForm(TfrmMonitorDesossa, frmMonitorDesossa);
+        frmMonitorDesossa.Show;
+      end;
+    end;
+  end;
+
 end;
 
 end.

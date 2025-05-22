@@ -108,6 +108,12 @@ type
     DataSource11: TDataSource;
     SpeedButton2: TSpeedButton;
     ZQuery1cod_matur: TWideStringField;
+    ProgressBar1: TProgressBar;
+    ZQuery4perc_china: TFloatField;
+    Label10: TLabel;
+    DBText4: TDBText;
+    Label11: TLabel;
+    cbVerificaCalha: TCheckBox;
     procedure BitBtn1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -140,7 +146,7 @@ implementation
 
 {$R *.dfm}
 
-uses untMenu, untLogAbate, untAlterarIdade;
+uses untMenu, untLogAbate, untAlterarIdade, untAguarde;
 
 procedure TfrmMonitorAbate.Alerta;
 Var
@@ -414,6 +420,8 @@ begin
     StatusBar1.Panels.Items[0].Text := 'DUPLO CLIQUE NA CÂMARA PARA EXIBIR TEMPERATURAS DE ABERTURA E FECHAMENTO';
   if Sorteio = 12 then
     StatusBar1.Panels.Items[0].Text := 'VELOCIDADE DA NÓRIA OSCILA POIS É A MÉDIA DE TEMPO ENTRE AS DUAS ÚLTIMAS PESAGENS';
+  if Sorteio = 13 then
+    StatusBar1.Panels.Items[0].Text := 'A BARRA VERDE ACIMA É UM INDICADOR VISUAL DAS QUANTIDADES DO ABATE';
 end;
 
 procedure TfrmMonitorAbate.SpeedButton1Click(Sender: TObject);
@@ -444,6 +452,8 @@ procedure TfrmMonitorAbate.Timer1Timer(Sender: TObject);
 begin
   ZQuery1.Refresh;
   ZQuery2.Refresh;
+  if cbVerificaCalha.Checked then
+    ZQuery2.Last;
   ZQuery3.Refresh;
   ZQuery4.Refresh;
   ZQuery5.Refresh;
@@ -461,10 +471,15 @@ begin
     if StrToInt(QuantidadeAviso) <= ZQuery5sequencial.AsInteger then
       Alerta;
 
-  MensagensAjuda(RandomRange(1,13));
+  MensagensAjuda(RandomRange(1,14));
   StatusBar1.Panels.Items[1].Text := 'Total: '+ZQuery4qtdlote.AsString;
   StatusBar1.Panels.Items[2].Text := 'Abatidos: '+ZQuery4qtdabate.AsString;
   StatusBar1.Panels.Items[3].Text := 'Restam: '+ZQuery4restam.AsString;
+  StatusBar1.Panels.Items[4].Text := FloatToStr(Round((ZQuery4qtdabate.Value/ZQuery4qtdlote.Value)*100))+'%';
+
+  ProgressBar1.Min := 0;
+  ProgressBar1.Max := ZQuery4qtdlote.AsInteger;
+  ProgressBar1.Position := ZQuery4qtdabate.AsInteger;
 end;
 
 end.

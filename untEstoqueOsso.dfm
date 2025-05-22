@@ -262,46 +262,54 @@ object frmEstoqueOsso: TfrmEstoqueOsso
       
         'select '#39'011000 - TRASEIRO BOI'#39' as cod_prod, '#39'ABATE'#39' as tipo, dat' +
         'a_abate, cod_tras as cod_barra, class_rastr, class_rastr2, class' +
-        '_rastr3, class_rastr4 from t_pescarcaca  where data_sai_tras is ' +
-        'null and sexo = 1'
+        '_rastr3, class_rastr4 from t_pescarcaca with (nolock)  where dat' +
+        'a_sai_tras is null and sexo = 1'
       'union all'
       
         'select '#39'011016 - TRASEIRO VACA'#39' as cod_prod, '#39'ABATE'#39' as tipo, da' +
         'ta_abate, cod_tras as cod_barra, class_rastr, class_rastr2, clas' +
-        's_rastr3, class_rastr4 from t_pescarcaca where data_sai_tras is ' +
-        'null and sexo = 2'
+        's_rastr3, class_rastr4 from t_pescarcaca with (nolock) where dat' +
+        'a_sai_tras is null and sexo = 2'
       'union all'
       
         'select '#39'011001 - DIANTEIRO BOI'#39' as cod_prod, '#39'ABATE'#39' as tipo, da' +
         'ta_abate, cod_tras as cod_barra, class_rastr, class_rastr2, clas' +
-        's_rastr3, class_rastr4 from t_pescarcaca where data_sai_diant is' +
-        ' null and sexo = 1'
+        's_rastr3, class_rastr4 from t_pescarcaca with (nolock) where dat' +
+        'a_sai_diant is null and sexo = 1'
       'union all'
       
         'select '#39'011017 - DIANTEIRO VACA'#39' as cod_prod, '#39'ABATE'#39' as tipo, d' +
         'ata_abate, cod_tras as cod_barra, class_rastr, class_rastr2, cla' +
-        'ss_rastr3, class_rastr4 from t_pescarcaca where data_sai_diant i' +
-        's null and sexo = 2'
+        'ss_rastr3, class_rastr4 from t_pescarcaca with (nolock) where da' +
+        'ta_sai_diant is null and sexo = 2'
       'union all'
       
         'select '#39'011004 - PONTA AGULHA BOI'#39' as cod_prod, '#39'ABATE'#39' as tipo,' +
         ' data_abate, cod_tras as cod_barra, class_rastr, class_rastr2, c' +
-        'lass_rastr3, class_rastr4 from t_pescarcaca where data_sai_pa is' +
-        ' null and sexo = 1'
+        'lass_rastr3, class_rastr4 from t_pescarcaca with (nolock) where ' +
+        'data_sai_pa is null and sexo = 1'
       'union all'
       
         'select '#39'011010 - PONTA AGULHA VACA'#39' as cod_prod, '#39'ABATE'#39' as tipo' +
         ', data_abate, cod_tras as cod_barra, class_rastr, class_rastr2, ' +
-        'class_rastr3, class_rastr4 from t_pescarcaca where data_sai_pa i' +
-        's null and sexo = 2'
+        'class_rastr3, class_rastr4 from t_pescarcaca with (nolock) where' +
+        ' data_sai_pa is null and sexo = 2'
       ') t'
-      'left join t_historico_rastr  ras1 on ras1.cod_tras = t.cod_barra'
-      'left join t_historico_rastr2 ras2 on ras2.cod_tras = t.cod_barra'
-      'left join t_historico_rastr3 ras3 on ras3.cod_tras = t.cod_barra'
-      'left join t_historico_rastr4 ras4 on ras4.cod_tras = t.cod_barra'
       
-        'left join t_reserva_estoque_it res on res.cod_barra = t.cod_barr' +
-        'a and res.situacao = 1'
+        'left join t_historico_rastr  ras1 with (nolock) on ras1.cod_tras' +
+        ' = t.cod_barra'
+      
+        'left join t_historico_rastr2 ras2 with (nolock) on ras2.cod_tras' +
+        ' = t.cod_barra'
+      
+        'left join t_historico_rastr3 ras3 with (nolock) on ras3.cod_tras' +
+        ' = t.cod_barra'
+      
+        'left join t_historico_rastr4 ras4 with (nolock) on ras4.cod_tras' +
+        ' = t.cod_barra'
+      
+        'left join t_reserva_estoque_it res with (nolock) on res.cod_barr' +
+        'a = t.cod_barra and res.situacao = 1'
       
         'group by t.cod_prod, t.tipo, cast(data_abate as date), concat(rt' +
         'rim(isnull(ras1.class_rastr, t.class_rastr)), case when (isnull(' +
@@ -340,10 +348,10 @@ object frmEstoqueOsso: TfrmEstoqueOsso
         '.class_rastr3 <> '#39#39' then concat('#39'-'#39', rtrim(ras.class_rastr3)) en' +
         'd, case when ras.class_rastr4 <> '#39#39' then concat('#39'-'#39', rtrim(ras.c' +
         'lass_rastr4)) end) as habilitacao'
-      'from pescaixa pes'
+      'from pescaixa pes with (nolock)'
       
-        'inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.co' +
-        'd_barra'
+        'inner join rastreabilidade_pesagem ras with (nolock) on ras.cod_' +
+        'barra = pes.cod_barra'
       
         'and pes.cod_prod in ('#39'011000'#39','#39'011001'#39','#39'011004'#39','#39'011010'#39','#39'011016' +
         #39','#39'011017'#39')'

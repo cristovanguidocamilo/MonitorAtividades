@@ -1283,8 +1283,10 @@ object frmConsultaQuebra: TfrmConsultaQuebra
       
         '       convert(decimal(18,2),100-((pes.peso_quebra*100)/pes.peso' +
         ')) as perc_quebra'
-      '  from t_pescarcaca pes'
-      '  left join t_historico_rastr his on his.cod_tras = pes.cod_tras'
+      '  from t_pescarcaca pes  with (nolock)'
+      
+        '  left join t_historico_rastr his with (nolock) on his.cod_tras ' +
+        '= pes.cod_tras'
       
         ' where @camara = case when @camara <> '#39'00'#39' then pes.cod_camara e' +
         'lse '#39'00'#39' end'

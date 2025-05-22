@@ -2,28 +2,31 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2018/06/19 10:56:17.000.703,=C:\Users\cristovan.camilo\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018/06/19 11:03:14.000.212,C:\Users\cristovan.camilo\Documents\RAD Studio\Projects\Unit1.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorAtividades.dfm</Transaction>
-    <Transaction>2018/06/19 11:03:14.000.212,C:\Users\cristovan.camilo\Documents\RAD Studio\Projects\Unit1.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorAtividades.pas</Transaction>
-    <Transaction>2018/06/19 11:03:18.000.329,C:\Users\cristovan.camilo\Documents\RAD Studio\Projects\Project1.dproj=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\MonitorAtividades.dproj</Transaction>
+    <Transaction>2018/06/19 11:03:14.000.212,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorAtividades.pas=C:\Users\cristovan.camilo\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/06/19 11:03:14.000.212,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorAtividades.dfm=C:\Users\cristovan.camilo\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/06/19 11:03:18.000.329,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\MonitorAtividades.dproj=C:\Users\cristovan.camilo\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
     <Transaction>2018/07/19 07:09:07.000.659,=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit2.pas</Transaction>
-    <Transaction>2018/07/19 07:11:35.000.517,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit2.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMenu.pas</Transaction>
-    <Transaction>2018/07/19 07:11:35.000.517,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit2.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMenu.dfm</Transaction>
+    <Transaction>2018/07/19 07:11:35.000.517,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMenu.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit2.dfm</Transaction>
+    <Transaction>2018/07/19 07:11:35.000.517,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMenu.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit2.pas</Transaction>
     <Transaction>2018/07/19 07:44:21.000.092,=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
-    <Transaction>2018/07/19 07:45:19.000.929,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorDesossa.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm</Transaction>
-    <Transaction>2018/07/19 07:45:19.000.929,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorDesossa.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
+    <Transaction>2018/07/19 07:45:19.000.929,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorDesossa.pas</Transaction>
+    <Transaction>2018/07/19 07:45:19.000.929,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untMonitorDesossa.dfm</Transaction>
     <Transaction>2018/08/01 07:34:10.000.805,=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
-    <Transaction>2018/08/01 07:34:58.000.611,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untLogAbate.pas</Transaction>
-    <Transaction>2018/08/01 07:34:58.000.611,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untLogAbate.dfm</Transaction>
+    <Transaction>2018/08/01 07:34:58.000.611,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untLogAbate.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm</Transaction>
+    <Transaction>2018/08/01 07:34:58.000.611,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untLogAbate.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
     <Transaction>2019/10/15 06:55:58.000.018,=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
-    <Transaction>2019/10/15 06:56:21.000.278,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untConsultaQuebra.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
-    <Transaction>2019/10/15 06:56:21.000.278,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untConsultaQuebra.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm</Transaction>
+    <Transaction>2019/10/15 06:56:21.000.278,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untConsultaQuebra.dfm</Transaction>
+    <Transaction>2019/10/15 06:56:21.000.278,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untConsultaQuebra.pas</Transaction>
     <Transaction>2019/10/29 09:50:36.000.499,=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untConsultaPH.pas</Transaction>
     <Transaction>2020/01/11 11:39:21.000.477,=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
-    <Transaction>2020/01/11 11:45:58.000.850,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untEstoqueOsso.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm</Transaction>
-    <Transaction>2020/01/11 11:45:58.000.850,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untEstoqueOsso.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
+    <Transaction>2020/01/11 11:45:58.000.850,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untEstoqueOsso.dfm</Transaction>
+    <Transaction>2020/01/11 11:45:58.000.850,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untEstoqueOsso.pas</Transaction>
     <Transaction>2020/03/20 09:20:14.000.446,=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
-    <Transaction>2020/03/20 09:32:32.000.324,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untAlterarIdade.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
-    <Transaction>2020/03/20 09:32:32.000.324,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untAlterarIdade.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm</Transaction>
+    <Transaction>2020/03/20 09:32:32.000.324,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untAlterarIdade.dfm</Transaction>
+    <Transaction>2020/03/20 09:32:32.000.324,\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas=\\Srvbmarquivos\ti\CRISTOVAN\PROJETOS BM\MonitorAtividades\untAlterarIdade.pas</Transaction>
+    <Transaction>2021/02/10 15:39:09.000.677,=\\srvbmarquivos\pcp\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas</Transaction>
+    <Transaction>2021/02/10 15:42:40.000.476,\\srvbmarquivos\pcp\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.pas=\\srvbmarquivos\pcp\CRISTOVAN\PROJETOS BM\MonitorAtividades\untAguarde.pas</Transaction>
+    <Transaction>2021/02/10 15:42:40.000.476,\\srvbmarquivos\pcp\CRISTOVAN\PROJETOS BM\MonitorAtividades\Unit1.dfm=\\srvbmarquivos\pcp\CRISTOVAN\PROJETOS BM\MonitorAtividades\untAguarde.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="untConsultaPH.pas"/>
@@ -42,5 +45,7 @@
     <File Path="untMonitorDesossa.dfm"/>
     <File Path="untAlterarIdade.pas"/>
     <File Path="untAlterarIdade.dfm"/>
+    <File Path="untAguarde.pas"/>
+    <File Path="untAguarde.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

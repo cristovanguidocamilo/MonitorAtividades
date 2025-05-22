@@ -387,7 +387,7 @@ object frmMenu: TfrmMenu
       end
       item
         Alignment = taCenter
-        Text = 'Vers'#227'o: 2020.07.29-1'
+        Text = 'Vers'#227'o: 2022.05.21-1'
         Width = 100
       end>
   end
@@ -426,5 +426,12 @@ object frmMenu: TfrmMenu
       Caption = 'F12-Sair'
       OnClick = Sair1Click
     end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 2000
+    OnTimer = Timer1Timer
+    Left = 64
+    Top = 56
   end
 end

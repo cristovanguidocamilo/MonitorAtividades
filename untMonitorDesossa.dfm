@@ -5,7 +5,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   BorderStyle = bsSingle
   Caption = 'Monitoramento da Desossa'
   ClientHeight = 634
-  ClientWidth = 1013
+  ClientWidth = 1298
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   TextHeight = 13
   object Label1: TLabel
     Left = 8
-    Top = 218
+    Top = 417
     Width = 134
     Height = 16
     Caption = 'Entrada do Dianteiro'
@@ -33,7 +33,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object Label2: TLabel
     Left = 8
-    Top = 8
+    Top = 207
     Width = 128
     Height = 16
     Caption = 'Entrada do Traseiro'
@@ -46,7 +46,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object Label3: TLabel
     Left = 8
-    Top = 425
+    Top = 593
     Width = 93
     Height = 16
     Caption = 'Entrada da PA'
@@ -58,46 +58,59 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     ParentFont = False
   end
   object DBText1: TDBText
-    Left = 296
+    Left = 280
     Top = 205
-    Width = 65
-    Height = 17
+    Width = 81
+    Height = 20
     Alignment = taRightJustify
     DataField = 'total'
     DataSource = DataSource2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
-    Font.Height = -11
+    Font.Height = -15
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object DBText2: TDBText
-    Left = 296
+    Left = 280
     Top = 415
-    Width = 65
-    Height = 17
+    Width = 81
+    Height = 26
     Alignment = taRightJustify
     DataField = 'total'
     DataSource = DataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
-    Font.Height = -11
+    Font.Height = -15
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object DBText3: TDBText
-    Left = 296
+    Left = 280
     Top = 592
-    Width = 65
+    Width = 81
     Height = 17
     Alignment = taRightJustify
     DataField = 'total'
     DataSource = DataSource3
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clRed
-    Font.Height = -11
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 367
+    Top = 8
+    Width = 182
+    Height = 16
+    Caption = 'Pesagem de Caixas por Lote'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
@@ -286,7 +299,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   object StatusBar1: TStatusBar
     Left = 0
     Top = 615
-    Width = 1013
+    Width = 1298
     Height = 19
     Panels = <
       item
@@ -299,10 +312,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       end>
   end
   object DBGrid4: TDBGrid
-    Left = 367
-    Top = 176
-    Width = 638
-    Height = 416
+    Left = 679
+    Top = 262
+    Width = 610
+    Height = 330
     DataSource = DataSource4
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
@@ -350,7 +363,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Title.Font.Height = -11
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 224
+        Width = 196
         Visible = True
       end
       item
@@ -417,10 +430,10 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       end>
   end
   object DBGrid5: TDBGrid
-    Left = 367
-    Top = 8
+    Left = 679
+    Top = 30
     Width = 306
-    Height = 162
+    Height = 226
     DataSource = DataSource5
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
@@ -485,9 +498,9 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       end>
   end
   object Panel1: TPanel
-    Left = 679
-    Top = 8
-    Width = 326
+    Left = 991
+    Top = 30
+    Width = 298
     Height = 39
     BevelInner = bvLowered
     TabOrder = 0
@@ -529,6 +542,131 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       OnChange = SpinEdit1Change
     end
   end
+  object DBGrid6: TDBGrid
+    Left = 991
+    Top = 75
+    Width = 298
+    Height = 181
+    DataSource = DataSource6
+    TabOrder = 7
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'cod_prod'
+        Title.Alignment = taCenter
+        Title.Caption = 'Produto'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 67
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cod_ponto'
+        Title.Alignment = taCenter
+        Title.Caption = 'Ponto'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'data_rend'
+        Title.Alignment = taCenter
+        Title.Caption = 'Data Pesagem'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 156
+        Visible = True
+      end>
+  end
+  object DBGrid7: TDBGrid
+    Left = 367
+    Top = 30
+    Width = 306
+    Height = 562
+    DataSource = DataSource7
+    TabOrder = 8
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'num_lote'
+        Title.Caption = 'Lote'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 31
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'inicio'
+        Title.Caption = 'In'#237'cio'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 63
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'termino'
+        Title.Caption = 'T'#233'rmino'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 63
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'caixas'
+        Title.Caption = 'Caixas'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 46
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'pecas'
+        Title.Caption = 'Pe'#231'as'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clMaroon
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end>
+  end
   object ZQuery1: TZQuery
     Connection = frmMenu.ZConnection1
     SQL.Strings = (
@@ -549,14 +687,16 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
         't(data_ent as date) = @data - :dia and cod_prod in ('#39'011001'#39','#39'01' +
-        '1017'#39')) as total'
+        '1017'#39','#39'011027'#39')) as total'
       '  from t_entdesossa ent with(nolock)'
-      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
       
-        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
-        'cod_barra'
+        '  left join pescaixa pes with (nolock) on pes.cod_barra = ent.co' +
+        'd_barra'
+      
+        '  inner join rastreabilidade_pesagem ras with (nolock) on ras.co' +
+        'd_barra = pes.cod_barra'
       ' where cast(ent.data_ent as date) = @data - :dia'
-      '   and ent.cod_prod in ('#39'011001'#39','#39'011017'#39')'
+      '   and ent.cod_prod in ('#39'011001'#39','#39'011017'#39','#39'011027'#39')'
       
         ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
         ' ras.class_rastr2 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2))' +
@@ -646,14 +786,16 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
         't(data_ent as date) = @data - :dia and cod_prod in ('#39'011000'#39','#39'01' +
-        '1016'#39')) as total'
+        '1016'#39','#39'011026'#39')) as total'
       '  from t_entdesossa ent with(nolock)'
-      '  left join pescaixa pes on pes.cod_barra = ent.cod_barra'
       
-        '  inner join rastreabilidade_pesagem ras on ras.cod_barra = pes.' +
-        'cod_barra'
+        '  left join pescaixa pes with (nolock) on pes.cod_barra = ent.co' +
+        'd_barra'
+      
+        '  inner join rastreabilidade_pesagem ras with (nolock) on ras.co' +
+        'd_barra = pes.cod_barra'
       ' where cast(ent.data_ent as date) = @data - :dia'
-      '   and ent.cod_prod in ('#39'011000'#39','#39'011016'#39')'
+      '   and ent.cod_prod in ('#39'011000'#39','#39'011016'#39','#39'011026'#39')'
       
         ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
         ' ras.class_rastr2 <> '#39#39' then concat('#39'-'#39',rtrim(ras.class_rastr2))' +
@@ -743,7 +885,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
         't(data_ent as date) = @data - :dia and cod_prod in ('#39'011004'#39','#39'01' +
-        '1010'#39')) as total'
+        '1010'#39','#39'011028'#39')) as total'
       '  from t_entdesossa ent with(nolock)'
       
         '  left join pescaixa pes with(nolock) on pes.cod_barra = ent.cod' +
@@ -752,7 +894,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         '  inner join rastreabilidade_pesagem ras with(nolock) on ras.cod' +
         '_barra = pes.cod_barra'
       ' where cast(ent.data_ent as date) = @data - :dia'
-      '   and ent.cod_prod in ('#39'011004'#39','#39'011010'#39')'
+      '   and ent.cod_prod in ('#39'011004'#39','#39'011010'#39','#39'011028'#39')'
       '   and pes.cod_barra_origem is null'
       
         ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
@@ -778,7 +920,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
       
         '       (select count(1) from t_entdesossa with(nolock) where cas' +
         't(data_ent as date) = @data - :dia and cod_prod in ('#39'011004'#39','#39'01' +
-        '1010'#39')) as total'
+        '1010'#39','#39'011028'#39')) as total'
       '  from t_entdesossa ent with(nolock)'
       
         '  left join pescaixa pes with(nolock) on pes.cod_barra = ent.cod' +
@@ -787,7 +929,7 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         '  inner join rastreabilidade_pesagem ras with(nolock) on ras.cod' +
         '_barra = pes.cod_barra_origem'
       ' where cast(ent.data_ent as date) = @data - :dia'
-      '   and ent.cod_prod in ('#39'011004'#39','#39'011010'#39')'
+      '   and ent.cod_prod in ('#39'011004'#39','#39'011010'#39','#39'011028'#39')'
       '   and pes.cod_barra_origem is not null'
       
         ' group by ent.num_lote, concat(rtrim(ras.class_rastr), case when' +
@@ -934,8 +1076,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
     MasterFields = 'num_lote'
     MasterSource = DataSource5
     LinkedFields = 'num_lote'
-    Left = 464
-    Top = 200
+    Left = 776
+    Top = 222
     ParamData = <
       item
         DataType = ftUnknown
@@ -998,8 +1140,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object DataSource4: TDataSource
     DataSet = ZQuery5
-    Left = 504
-    Top = 200
+    Left = 816
+    Top = 222
   end
   object ZQuery6: TZQuery
     Connection = frmMenu.ZConnection1
@@ -1039,8 +1181,8 @@ object frmMonitorDesossa: TfrmMonitorDesossa
         Name = 'dia'
         ParamType = ptUnknown
       end>
-    Left = 416
-    Top = 64
+    Left = 728
+    Top = 86
     ParamData = <
       item
         DataType = ftUnknown
@@ -1070,7 +1212,114 @@ object frmMonitorDesossa: TfrmMonitorDesossa
   end
   object DataSource5: TDataSource
     DataSet = ZQuery6
-    Left = 448
-    Top = 64
+    Left = 760
+    Top = 86
+  end
+  object ZQuery7: TZQuery
+    Connection = frmMenu.ZConnection1
+    SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
+      'select top 10 cod_prod, cod_ponto, data_rend'
+      '  from pescaixa with (nolock)'
+      ' where cast(data_rend as date) = @data - :dia'
+      ' order by data_rend desc')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    Left = 1176
+    Top = 102
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    object ZQuery7cod_prod: TWideStringField
+      Alignment = taCenter
+      FieldName = 'cod_prod'
+      Size = 6
+    end
+    object ZQuery7cod_ponto: TWideStringField
+      Alignment = taCenter
+      FieldName = 'cod_ponto'
+      Size = 2
+    end
+    object ZQuery7data_rend: TDateTimeField
+      Alignment = taCenter
+      FieldName = 'data_rend'
+    end
+  end
+  object DataSource6: TDataSource
+    DataSet = ZQuery7
+    Left = 1208
+    Top = 102
+  end
+  object DataSource7: TDataSource
+    DataSet = ZQuery8
+    Left = 480
+    Top = 192
+  end
+  object ZQuery8: TZQuery
+    Connection = frmMenu.ZConnection1
+    SQL.Strings = (
+      'declare @data datetime = cast(getdate() as date)'
+      ''
+      'select pes.num_lote,'
+      '       convert(varchar, min(pes.data_rend), 108) as inicio,'
+      #9'     convert(varchar, max(pes.data_rend), 108) as termino,'
+      #9'     count(1) as caixas,'
+      #9'     sum(pes.quant) as pecas'
+      '  from pescaixa pes with (nolock)'
+      
+        ' inner join t_ponto pon with (nolock) on pon.cod_ponto = pes.cod' +
+        '_ponto'
+      ' where cast(pes.data_rend as date) = @data - :dia'
+      '   and pes.status <> '#39'C'#39
+      '   and pon.tipo = '#39'D'#39
+      ' group by pes.num_lote')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    Left = 392
+    Top = 192
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'dia'
+        ParamType = ptUnknown
+      end>
+    object ZQuery8num_lote: TSmallintField
+      Alignment = taCenter
+      FieldName = 'num_lote'
+    end
+    object ZQuery8inicio: TWideStringField
+      Alignment = taCenter
+      FieldName = 'inicio'
+      ReadOnly = True
+      Size = 30
+    end
+    object ZQuery8termino: TWideStringField
+      Alignment = taCenter
+      FieldName = 'termino'
+      ReadOnly = True
+      Size = 30
+    end
+    object ZQuery8caixas: TIntegerField
+      Alignment = taCenter
+      FieldName = 'caixas'
+      ReadOnly = True
+    end
+    object ZQuery8pecas: TFloatField
+      Alignment = taCenter
+      FieldName = 'pecas'
+      ReadOnly = True
+    end
   end
 end
